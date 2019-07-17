@@ -30,54 +30,54 @@ Les données sont formatées de la manière suivante :
 # Liste des fichiers du format
 ## Fichiers spéciaux
     Ces fichiers permettent de décrire précisément d'où viennent les données dans le cas d'un référentiel agrégeant plusieurs sources de données. La notion de _contributor_ correspond à une source de données (un exploitant peut nécessiter l'utilisation de plusieurs contributeurs). La notion de _dataset_ correspond à un jeu de données provenant d'un contributeur.
-    Le fichier _trips.txt_ fait une référence à _dataset_id_ afin de lier une circulation à sa donnée source.
+    Le fichier [`trips.txt`](#tripstxt-requis) fait une référence à _dataset_id_ afin de lier une circulation à sa donnée source.
 
 Fichier | Contrainte | Commentaire
 --- | --- | ---
-contributors.txt | Requis | Ce fichier contient les contributeurs.
-datasets.txt | Requis | Ce fichier contient les sources de données d'un contributeur.
+[`contributors.txt`](#contributorstxt-requis) | Requis | Ce fichier contient les contributeurs.
+[`datasets.txt`](#datasetstxt-requis) | Requis | Ce fichier contient les sources de données d'un contributeur.
 
 ## Fichiers de base
 Fichier | Contrainte | Commentaire
 --- | --- | ---
-feed_infos.txt | Requis | Ce fichier contient des informations complémentaires sur la plage de validité des données, le fournisseur ou toute autre information complémentaires.
-networks.txt | Requis | Ce fichier contient la description des différents réseaux.
-commercial_modes.txt | Requis | Ce fichier contient les modes commerciaux (Mode NAViTiA 1)
-companies.txt | Requis | Ce fichier contient les compagnies
-lines.txt | Requis | Ce fichier contient les lignes
-physical_modes.txt  | Requis | Ce fichier contient les modes physiques (ModeType NAViTiA 1)
-routes.txt | Requis | Ce fichier contient les parcours
-stop_times.txt | Requis | Ce fichier contient les horaires
-stops.txt | Requis | Ce fichier contient les arrêts, les entrées/sorties et les points utilisés par les pathways.
-trips.txt | Requis | Ce fichier contient les circulations
-calendar.txt | Requis | Ce fichier contient les jours de fonctionnement
-calendar_dates.txt | Optionnel | Ce fichier contient les exceptions sur les jours de fonctionnement décrits dans le fichier calendar.txt
-comments.txt | Optionnel | Ce fichier contient les commentaires
-comment_links.txt | Optionnel | Ce fichier contient les relations entre chaque commentaire et les objets du référentiels associés
+[`feed_infos.txt`](#feed_infostxt-requis) | Requis | Ce fichier contient des informations complémentaires sur la plage de validité des données, le fournisseur ou toute autre information complémentaires.
+[`networks.txt`](#networkstxt-requis) | Requis | Ce fichier contient la description des différents réseaux.
+[`commercial_modes.txt`](#commercial_modestxt-requis) | Requis | Ce fichier contient les modes commerciaux (Mode NAViTiA 1)
+[`companies.txt`](#companiestxt-requis) | Requis | Ce fichier contient les compagnies
+[`lines.txt`](#linestxt-requis) | Requis | Ce fichier contient les lignes
+[`physical_modes.txt`](#physical_modestxt-requis) | Requis | Ce fichier contient les modes physiques (ModeType NAViTiA 1)
+[`routes.txt`](#routestxt-requis) | Requis | Ce fichier contient les parcours
+[`stop_times.txt`](#stop_timestxt-requis) | Requis | Ce fichier contient les horaires
+[`stops.txt`](#stopstxt-requis) | Requis | Ce fichier contient les arrêts, les entrées/sorties et les points utilisés par les pathways.
+[`trips.txt`](#tripstxt-requis) | Requis | Ce fichier contient les circulations
+[`calendar.txt`](#calendartxt-requis) | Requis | Ce fichier contient les jours de fonctionnement
+[`calendar_dates.txt`](#calendar_datestxt-optionnel) | Optionnel | Ce fichier contient les exceptions sur les jours de fonctionnement décrits dans le fichier [`calendar.txt`](#calendartxt-requis)
+[`comments.txt`](#commentstxt-optionnel) | Optionnel | Ce fichier contient les commentaires
+[`comment_links.txt`](#comment_linkstxt-optionnel) | Optionnel | Ce fichier contient les relations entre chaque commentaire et les objets du référentiels associés
 
 ## Fichiers complémentaires (hors calendriers par période)
 Fichier | Contrainte | Commentaire
 --- | --- | ---
-frequencies.txt | Optionnel | Ce fichier contient les propriétés des fréquences
-equipments.txt  | Optionnel | Ce fichier contient les propriétés (notamment l’accessibilité) pour les arrêts  et les correspondances
-transfers.txt | Optionnel | Ce fichier contient les déclarations des correspondances
-trip_properties.txt | Optionnel | Ce fichier contient l’accessibilité au niveau des circulations
-geometries.txt | Optionnel | Ce fichier contient la représentation spatiale d'une géometrie au format Well Known Text (WKT). Ces géométries sont référencées dans les fichiers lines.txt, routes.txt, trips.txt.
-object_properties.txt | Optionnel | Ce fichier contient la description des propriétés complémentaires sur les différents objets du référentiel.
-object_codes.txt | Optionnel | Ce fichier contient la liste des codes d'identification complémentaires dans les systèmes externes des différents objets du référentiel.
-admin_stations.txt | Optionnel | Ce fichier contient la liste des arrêts d'accroche des communes pour les itinéraires au départ ou à l'arrivée d'une commune
-line_groups.txt | Optionnel | Ce fichier contient la définition de groupes de lignes
-line_group_links.txt | Optionnel | Ce fichier contient la liaison entre un groupe de ligne et la liste des lignes qui le compose
-pathways.txt | Optionnel | Ce fichier contient les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
-levels.txt | Optionnel | Ce fichier contient la liste des niveaux au sein d'une zone d'arrêt.
+[`frequencies.txt`](#frequenciestxt-optionnel) | Optionnel | Ce fichier contient les propriétés des fréquences
+[`equipments.txt`](#equipmentstxt-optionnel)  | Optionnel | Ce fichier contient les propriétés (notamment l’accessibilité) pour les arrêts  et les correspondances
+[`transfers.txt`](#transferstxt-optionnel) | Optionnel | Ce fichier contient les déclarations des correspondances
+[`trip_properties.txt`](#trip_propertiestxt-optionnel) | Optionnel | Ce fichier contient l’accessibilité au niveau des circulations
+[`geometries.txt`](#geometriestxt-optionnel) | Optionnel | Ce fichier contient la représentation spatiale d'une géometrie au format Well Known Text (WKT). Ces géométries sont référencées dans les fichiers [`lines.txt`](#linestxt-requis), [`routes.txt`](#routestxt-requis), [`trips.txt`](#tripstxt-requis).
+[`object_properties.txt`](#object_propertiestxt-optionnel) | Optionnel | Ce fichier contient la description des propriétés complémentaires sur les différents objets du référentiel.
+[`object_codes.txt`](#object_codestxt-optionnel) | Optionnel | Ce fichier contient la liste des codes d'identification complémentaires dans les systèmes externes des différents objets du référentiel.
+[`admin_stations.txt`](#admin_stationstxt-optionnel) | Optionnel | Ce fichier contient la liste des arrêts d'accroche des communes pour les itinéraires au départ ou à l'arrivée d'une commune
+[`line_groups.txt`](#line_groupstxt-optionnel) | Optionnel | Ce fichier contient la définition de groupes de lignes
+[`line_group_links.txt`](#line_group_linkstxt-optionnel) | Optionnel | Ce fichier contient la liaison entre un groupe de ligne et la liste des lignes qui le compose
+[`pathways.txt`](#pathwaystxt-optionnel) | Optionnel | Ce fichier contient les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
+[`levels.txt`](#levelstxt-optionnel) | Optionnel | Ce fichier contient la liste des niveaux au sein d'une zone d'arrêt.
 
 ## Fichiers des calendriers par période
 Fichier | Contrainte | Commentaire
 --- | --- | ---
-grid_calendars.txt | Optionnel |  Ce fichier contient les jours de fonctionnement des calendriers
-grid_exception_dates.txt | Optionnel | Ce fichier contient les exceptions sur les jours de fonctionnement des calendriers
-grid_periods.txt | Optionnel | Ce fichier contient les périodes des calendriers
-grid_rel_calendar_line.txt | Optionnel | Ce fichier contient les liens entre les lignes et ces calendriers
+[`grid_calendars.txt`](#grid_calendarstxt-optionnel) | Optionnel |  Ce fichier contient les jours de fonctionnement des calendriers
+[`grid_exception_dates.txt`](#grid_exception_datestxt-optionnel) | Optionnel | Ce fichier contient les exceptions sur les jours de fonctionnement des calendriers
+[`grid_periods.txt`](#grid_periodstxt-optionnel) | Optionnel | Ce fichier contient les périodes des calendriers
+[`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optionnel) | Optionnel | Ce fichier contient les liens entre les lignes et ces calendriers
 
 # Description des fichiers
 ### networks.txt (requis)
@@ -116,7 +116,7 @@ end_date | date | Requis | Date de fin du calendrier de circulation incluse dans
 * 1 - Circule ce jour
 
 ### calendar_dates.txt (optionnel)
-Ce fichier décrit des exceptions aux calendriers définis dans le fichier `calendar.txt`. Pour faciliter la description de calendriers pour des circulations très ponctuelles, il est possible de définir un calendrier en n'utilisant que le fichier `calendar_dates.txt`. De ce fait, le `service_id` ne sera pas présant dans le fichier `calendar.txt`.
+Ce fichier décrit des exceptions aux calendriers définis dans le fichier [`calendar.txt`](#calendartxt-requis). Pour faciliter la description de calendriers pour des circulations très ponctuelles, il est possible de définir un calendrier en n'utilisant que le fichier [`calendar_dates.txt`](#calendar_datestxt-optionnel). De ce fait, le `service_id` ne sera pas présant dans le fichier [`calendar.txt`](#calendartxt-requis).
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
@@ -151,7 +151,7 @@ Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 object_id | chaine | Requis | Identifiant de l'objet associé à la note
 object_type | chaine | Requis | Type de l'objet associé au commentaire. Les valeurs possibles sont stop_area, stop_point, line, route, trip, stop_time ou line_group.
-comment_id | chaine | Requis | Identifiant du commentaire (lien vers le fichier comments.txt)
+comment_id | chaine | Requis | Identifiant du commentaire (lien vers le fichier [`comments.txt`](#commentstxt-optionnel))
 
 ### commercial_modes.txt (requis)
 Ce fichier décrit les modes commerciaux, c'est à dire un libellé particulier de mode de transport. Par exemple, BusWay est un nom particulier de BHNS à Nantes.
@@ -189,7 +189,7 @@ Ce fichier liste des jeux de données du contributeur associé contenus dans le 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 dataset_id | chaine | Requis | Identifiant du jeu de données
-contributor_id | chaine | Requis | Identifiant du contributeur (lien vers le fichier contributors)
+contributor_id | chaine | Requis | Identifiant du contributeur (lien vers le fichier [`contributors.txt`](#contributorstxt-requis))
 dataset_start_date | date | Requis | Date de début de prise en compte du jeu de données (peut-être différent de la date de début de validité de l'export source)
 dataset_end_date | date | Requis | Date de fin de prise en compte du jeu de données (peut-être différent de la date de fin de validité de l'export source)
 dataset_type | entier (1) | Optionnel | Type de données représentant la "fraicheur"
@@ -218,15 +218,15 @@ line_id | chaine | Requis | Identifiant de la ligne commerciale
 line_code | chaine | Optionnel | Code de la ligne commerciale
 line_name | chaine | Requis | Nom de la ligne commerciale
 forward_line_name | chaine | Optionnel | Nom de la ligne en sens aller
-forward_direction | chaine | Optionnel | Arrêt de destination principal en sens aller (lien vers un arrêt commercial du fichier stops)
+forward_direction | chaine | Optionnel | Arrêt de destination principal en sens aller (lien vers un arrêt commercial du fichier [`stops.txt`](#stopstxt-requis))
 backward_line_name | chaine | Optionnel | Nom de la ligne en sens retour
-backward_direction | chaine | Optionnel | Arrêt de destination principal en sens retour (lien vers un arrêt commercial du fichier stops)
+backward_direction | chaine | Optionnel | Arrêt de destination principal en sens retour (lien vers un arrêt commercial du fichier [`stops.txt`](#stopstxt-requis))
 line_color | couleur | Optionnel | Couleur de la ligne
 line_text_color | couleur | Optionnel | Couleur du code de la ligne
 line_sort_order | entier | Optionnel | Clé de trie de la ligne au sein du réseau. Les indices les plus petits sont retournés en premier.
-network_id | chaine | Requis | Identifiant du réseau principal de la ligne (lien vers le fichier networks)
-commercial_mode_id | chaine | Requis | Identifiant du mode commercial (lien vers le fichier  commercial_modes)
-geometry_id | chaine | Optionnel | Identifiant du tracé représentant la ligne (lien vers le fichier geometries)
+network_id | chaine | Requis | Identifiant du réseau principal de la ligne (lien vers le fichier [`networks.txt`](#networkstxt-requis))
+commercial_mode_id | chaine | Requis | Identifiant du mode commercial (lien vers le fichier [`commercial_modes.txt`](#commercial_modestxt-requis))
+geometry_id | chaine | Optionnel | Identifiant du tracé représentant la ligne (lien vers le fichier [`geometries.txt`](#geometriestxt-optionnel))
 line_opening_time | heure | Optionnel | Heure de début de service de la ligne (quelque soit le type de jour ou la periode). Si cette information n'est pas fournie, elle sera recalculée.
 line_closing_time | heure | Optionnel | Heure de fin de service de la ligne (quelque soit le type de jour ou la periode). Si cette information n'est pas fournie, elle sera recalculée. Spécifier une heure superieure à 24 pour indiquer une heure sur le jour d'après.
 
@@ -236,9 +236,9 @@ Colonne | Type | Contrainte | Commentaire
 route_id | chaine | Requis | Identifiant du parcours
 route_name | chaine | Requis | Nom du parcours
 direction_type | chaine (1) | Optionnel | Description de la direction de la route. Ce champ est libre, mais il est préconisé d'utiliser un des éléments recommandés ci-dessous.
-line_id | chaine | Requis | Identifiant de la ligne commerciale (lien vers le fichier lines)
-geometry_id | chaine | Optionnel | Identifiant du tracé représentant le parcours (lien vers le fichier geometries)
-destination_id | chaine | Optionnel | Identifiant de la destination principale (lien vers le fichier stops.txt de type zone d'arrêt)
+line_id | chaine | Requis | Identifiant de la ligne commerciale (lien vers le fichier [`lines.txt`](#linestxt-requis))
+geometry_id | chaine | Optionnel | Identifiant du tracé représentant le parcours (lien vers le fichier [`geometries.txt`](#geometriestxt-optionnel))
+destination_id | chaine | Optionnel | Identifiant de la destination principale (lien vers le fichier [`stops.txt`](#stopstxt-requis) de type zone d'arrêt)
 
 (1) Liste des valeurs recommandées pour le champ _direction_type_ :
 
@@ -316,7 +316,7 @@ appropriate_signage | entier (1) | Optionnel | Information claire à l'arrêt
         2 - l'équipement n'est pas disponible
 
 ### stops.txt (requis)
-Une ligne du fichier "stops.txt" représente un point ou une zone où un véhicule dépose ou fait monter des voyageurs.
+Une ligne du fichier [`stops.txt`](#stopstxt-requis) représente un point ou une zone où un véhicule dépose ou fait monter des voyageurs.
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
@@ -328,11 +328,11 @@ stop_lat | décimal | Requis (Spécial) | Latitude. Ce champ est obligatoire, sa
 stop_lon | décimal | Requis (Spécial) | Longitude. Ce champ est obligatoire, sauf pour les noeuds et les zones d'embarquement (location_type = 4 et 5).
 fare_zone_id | chaine | Optionnel | Zone tarifaire de l'arrêt. Ce champ ne s'applique que sur les arrêts physiques (location_type = 0)
 location_type | entier (1) | Requis | Type de l'arrêt ou de la zone
-geometry_id | géometrie | Optionnel | Ce champ est un lien vers le fichier geometries.txt qui décrit la géométrie associée à une zone géographique (type 2) afin de permettre au moteur de définir les adresses couvertes en cas de TAD zonal "adresse à adresse". Ce champ peut également être utilisé pour préciser une géométrie pour les zones d'arrêts (type 1) et les communes (type 4) pour enrichir le web service.
+geometry_id | géometrie | Optionnel | Ce champ est un lien vers le fichier [`geometries.txt`](#geometriestxt-optionnel) qui décrit la géométrie associée à une zone géographique (type 2) afin de permettre au moteur de définir les adresses couvertes en cas de TAD zonal "adresse à adresse". Ce champ peut également être utilisé pour préciser une géométrie pour les zones d'arrêts (type 1) et les communes (type 4) pour enrichir le web service.
 parent_station | chaine | Optionnel | Identifiant de la zone d'arrêt. Ne doit pas être renseigné pour les zones d'arrêts et les zones géographiques (location_type = 1 ou 2)
 stop_timezone | timezones | Optionnel | Fuseau horaire, se référer à http://en.wikipedia.org/wiki/List_of_tz_zones
 equipment_id | chaine | Optionnel | Identifiant de la propriété accessibilité
-level_id | chaine | Optionnel | lien vers un niveau décrit dans le fichier levels.txt
+level_id | chaine | Optionnel | lien vers un niveau décrit dans le fichier [`levels.txt`](#levelstxt-optionnel)
 
     (1) Type de l'arrêt ou de la zone :
         0 ou non spécifié - Arrêt physique (objet stop_point)
@@ -346,7 +346,7 @@ level_id | chaine | Optionnel | lien vers un niveau décrit dans le fichier leve
 ### stop_times.txt (requis)
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
-stop_time_id | chaine | Optionnel | Identifiant unique de l'horaire dans le jeu de données. Cette information n'est pas pérenne et permet uniquement de faire le lien entre un horaire (fichier stop_times.txt) et un commentaire (fichier comments.txt) en utilisant le fichier comment_links.txt. Si ce champ n'est pas fourni, l'horaire ne pourra pas êter lié à un commentaire.
+stop_time_id | chaine | Optionnel | Identifiant unique de l'horaire dans le jeu de données. Cette information n'est pas pérenne et permet uniquement de faire le lien entre un horaire (fichier [`stop_times.txt`](#stop_timestxt-requis)) et un commentaire (fichier [`comments.txt`](#commentstxt-optionnel)) en utilisant le fichier [`comment_links.txt`](#comment_linkstxt-optionnel). Si ce champ n'est pas fourni, l'horaire ne pourra pas êter lié à un commentaire.
 trip_id | chaine | Requis | Identifiant de la circulation
 arrival_time | heure | Requis | Heure d'arrivée. Si l'heure d'arrivée n'est pas connue, elle doit être estimée par le système fournissant les données et le champ *date_time_estimated* doit être spécifié à 1. Si la descente est interdite à cet arrêt, l'heure d'arrivée doit être indiquée et le champ *drop_off_type* doit être spécifié à 1.
 departure_time | heure | Requis | Heure de départ. Si l'heure de départ n'est pas connue, elle doit être estimée par le système fournissant les données et le champ *date_time_estimated* doit être spécifié à 1. Si la montée est interdite à cet arrêt, l'heure de départ doit être indiquée et le champ *pickup_type* doit être spécifié à 1.
@@ -363,7 +363,7 @@ date_time_estimated | entier (2) | Optionnel | Précise si l'heure de passage es
     (1) Indication sur l'horaire (issues du gtfs) :
         0 (par défaut) - Horaire régulier
         1 - Montée ou descente interdite
-        2 - Horaire sur réservation associé à un TAD (si un message est associé au TAD, voir la liaison avec comment_links.txt)
+        2 - Horaire sur réservation associé à un TAD (si un message est associé au TAD, voir la liaison avec [`comment_links.txt`](#comment_linkstxt-optionnel))
 
     (2) La fiabilité peut prendre les valeurs suivantes :
         0 - L'heure de passage est fiable
@@ -375,11 +375,11 @@ date_time_estimated | entier (2) | Optionnel | Précise si l'heure de passage es
 ### transfers.txt (optionnel)
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
-from_stop_id | chaine | Requis | Identifiant de l'arrêt de l’origine de la correspondance (lien vers le fichier stops)
-to_stop_id | chaine | Requis | Identifiant de l'arrêt de la destination de la correspondance (lien vers le fichier stops)
+from_stop_id | chaine | Requis | Identifiant de l'arrêt de l’origine de la correspondance (lien vers le fichier [`stops.txt`](#stopstxt-requis))
+to_stop_id | chaine | Requis | Identifiant de l'arrêt de la destination de la correspondance (lien vers le fichier [`stops.txt`](#stopstxt-requis))
 min_transfer_time | entier | Optionnel | Durée minimale de la correspondance en secondes. Cette valeur correspond à la durée de marche à pied qui sera affichée dans les médias. Si la valeur n'est pas spécifié, le système calcul un temps minimum sur la base de la distance Manhattan entre les deux arrêts. La valeur automatique alors calculée a une valeur minimum de 60 secondes. Note : Il est possible que la valeur fournie soit inferieur à 60 (ex : 0 dans le cas d'une correspondance garantie)
 real_min_transfer_time | entier | Optionnel | Durée réelle de correspondance en secondes. Cette valeur correspond à la durée de marche à pied (min_transfer_time) à laquelle on ajoute une durée de tolérance d'exécution (temps minimum de correspondance). Si la valeur n'est pas spécifié, le système utilise (en plus du min_transfer_time) un paramètre par défaut qui est de 120 secondes en général.  La valeur automatique alors calculée sera donc supérieur ou égale à 120 secondes. La valeur saisie ne peut être inférieure à min_transfer_time (mais peut-être égale).
-equipment_id | string | Optionnel | Identifiant de description des propriétés (lien vers le fichier equipments)
+equipment_id | string | Optionnel | Identifiant de description des propriétés (lien vers le fichier [`equipments.txt`](#equipmentstxt-optionnel))
 
 ### trip_properties.txt (optionnel)
 Colonne | Type | Contrainte | Commentaire
@@ -407,20 +407,20 @@ school_vehicle_type | entier (2) | Optionnel | Type de transport scolaire
 ### trips.txt (requis)
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
-route_id | chaine | Requis | Identifiant du parcours (lien vers le fichier routes)
+route_id | chaine | Requis | Identifiant du parcours (lien vers le fichier [`routes.txt`](#routestxt-requis))
 service_id | chaine | Requis | Identifiant dues jours de fonctionnements
 trip_id | chaine | Requis | Identifiant de la circulation
 trip_headsign | chaine | Optionnel | Nom de la circulation
 block_id | chaine | Optionnel | Identifiant du prolongement de service
-company_id | chaine | Requis | Identifiant de la compagnie (lien vers le fichier company)
-physical_mode_id | chaine | Requis | Identifiant du mode physique (lien vers le fichier physical_modes)
-trip_property_id | chaine | Optionnel | Identifiant de la propriété accessibilité (lien vers le fichier trip_properties)
-dataset_id | chaine | Requis | Identifiant du jeu de données ayant fourni la circulation (lien vers le fichier datasets).
-geometry_id | chaine | Optionnel | Identifiant du tracé représentant la circulation (lien vers le fichier geometries)
+company_id | chaine | Requis | Identifiant de la compagnie (lien vers le fichier [`companies.txt`](#companiestxt-requis))
+physical_mode_id | chaine | Requis | Identifiant du mode physique (lien vers le fichier [`physical_modes.txt`](#physical_modestxt-requis))
+trip_property_id | chaine | Optionnel | Identifiant de la propriété accessibilité (lien vers le fichier [`trip_properties.txt`](#trip_propertiestxt-optionnel))
+dataset_id | chaine | Requis | Identifiant du jeu de données ayant fourni la circulation (lien vers le fichier [`datasets.txt`](#datasetstxt-requis)).
+geometry_id | chaine | Optionnel | Identifiant du tracé représentant la circulation (lien vers le fichier [`geometries.txt`](#geometriestxt-optionnel))
 
     Pour préciser si la circulation est sur réservation (tout ou partie), il faut :
-        Indiquer au niveau de l'horaire (fichier stop_times.txt) si la montée et/ou la descente est à réservation
-        Indiquer un commentaire (optionnel) de type TAD via les fichiers comments.txt et comment_links.txt
+        Indiquer au niveau de l'horaire (fichier [`stop_times.txt`](#stop_timestxt-requis)) si la montée et/ou la descente est à réservation
+        Indiquer un commentaire (optionnel) de type TAD via les fichiers [`comments.txt`](#commentstxt-optionnel) et [`comment_links.txt`](#comment_linkstxt-optionnel)
 
 ### geometries.txt (optionnel)
 Ce fichier contient la représentation spatiale d'une géométrie (pour des lignes, parcours et/ou circulations). Chaque ligne du fichier représente une géométrie complète de l'objet.
@@ -470,7 +470,7 @@ Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 admin_id | chaine | Requis | Identifiant de la commune (ou du quartier) tel que retourné par l'API Navitia
 admin_name | chaine | Requis | Nom de la commune (ou quartier).
-stop_id | chaine | Requis | Identifiant de la zone d'arrêt utilisée comme accroche de la commune (lien vers le fichier stops). Stop de type 1 oligatoirement.
+stop_id | chaine | Requis | Identifiant de la zone d'arrêt utilisée comme accroche de la commune (lien vers le fichier [`stops.txt`](#stopstxt-requis)). Stop de type 1 oligatoirement.
 stop_name | chaine | Optionnel | Nom de la zone d'arrêt (pour faciliter la lisibilité du fichier)
 
 ### pathways.txt (optionnel)
@@ -480,7 +480,7 @@ La modélisation des chemins d'une zone d'arrêt ne peut pas être partielle. D�
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 pathway_id | chaine | Requis | Identifiant du chemin
-from_stop_id | chaine | Requis | Identifiant noeud de début du chemin dans le fichier stops.txt. Ce noeud de départ peut être un point d'arrêt, une entrée/sortie, un noeud générique ou une zone d'embarquement.
+from_stop_id | chaine | Requis | Identifiant noeud de début du chemin dans le fichier [`stops.txt`](#stopstxt-requis). Ce noeud de départ peut être un point d'arrêt, une entrée/sortie, un noeud générique ou une zone d'embarquement.
 to_stop_id | chaine | Requis | Identifiant noeud de fin du chemin (même contraintes que `from_stop_id`).
 pathway_mode | entier(1) | Requis | Type de chemin. voir ci-dessous pour les valeurs possibles.
 is_bidirectional | booléen | Requis | Indique si le chemin est utilisable dans les deux sens ou uniquement dans le sens from->to.
@@ -514,15 +514,15 @@ Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 line_group_id | chaine | Requis | Identifiant du groupe de ligne
 line_group_name | chaine | Requis | Nom du groupe de ligne
-main_line_id | chaine | Requis | Identifiant de la ligne principale du groupe de lignes (lien vers le fichier lines.txt)
+main_line_id | chaine | Requis | Identifiant de la ligne principale du groupe de lignes (lien vers le fichier [`lines.txt`](#linestxt-requis))
 
-Un commentaire peut être associé à un groupe de lignes dans les fichiers comments.txt et et comment_links.txt .
+Un commentaire peut être associé à un groupe de lignes dans les fichiers [`comments.txt`](#commentstxt-optionnel) et et [`comment_links.txt`](#comment_linkstxt-optionnel) .
 
 ### line_group_links.txt (optionnel)
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 line_group_id | chaine | Requis | Identifiant du groupe de ligne
-line_id | chaine | Requis | Identifiant de la ligne faisant partie du groupe de lignes (lien vers le fichier lines.txt). Attention, une ligne peut faire partie de plusieurs groupes de lignes.
+line_id | chaine | Requis | Identifiant de la ligne faisant partie du groupe de lignes (lien vers le fichier [`lines.txt`](#linestxt-requis)). Attention, une ligne peut faire partie de plusieurs groupes de lignes.
 
 ### feed_infos.txt (requis)
 Ce fichier contient des informations sur le jeu de données et le système amont qui l'a généré. Pour faciliter son utiilisation, la structure du fichier est générique, et la liste des informations est listée ci-dessous.
@@ -604,28 +604,28 @@ Ce fichier contient toutes les relations entre les lignes et les calendriers des
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 grid_calendar_id | chaine | Requis | Identifiant du calendrier de grille horaire
-line_id | chaine | Requis | Identifiant de la ligne associée à ce calendrier (lien vers le fichier lines). Ce champ peut être vide si le champ line_external_code est renseigné.
-line_external_code | chaine | Requis | cette colonne contient le code externe NAViTiA 1 de la ligne (lien vers le fichier lines). Ce champ peut être vide si le champ line_id et renseigné
+line_id | chaine | Requis | Identifiant de la ligne associée à ce calendrier (lien vers le fichier [`lines.txt`](#linestxt-requis)). Ce champ peut être vide si le champ line_external_code est renseigné.
+line_external_code | chaine | Requis | cette colonne contient le code externe NAViTiA 1 de la ligne (lien vers le fichier [`lines.txt`](#linestxt-requis)). Ce champ peut être vide si le champ line_id et renseigné
 
 # Évolutions possibles du format
 Ce chapitre liste des évolutions du format qui peuvent être intéressantes si elles sont utiles concrètement.
-## Modification du champ service_id et du nom du fichier calendar.txt
+## Modification du champ service_id et du nom du fichier [`calendar.txt`](#calendartxt-requis)
 L'identifiant d'un calendrier ne suit pas la même convention que les autres identifiants (même s'il est cohérent avec le GTFS). Une évolution possible serait de changer le libellé du champ pour indiquer "calendar_id".
-De plus, le nom du fichier pourra être changé en "calendars.txt" pour améliorer la cohérence.
+De plus, le nom du fichier pourra être changé en `calendars.txt` pour améliorer la cohérence.
 
 ## Gestion des données perturbées / de grèves
 Afin de limiter la complexité du format, la gestion des données de grève sera effectuée par plusieurs exports :
 
-1. un export contenant toutes les données théoriques du référentiel. L'export NTFS est un export classique, et dont la clé "revised_networks" du fichier "feed_infos.txt" est vide ou non renseignée.
+1. un export contenant toutes les données théoriques du référentiel. L'export NTFS est un export classique, et dont la clé "revised_networks" du fichier [`feed_infos.txt`](#feed_infostxt-requis) est vide ou non renseignée.
 2. un ou plusieurs exports NTFS de grèves, dont chaque export fournit toutes les données (impactées par la grève ou non) :
-    * de un ou plusieurs réseaux spécifiés par la clé **revised_networks** du fichier **feed_infos.txt**
+    * de un ou plusieurs réseaux spécifiés par la clé **revised_networks** du fichier [`feed_infos.txt`](#feed_infostxt-requis)
     * pour des données valides entre les dates spécifiées par **feed_start_date** et **feed_end_date**
 
-Un champ complémentaire et optionnel "base_trip_id" est à prévoir dans le fichier "trips.txt" afin de permettre d'associer la circulation théorique et la circulation adaptée (en cas de données de grève par exemple).
+Un champ complémentaire et optionnel "base_trip_id" est à prévoir dans le fichier [`trips.txt`](#tripstxt-requis) afin de permettre d'associer la circulation théorique et la circulation adaptée (en cas de données de grève par exemple).
 
 ## Gestion avancée des géométries (tracés des lignes, parcours et circulations)
-Afin de ne pas complexifier inutilement le format NTFS et les outils qui vont le manipuler, le fichier "geometries.txt" indique un tracé complet pour une géométrie, comme une ligne en fourche ou une ligne à tiroir.  Afin de pouvoir afficher le tracé réel des bus dans la feuille de route (ie. n'avoir que la portion utilisée de la ligne), un découpage de cette géométrie est réalisé dans Navitia de manière automatique.
-Si le besoin d'affiner cette gestion est validé, une évolution du format du fichier "geometries.txt" peut être envisagé de la manière suivante (à confirmer) :
+Afin de ne pas complexifier inutilement le format NTFS et les outils qui vont le manipuler, le fichier [`geometries.txt`](#geometriestxt-optionnel) indique un tracé complet pour une géométrie, comme une ligne en fourche ou une ligne à tiroir.  Afin de pouvoir afficher le tracé réel des bus dans la feuille de route (ie. n'avoir que la portion utilisée de la ligne), un découpage de cette géométrie est réalisé dans Navitia de manière automatique.
+Si le besoin d'affiner cette gestion est validé, une évolution du format du fichier [`geometries.txt`](#geometriestxt-optionnel) peut être envisagé de la manière suivante (à confirmer) :
 * Une ligne représentera un segment de la ligne/parcours/circulation entre deux points d'arrêts consécutifs (et de manière orientée ?)
 * La précision des points d'arrêts d'origine et de destination du segment est faite par l'ajout de deux colonnes optionnelles
 
@@ -645,10 +645,10 @@ Ajouter la notion de "service" pour un accompagnement sur un réseau de transpor
 Ce service permet d'ajouter de l'accessibilité (UFR, Cognitif ou autre) sur un ou plusieurs objets ou directement dans le calcul.
 
 # Exemples de modélisation de TAD
-Voici quelques exemples de modélisation de TAD dans les fichiers NTFS. Seuls les fichiers impactés sont représentés (stops.txt et stop_times.txt).
+Voici quelques exemples de modélisation de TAD dans les fichiers NTFS. Seuls les fichiers impactés sont représentés ([`stops.txt`](#stopstxt-requis) et [`stop_times.txt`](#stop_timestxt-requis)).
 Il est à également à noter qu'il est possible :
 * de faire du rabattement vers horaire en spécifiant bien un horaire à un point d'arrivé (et pas une zone) dans le ficheir stop_time,
-* de faire de la fréquence sur du TAD zonal en utilisant le fichier "frequencies.txt"
+* de faire de la fréquence sur du TAD zonal en utilisant le fichier [`frequencies.txt`](#frequenciestxt-optionnel)
 
 **Attention, les coordonnées et les surfaces des zones ne sont pas cohérentes, c'est l'architecture des données dans les fichiers qui est importante ici.**
 
@@ -671,7 +671,7 @@ Cette modélisation unique traite l'ensemble des possibilité:
 ### Modélisation NTFS
 
 * Les lignes intégralement TAD, sans horaire, sont déclarée en "fréquence"
-* Les stop_point du fichier "stops" de type "shape", ne devraient pas être en correspondance avec d'autres stop_point.
+* Les stop_point du fichier [`stops.txt`](#stopstxt-requis) de type "shape", ne devraient pas être en correspondance avec d'autres stop_point.
     * A l'intégration des données, les correspondances éventuellement déclarées seront ignorées
 * Les correspondances entre 2 circulations ne sont autorisées QUE si un des 2 horaires est fixe
     * Les correspondances entre 2 horaires estimés sont interdites (stop.estimated vers stop.estimated)
@@ -701,7 +701,7 @@ Le cas de la zone 2 ci-dessous est trivial: on définit cette zone à l'aide d'u
 ![Exemple de ligne mixte](NTFS_image1.png)
 
 Les zones de dessertes ne remontent pas en autocompletion: elles permettent de déterminer l'offre uniquement.
-On peut alimenter le fichier stop_times en mettant des horaires précis sur chacun des points d'arrêt pouvant appartenir à des zones d'arrêts différentes, avec des informations ITL manuelles:
+On peut alimenter le fichier [`stop_times.txt`](#stop_timestxt-requis) en mettant des horaires précis sur chacun des points d'arrêt pouvant appartenir à des zones d'arrêts différentes, avec des informations ITL manuelles:
 
 **Fichier stop: déclare les "arrêts"**
 
@@ -721,7 +721,7 @@ stop_area_E | A | 47.01 | 1.01 | 1 |  |
 stop_area_H | A | 47.01 | 1.01 | 1 |  |
 zone_2 | Zone 1 | 47.01 | 1.01 | 2 | id_vers_POLYGON((1 1,5 1,5 5,1 5,1 1)) |
 
-**Fichier stop_times: déclare les "horaires", estimés ou non**
+**Fichier [`stop_times.txt`](#stop_timestxt-requis): déclare les "horaires", estimés ou non**
 
 trip_id | stop_id | arrival_time | departure_time | stop_sequence | pickup_type | drop_off_type | date_time_estimated | zone_itl
 --- | --- | --- | --- | --- | --- | --- | --- | ---
