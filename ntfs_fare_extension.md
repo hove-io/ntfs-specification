@@ -23,7 +23,7 @@ A ticket definition requires to be valid :
 * a ticket
 * a ticket use
 * a ticket use perimeter
-A ticket price is strongly recommanded. If not privided, Navitia will provide a ticket without price 'or with a 0€ price).
+A ticket price is strongly recommended. If not provided, Navitia will provide a ticket without price (or with a 0€ price).
 
 ## Other modifications
 The `object_properties.txt` and `object_codes.txt` files are extended to enable the reference to a ticket_id.
