@@ -13,11 +13,11 @@ The data format of the files are the same as the core [NTFS ones](./ntfs_fr.md).
 
 File | Constraint | Comment
 --- | --- | ---
-tickets.txt | Optional | Contains tickets declaration.
-ticket_prices.txt | Optional | Contains prices of a ticket.
-ticket_uses.txt | Optional | Contains where the ticket can be used
-ticket_use_perimeters.txt | Optional | Defines the networks and lines of a ticket_use
-ticket_use_restrictions.txt | Optional | Defines a use of a ticket between zones or stop_areas
+[`tickets.txt`](#ticketstxt-optional) | Optional | Contains tickets declaration.
+[`ticket_prices.txt`](#ticket_pricestxt-optional) | Optional | Contains prices of a ticket.
+[`ticket_uses.txt`](#ticket_usestxt-optional) | Optional | Contains where the ticket can be used
+[`ticket_use_perimeters.txt`](#ticket_use_perimeterstxt-optional) | Optional | Defines the networks and lines of a ticket_use
+[`ticket_use_restrictions.txt`](#ticket_use_restrictionstxt-optional) | Optional | Defines a use of a ticket between zones or stop_areas
 
 A ticket definition requires to be valid :
 * a ticket
@@ -26,7 +26,7 @@ A ticket definition requires to be valid :
 A ticket price is strongly recommended. If not provided, Navitia will provide a ticket without price (or with a 0€ price).
 
 ## Other modifications
-The `object_properties.txt` and `object_codes.txt` files are extended to enable the reference to a ticket_id.
+The [`object_properties.txt`](ntfs_fr.md#object_propertiestxt-optionnel) and [`object_codes.txt`](ntfs_fr.md#object_codestxt-optionnel) files are extended to enable the reference to a ticket_id.
 
 # Added files descriptions
 
