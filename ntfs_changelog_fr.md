@@ -68,4 +68,6 @@
 * Version 0.8 du 25/03/2019
     * Ajout de la gestion des pathways
 * Version 0.9 du 16/05/2019
-    * AJout du nouveau modèle tarifaire
+    * Ajout du nouveau modèle tarifaire
+* Version 0.9.1 du 18/07/2019
+	* Ajout des `platform_code` dans `stops.txt`

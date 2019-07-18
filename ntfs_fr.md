@@ -333,6 +333,7 @@ parent_station | chaine | Optionnel | Identifiant de la zone d'arrêt. Ne doit p
 stop_timezone | timezones | Optionnel | Fuseau horaire, se référer à http://en.wikipedia.org/wiki/List_of_tz_zones
 equipment_id | chaine | Optionnel | Identifiant de la propriété accessibilité
 level_id | chaine | Optionnel | lien vers un niveau décrit dans le fichier [`levels.txt`](#levelstxt-optionnel)
+platform_code | chaine | Optionnel | Identifiant de la plateforme d'un arrêt (par exemple `G` ou `3`). Ne peut être renseigné que pour les arrêts physiques (`location_type=0`) ou les zones d'embarquements (`location_type=5`)
 
     (1) Type de l'arrêt ou de la zone :
         0 ou non spécifié - Arrêt physique (objet stop_point)
