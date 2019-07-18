@@ -13,25 +13,34 @@ The data format of the files are the same as the core [NTFS ones](./ntfs_fr.md).
 
 File | Constraint | Comment
 --- | --- | ---
-tickets.txt | Required | Contains tickets declaration.
-ticket_prices.txt | Required | Contains prices of a ticket.
-ticket_uses.txt | Required | Contains where the ticket can be used
-ticket_use_perimeters.txt | Required | Defines the networks and lines of a ticket_use
+tickets.txt | Optional | Contains tickets declaration.
+ticket_prices.txt | Optional | Contains prices of a ticket.
+ticket_uses.txt | Optional | Contains where the ticket can be used
+ticket_use_perimeters.txt | Optional | Defines the networks and lines of a ticket_use
 ticket_use_restrictions.txt | Optional | Defines a use of a ticket between zones or stop_areas
+
+A ticket definition requires to be valid :
+* a ticket
+* a ticket use
+* a ticket use perimeter
+A ticket price is strongly recommended. If not provided, Navitia will provide a ticket without price (or with a 0€ price).
 
 ## Other modifications
 The `object_properties.txt` and `object_codes.txt` files are extended to enable the reference to a ticket_id.
 
 # Added files descriptions
 
-## tickets.txt (Required)
+## tickets.txt (Optional)
+To be valid, a ticket must be associated to at least one ticket_use to describe the constraints of the ticket within the associated ticket_use_perimeter.
+
 Field | Type | Constraint | Description
 --- | --- | --- | ---
 ticket_id | Text | Required | Unique ID of the ticket
 ticket_name | Text | Required | Name of the ticket (may be displayed to travelers)
 ticket_comment | Text | Optional | Comment on the ticket that may be displayed to traveler
 
-## ticket_prices.txt (Required)  
+
+## ticket_prices.txt (Optional)
 A ticket may have no price, either:
 - no ticket_price is provided for the ticket,
 - one or more ticket_prices are provided, but do not cover the validity period of the dataset.
@@ -44,8 +53,8 @@ ticket_currency | Currency Code | Required | An ISO 4217 alphabetical currency c
 ticket_validity_start | Date | Required | First day of usability of the ticket (included)
 ticket_validity_end | Date | Required | Last day of usability of the ticket (included)
 
-## ticket_uses.txt (Required)
-To be valid, a ticket must be associated to at least one ticket_use to describe the constraints of the ticket within the associated ticket_use_perimeter.
+## ticket_uses.txt (Optional)
+To be valid, a ticket_use must be associated with a ticket_use_perimeter.
 
 Field | Type | Constraint | Description
 --- | --- | --- | ---
@@ -55,8 +64,7 @@ max_transfers | integer | Required | Max number of transfers using one ticket. T
 boarding_time_limit | integer | Required | Specifies the time frame (in seconds) in which a traveler can board in a new vehicle. The value can be empty to indicate there is no constraint, but the field must be provided.
 alighting_time_limit | integer | Required | Specifies the time frame (in seconds) in which a traveler must get off the vehicle. When this duration is expired, the ticket is no longer valid. The value can be empty to indicate there is no constraint, but the field must be provided.
 
-## ticket_use_perimeters.txt (Required)
-
+## ticket_use_perimeters.txt (Optional)
 A ticket_use must contain at least one included line or network.
 
 Field | Type | Constraint | Description
