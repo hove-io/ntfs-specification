@@ -37,15 +37,20 @@ Data must be compliant with the following rules:
 * The objects' identifiers do not contains the object's type; the type is added
   by Navitia's API
 
-# Liste des fichiers du format
-## Fichiers spéciaux
-    Ces fichiers permettent de décrire précisément d'où viennent les données dans le cas d'un référentiel agrégeant plusieurs sources de données. La notion de _contributor_ correspond à une source de données (un exploitant peut nécessiter l'utilisation de plusieurs contributeurs). La notion de _dataset_ correspond à un jeu de données provenant d'un contributeur.
-    Le fichier [`trips.txt`](#tripstxt-requis) fait une référence à _dataset_id_ afin de lier une circulation à sa donnée source.
+# List of files of NTFS format
+## Special files
+These files describe the origin of the data in the case of the merge of multiple
+sources. A _contributor_ describe the source of the data (an operator may have
+multiple contributors). A _dataset_ describes one set of data provided by a
+contributor.
 
-Fichier | Contrainte | Commentaire
+The file [`trips.txt`](#tripstxt-required) has references to a dataset to link a
+trip to its source data.
+
+File | Constraint | Note
 --- | --- | ---
-[`contributors.txt`](#contributorstxt-requis) | Requis | Ce fichier contient les contributeurs.
-[`datasets.txt`](#datasetstxt-requis) | Requis | Ce fichier contient les sources de données d'un contributeur.
+[`contributors.txt`](#contributorstxt-required) | Required | Contains contributors
+[`datasets.txt`](#datasetstxt-required) | Required | Contains datasets of a contributor
 
 ## Fichiers de base
 Fichier | Contrainte | Commentaire
