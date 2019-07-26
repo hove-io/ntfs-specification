@@ -53,25 +53,25 @@ File | Constraint | Note
 [`datasets.txt`](#datasetstxt-required) | Required | Contains datasets of a contributor
 
 ## Fichiers de base
-Fichier | Contrainte | Commentaire
+File | Constraint | Note
 --- | --- | ---
-[`feed_infos.txt`](#feed_infostxt-requis) | Requis | Ce fichier contient des informations complémentaires sur la plage de validité des données, le fournisseur ou toute autre information complémentaires.
-[`networks.txt`](#networkstxt-requis) | Requis | Ce fichier contient la description des différents réseaux.
-[`commercial_modes.txt`](#commercial_modestxt-requis) | Requis | Ce fichier contient les modes commerciaux (Mode NAViTiA 1)
-[`companies.txt`](#companiestxt-requis) | Requis | Ce fichier contient les compagnies
-[`lines.txt`](#linestxt-requis) | Requis | Ce fichier contient les lignes
-[`physical_modes.txt`](#physical_modestxt-requis) | Requis | Ce fichier contient les modes physiques (ModeType NAViTiA 1)
-[`routes.txt`](#routestxt-requis) | Requis | Ce fichier contient les parcours
-[`stop_times.txt`](#stop_timestxt-requis) | Requis | Ce fichier contient les horaires
-[`stops.txt`](#stopstxt-requis) | Requis | Ce fichier contient les arrêts, les entrées/sorties et les points utilisés par les pathways.
-[`trips.txt`](#tripstxt-requis) | Requis | Ce fichier contient les circulations
-[`calendar.txt`](#calendartxt-requis) | Requis | Ce fichier contient les jours de fonctionnement
-[`calendar_dates.txt`](#calendar_datestxt-optionnel) | Optionnel | Ce fichier contient les exceptions sur les jours de fonctionnement décrits dans le fichier [`calendar.txt`](#calendartxt-requis)
-[`comments.txt`](#commentstxt-optionnel) | Optionnel | Ce fichier contient les commentaires
-[`comment_links.txt`](#comment_linkstxt-optionnel) | Optionnel | Ce fichier contient les relations entre chaque commentaire et les objets du référentiels associés
+[`feed_infos.txt`](#feed_infostxt-required) | Required | Contains additional informations on the data validity period, the data provider, etc.
+[`networks.txt`](#networkstxt-required) | Required | Contains the description of the networks
+[`commercial_modes.txt`](#commercial_modestxt-required) | Required | Contains the commercial modes (Mode NAViTiA 1)
+[`companies.txt`](#companiestxt-required) | Required | Contains the description of the companies
+[`lines.txt`](#linestxt-required) | Required | Contains the description of the lines
+[`physical_modes.txt`](#physical_modestxt-required) | Required | Contains the physical modes (ModeType NAViTiA 1)
+[`routes.txt`](#routestxt-required) | Required | Contains the description of routes
+[`stop_times.txt`](#stop_timestxt-required) | Required | Contains the schedules
+[`stops.txt`](#stopstxt-required) | Required | Contains all stop points, entrances/exits and pathway nodes
+[`trips.txt`](#tripstxt-required) | Required | Contains trips
+[`calendar.txt`](#calendartxt-required) | Required | Contains the days of operation
+[`calendar_dates.txt`](#calendar_datestxt-optional) | Optional | Contains the exceptions for the days of operation described in [`calendar.txt`](#calendartxt-required)
+[`comments.txt`](#commentstxt-optional) | Optional | Contains comments
+[`comment_links.txt`](#comment_linkstxt-optional) | Optional | Contains the links between comments and the corresponding objects
 
 ## Fichiers complémentaires (hors calendriers par période)
-Fichier | Contrainte | Commentaire
+File | Constraint | Note
 --- | --- | ---
 [`frequencies.txt`](#frequenciestxt-optionnel) | Optionnel | Ce fichier contient les propriétés des fréquences
 [`equipments.txt`](#equipmentstxt-optionnel)  | Optionnel | Ce fichier contient les propriétés (notamment l’accessibilité) pour les arrêts  et les correspondances
