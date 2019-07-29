@@ -52,7 +52,7 @@ File | Constraint | Note
 [`contributors.txt`](#contributorstxt-required) | Required | Contains contributors
 [`datasets.txt`](#datasetstxt-required) | Required | Contains datasets of a contributor
 
-## Fichiers de base
+## Core files
 File | Constraint | Note
 --- | --- | ---
 [`feed_infos.txt`](#feed_infostxt-required) | Required | Contains additional informations on the data validity period, the data provider, etc.
@@ -70,21 +70,21 @@ File | Constraint | Note
 [`comments.txt`](#commentstxt-optional) | Optional | Contains comments
 [`comment_links.txt`](#comment_linkstxt-optional) | Optional | Contains the links between comments and the corresponding objects
 
-## Fichiers complémentaires (hors calendriers par période)
+## Additional files (no calendars)
 File | Constraint | Note
 --- | --- | ---
-[`frequencies.txt`](#frequenciestxt-optionnel) | Optionnel | Ce fichier contient les propriétés des fréquences
-[`equipments.txt`](#equipmentstxt-optionnel)  | Optionnel | Ce fichier contient les propriétés (notamment l’accessibilité) pour les arrêts  et les correspondances
-[`transfers.txt`](#transferstxt-optionnel) | Optionnel | Ce fichier contient les déclarations des correspondances
-[`trip_properties.txt`](#trip_propertiestxt-optionnel) | Optionnel | Ce fichier contient l’accessibilité au niveau des circulations
-[`geometries.txt`](#geometriestxt-optionnel) | Optionnel | Ce fichier contient la représentation spatiale d'une géometrie au format Well Known Text (WKT). Ces géométries sont référencées dans les fichiers [`lines.txt`](#linestxt-requis), [`routes.txt`](#routestxt-requis), [`trips.txt`](#tripstxt-requis).
-[`object_properties.txt`](#object_propertiestxt-optionnel) | Optionnel | Ce fichier contient la description des propriétés complémentaires sur les différents objets du référentiel.
-[`object_codes.txt`](#object_codestxt-optionnel) | Optionnel | Ce fichier contient la liste des codes d'identification complémentaires dans les systèmes externes des différents objets du référentiel.
-[`admin_stations.txt`](#admin_stationstxt-optionnel) | Optionnel | Ce fichier contient la liste des arrêts d'accroche des communes pour les itinéraires au départ ou à l'arrivée d'une commune
-[`line_groups.txt`](#line_groupstxt-optionnel) | Optionnel | Ce fichier contient la définition de groupes de lignes
-[`line_group_links.txt`](#line_group_linkstxt-optionnel) | Optionnel | Ce fichier contient la liaison entre un groupe de ligne et la liste des lignes qui le compose
-[`pathways.txt`](#pathwaystxt-optionnel) | Optionnel | Ce fichier contient les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
-[`levels.txt`](#levelstxt-optionnel) | Optionnel | Ce fichier contient la liste des niveaux au sein d'une zone d'arrêt.
+[`frequencies.txt`](#frequenciestxt-optional) | Optional | Contains frequencies properties
+[`equipments.txt`](#equipmentstxt-optional)  | Optional | Contains properties for stops and connections (like accessibility)
+[`transfers.txt`](#transferstxt-optional) | Optional | Contains connections
+[`trip_properties.txt`](#trip_propertiestxt-optional) | Optional | Contains accessibility about the trips
+[`geometries.txt`](#geometriestxt-optional) | Optional | Contains spatial geometries in [Well-Known Text](https://www.wikiwand.com/fr/Well-known_text) (WKT); referenced in [`lines.txt`](#linestxt-requis), [`routes.txt`](#routestxt-requis), [`trips.txt`](#tripstxt-requis).
+[`object_properties.txt`](#object_propertiestxt-optional) | Optional | Contains additional properties for any object of the model
+[`object_codes.txt`](#object_codestxt-optional) | Optional | Contains additional identification codes for the objects of the model
+[`admin_stations.txt`](#admin_stationstxt-optional) | Optional | Contains administrative stops for journeys to or from a town
+[`line_groups.txt`](#line_groupstxt-optional) | Optional | Contains groups of lines
+[`line_group_links.txt`](#line_group_linkstxt-optional) | Optional | Contains relation between groupes of lines and the lines
+[`pathways.txt`](#pathwaystxt-optional) | Optional | Contains pathways in a stop area; they don't have to be spatially geolocated, simplication are allowed
+[`levels.txt`](#levelstxt-optional) | Optional | Contains the list of floors in a stop area
 
 ## Fichiers des calendriers par période
 Fichier | Contrainte | Commentaire
