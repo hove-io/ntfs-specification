@@ -47,13 +47,13 @@ contributor.
 The file [`trips.txt`](#tripstxt-required) has references to a dataset to link a
 trip to its source data.
 
-File | Constraint | Note
+File | Constraint | Description
 --- | --- | ---
 [`contributors.txt`](#contributorstxt-required) | Required | Contains contributors
 [`datasets.txt`](#datasetstxt-required) | Required | Contains datasets of a contributor
 
 ## Core files
-File | Constraint | Note
+File | Constraint | Description
 --- | --- | ---
 [`feed_infos.txt`](#feed_infostxt-required) | Required | Contains additional informations on the data validity period, the data provider, etc.
 [`networks.txt`](#networkstxt-required) | Required | Contains the description of the networks
@@ -71,7 +71,7 @@ File | Constraint | Note
 [`comment_links.txt`](#comment_linkstxt-optional) | Optional | Contains the links between comments and the corresponding objects
 
 ## Additional files (no calendars)
-File | Constraint | Note
+File | Constraint | Description
 --- | --- | ---
 [`frequencies.txt`](#frequenciestxt-optional) | Optional | Contains frequencies properties
 [`equipments.txt`](#equipmentstxt-optional)  | Optional | Contains properties for stops and connections (like accessibility)
@@ -86,13 +86,13 @@ File | Constraint | Note
 [`pathways.txt`](#pathwaystxt-optional) | Optional | Contains pathways in a stop area; they don't have to be spatially geolocated, simplication are allowed
 [`levels.txt`](#levelstxt-optional) | Optional | Contains the list of floors in a stop area
 
-## Fichiers des calendriers par période
-Fichier | Contrainte | Commentaire
+## Calendars files per period
+File | Constraint | Description
 --- | --- | ---
-[`grid_calendars.txt`](#grid_calendarstxt-optionnel) | Optionnel |  Ce fichier contient les jours de fonctionnement des calendriers
-[`grid_exception_dates.txt`](#grid_exception_datestxt-optionnel) | Optionnel | Ce fichier contient les exceptions sur les jours de fonctionnement des calendriers
-[`grid_periods.txt`](#grid_periodstxt-optionnel) | Optionnel | Ce fichier contient les périodes des calendriers
-[`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optionnel) | Optionnel | Ce fichier contient les liens entre les lignes et ces calendriers
+[`grid_calendars.txt`](#grid_calendarstxt-optional) | Optional | Contains operation days of calendars
+[`grid_exception_dates.txt`](#grid_exception_datestxt-optional) | Optional | Contains exception for operation days of calendars
+[`grid_periods.txt`](#grid_periodstxt-optional) | Optional | Contains calendar periods
+[`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optional) | Optional | Contains links between calendars and lines
 
 # Description des fichiers
 ### networks.txt (requis)
