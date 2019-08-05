@@ -109,26 +109,26 @@ network_phone | string | Optional | Contact's phone number
 network_address | string | Optional | Network's address
 network_sort_order | integer | Optional | Sorting order of the networks, smaller number are first
 
-### calendar.txt (requis)
-Ce fichier décrit les périodes de circulation associés aux trips.
+### calendar.txt (required)
+This file describes dates when service is available for trips.
 
-Colonne | Type | Contrainte | Commentaire
+Column | Type | Constraint | Note
 --- | --- | --- | ---
-service_id | chaine | Requis | Identifiant du calendrier de circulation
-monday | entier | Requis | (1)
-tuesday | entier | Requis | (1)
-wednesday | entier | Requis | (1)
-thursday | entier | Requis | (1)
-friday | entier | Requis | (1)
-saturday | entier | Requis | (1)
-sunday | entier | Requis | (1)
-start_date | date | Requis | Date de début du calendrier de circulation
-end_date | date | Requis | Date de fin du calendrier de circulation incluse dans l'intervalle.
+service_id | string | Required | Unique identifier of the set of dates for a trip
+monday | integer | Required | (1)
+tuesday | integer | Required | (1)
+wednesday | integer | Required | (1)
+thursday | integer | Required | (1)
+friday | integer | Required | (1)
+saturday | integer | Required | (1)
+sunday | integer | Required | (1)
+start_date | date | Required | Start date of the circulation (included)
+end_date | date | Required | End date of the circulation (included)
 
-(1) Les valeurs possibles sont :
+(1) Possible values are:
 
-* 0 - Ne circule pas ce jour
-* 1 - Circule ce jour
+* 0 - Not active this day
+* 1 - Active this day
 
 ### calendar_dates.txt (optionnel)
 Ce fichier décrit des exceptions aux calendriers définis dans le fichier [`calendar.txt`](#calendartxt-requis). Pour faciliter la description de calendriers pour des circulations très ponctuelles, il est possible de définir un calendrier en n'utilisant que le fichier [`calendar_dates.txt`](#calendar_datestxt-optionnel). De ce fait, le `service_id` ne sera pas présant dans le fichier [`calendar.txt`](#calendartxt-requis).
