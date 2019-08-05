@@ -94,20 +94,20 @@ File | Constraint | Description
 [`grid_periods.txt`](#grid_periodstxt-optional) | Optional | Contains calendar periods
 [`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optional) | Optional | Contains links between calendars and lines
 
-# Description des fichiers
-### networks.txt (requis)
-Ce fichier contient la description des différents réseaux.
+# Files descriptions
+### networks.txt (required)
+This describes all about the networks.
 
-Colonne | Type | Contrainte | Commentaire
+Column | Type | Constraint | Note
 --- | --- | --- | ---
-network_id | chaine | Requis | Identifiant unique et pérenne du réseau
-network_name | chaine | Requis | Nom du réseau
-network_url | chaine | Optionnel | Lien vers le site institutionnel
-network_timezone | chaine | Optionnel |
-network_lang | chaine | Optionnel |
-network_phone | chaine | Optionnel | Numéro de téléphone de contact
-network_address | chaine | Optionnel | Adresse du réseau.
-network_sort_order | entier | Optionnel | Ordre de trie des réseaux, les plus petit sont en premier.
+network_id | string | Required | Unique and persistent identifier of the network
+network_name | string | Required | Name of the network
+network_url | string | Optional | Hyperlink to the institutional website
+network_timezone | string | Optional |
+network_lang | string | Optional |
+network_phone | string | Optional | Contact's phone number
+network_address | string | Optional | Network's address
+network_sort_order | integer | Optional | Sorting order of the networks, smaller number are first
 
 ### calendar.txt (requis)
 Ce fichier décrit les périodes de circulation associés aux trips.
