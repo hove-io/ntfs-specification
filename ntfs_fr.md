@@ -409,7 +409,7 @@ school_vehicle_type | entier (2) | Optionnel | Type de transport scolaire
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 route_id | chaine | Requis | Identifiant du parcours (lien vers le fichier [`routes.txt`](#routestxt-requis))
-service_id | chaine | Requis | Identifiant dues jours de fonctionnements
+service_id | chaine | Requis | Identifiant des jours de fonctionnements
 trip_id | chaine | Requis | Identifiant de la circulation
 trip_headsign | chaine | Optionnel | Nom de la circulation
 block_id | chaine | Optionnel | Identifiant du prolongement de service
