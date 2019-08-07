@@ -116,7 +116,7 @@ end_date | date | Requis | Date de fin du calendrier de circulation incluse dans
 * 1 - Circule ce jour
 
 ### calendar_dates.txt (optionnel)
-Ce fichier décrit des exceptions aux calendriers définis dans le fichier [`calendar.txt`](#calendartxt-requis). Pour faciliter la description de calendriers pour des circulations très ponctuelles, il est possible de définir un calendrier en n'utilisant que le fichier [`calendar_dates.txt`](#calendar_datestxt-optionnel). De ce fait, le `service_id` ne sera pas présant dans le fichier [`calendar.txt`](#calendartxt-requis).
+Ce fichier décrit des exceptions aux calendriers définis dans le fichier [`calendar.txt`](#calendartxt-requis). Pour faciliter la description de calendriers pour des circulations très ponctuelles, il est possible de définir un calendrier en n'utilisant que le fichier [`calendar_dates.txt`](#calendar_datestxt-optionnel). De ce fait, le `service_id` ne sera pas présent dans le fichier [`calendar.txt`](#calendartxt-requis).
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
