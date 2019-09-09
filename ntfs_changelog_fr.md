@@ -70,4 +70,6 @@
 * Version 0.9 du 16/05/2019
     * Ajout du nouveau modèle tarifaire
 * Version 0.9.1 du 18/07/2019
-	* Ajout des `platform_code` dans `stops.txt`
+    * Ajout des `platform_code` dans `stops.txt`
+* Version 0.9.2 du 09/09/2019
+    * Suppression des champs `forward_direction` et `backward_direction` dans `lines.txt`

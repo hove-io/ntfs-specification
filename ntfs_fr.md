@@ -218,9 +218,7 @@ line_id | chaine | Requis | Identifiant de la ligne commerciale
 line_code | chaine | Optionnel | Code de la ligne commerciale
 line_name | chaine | Requis | Nom de la ligne commerciale
 forward_line_name | chaine | Optionnel | Nom de la ligne en sens aller
-forward_direction | chaine | Optionnel | Arrêt de destination principal en sens aller (lien vers un arrêt commercial du fichier [`stops.txt`](#stopstxt-requis))
 backward_line_name | chaine | Optionnel | Nom de la ligne en sens retour
-backward_direction | chaine | Optionnel | Arrêt de destination principal en sens retour (lien vers un arrêt commercial du fichier [`stops.txt`](#stopstxt-requis))
 line_color | couleur | Optionnel | Couleur de la ligne
 line_text_color | couleur | Optionnel | Couleur du code de la ligne
 line_sort_order | entier | Optionnel | Clé de trie de la ligne au sein du réseau. Les indices les plus petits sont retournés en premier.
