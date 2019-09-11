@@ -353,7 +353,8 @@ boarding_duration | entier | Optionnel | Durée nécessaire à l'embarquement en
 alighting_duration | entier | Optionnel | Durée nécessaire au débarquement en secondes (train, avion, ferry, etc.). Cette valeur est obligatoirement positive ou nulle.
 stop_id | chaine | Requis | Identifiant de l'arrêt physique de passage (cas général). Ce champ peut également référencer une "zone géographique" (stop de type 2) ou une commune (stop de type 3) dans le cas de TAD zonal.
 stop_sequence | entier | Requis | Ordre de passage de desserte dans la circulation
-stop_headsign | chaine | Optionnel |
+stop_headsign | chaine | Optionnel | Libellé qui doit être affiché au voyageur à la place du `trip_headsign` à cet arrêt.
+stop_short_name | chaine | Optionnel | Nom qui doit être affiché au voyageur à la place du `trip_short_name` à cet arrêt.
 pickup_type | entier (1) | Optionnel | Indication sur l'horaire (issues du gtfs)
 drop_off_type | entier (1) | Optionnel | Indication sur l'horaire (issues du gtfs)
 local_zone_id  | entier | Optionnel | identifiant de la zone d'ITL de l'horaire
@@ -409,7 +410,8 @@ Colonne | Type | Contrainte | Commentaire
 route_id | chaine | Requis | Identifiant du parcours (lien vers le fichier [`routes.txt`](#routestxt-requis))
 service_id | chaine | Requis | Identifiant dues jours de fonctionnements
 trip_id | chaine | Requis | Identifiant de la circulation
-trip_headsign | chaine | Optionnel | Nom de la circulation
+trip_headsign | chaine | Optionnel | Text affiché au voyageur sur le vehicule (par exemple la destination du bus ou le code mission du RER)
+trip_short_name | chaine | Optionnel | Nom de la circulation connu du voyageur permettant de l'identifier de manière unique sur la journée (en général un numéro de train)
 block_id | chaine | Optionnel | Identifiant du prolongement de service
 company_id | chaine | Requis | Identifiant de la compagnie (lien vers le fichier [`companies.txt`](#companiestxt-requis))
 physical_mode_id | chaine | Requis | Identifiant du mode physique (lien vers le fichier [`physical_modes.txt`](#physical_modestxt-requis))

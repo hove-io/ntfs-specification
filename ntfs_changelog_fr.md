@@ -73,3 +73,5 @@
     * Ajout des `platform_code` dans `stops.txt`
 * Version 0.9.2 du 09/09/2019
     * Suppression des champs `forward_direction` et `backward_direction` dans `lines.txt`
+* Version 0.10.0 du 11/09/2019
+    * Ajout du champ `trip_short_name` et `stop_short_name`
