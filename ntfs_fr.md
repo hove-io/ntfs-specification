@@ -358,7 +358,7 @@ trip_short_name_at_stop | chaine | Optionnel | Nom qui doit être affiché au vo
 pickup_type | entier (1) | Optionnel | Indication sur l'horaire (issues du gtfs)
 drop_off_type | entier (1) | Optionnel | Indication sur l'horaire (issues du gtfs)
 local_zone_id  | entier | Optionnel | identifiant de la zone d'ITL de l'horaire
-stop_time_type | entier (2) | Optionnel | Précise si l'heure de passage est fiable ou si elle est donnée à titre indicative
+stop_time_precision | entier (2) | Optionnel | Précise si l'heure de passage est fiable ou si elle est donnée à titre indicative
 
     (1) Indication sur l'horaire (issues du gtfs) :
         0 (par défaut) - Horaire régulier
@@ -367,7 +367,7 @@ stop_time_type | entier (2) | Optionnel | Précise si l'heure de passage est fia
 
     (2) La fiabilité peut prendre les valeurs suivantes :
         0 - L'heure de passage est fiable, i.e. l'horaire est exact.
-        1 - L'heure de passage est approximative (correspond au cas du GTFS où timepoint vaut 0), e.g. un horaire associé à un arrêt de regulation.
+        1 - L'heure de passage est approximative (correspond au cas du GTFS où timepoint vaut 0), e.g. un horaire régulier mais qui n'est pas associé à un arrêt de régulation.
         2 - L'heure de passage n'est pas garantie, e.g. l'horaire estimé d'un TAD.
         non spécifiée :
             s'il s'agit d'un horaire associé à une zone (stop de location_type de valeur 2) : l'heure n'est pas garantie
