@@ -75,5 +75,5 @@
     * Suppression des champs `forward_direction` et `backward_direction` dans `lines.txt`
 * Version 0.10.0 du 11/09/2019
     * Ajout du champ `trip_short_name` et `stop_short_name`
-* Version 0.10.1 du 11/10/2019
+* Version 0.11.0 du 11/10/2019
     * Modification du nom et de la gestion pour le champ `date_time_estimated` dans `stop_times.txt`
