@@ -139,6 +139,5 @@ Avant d'appliquer le ticket, on va donc vérifier la validité de :
 * la condition globale
 
 NB: les identifiants des objets spécifiés dans les conditions de début et fin de 
-trajet sont transformés en lower_case avant vérification de validité. Il est 
-préconisé d'éviter les majuscules dans les identifiants afin de s'assurer de la bonne 
-prise en compte des conditions.
+trajet sont transformés en lower_case avant vérification de validité.
+
