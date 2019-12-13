@@ -80,7 +80,7 @@ Colonne | Type | Contrainte | Commentaire
 "début trajet" | chaine | Requis | voir § **Conditions de début et fin de trajet** ci-dessous
 "fin trajet" | chaine | Requis | voir § **Conditions de début et fin de trajet** ci-dessous
 "condition globale" | chaine | Requis | Condition globale d'utilisation du ticket (vide, "nothing", "exclusive", "with_changes" ou "symetric")
-"clef ticket" | chaine | Requis | ID tarif (lien avec prices.csv)
+"clef ticket" | chaine | Requis | ID tarif (lien avec prices.csv). Ce champ doit être vide pour indiquer que la transition ne requière pas de nouveau ticket. Sinon, il indique le nouveau ticket à acheter.
 
 **État avant et aprés changement :**
 Un état avant un changement (ou après un changement) est décrit par un objet TC, selon l'une des possibilités suivantes :
@@ -138,6 +138,6 @@ Avant d'appliquer le ticket, on va donc vérifier la validité de :
 * la condition sur la fin de la section à emprunter (zone tarifaire, zone d'arrêt, durée)
 * la condition globale
 
-NB: les identifiants des objets spécifiés dans les conditions de début et fin de 
-trajet sont transformés en lower_case avant vérification de validité.
+NB: les identifiants des objets spécifiés dans les conditions de l'état avant/après 
+changement ainsi que début et fin de trajet sont transformés en lower_case avant vérification de validité, à l'exception de l'identifiant de type "ticket" qui doit être en minuscules dans la condition de début de tajet.
 
