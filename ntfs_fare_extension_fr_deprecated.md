@@ -80,7 +80,7 @@ Colonne | Type | Contrainte | Commentaire
 "début trajet" | chaine | Requis | voir § **Conditions de début et fin de trajet** ci-dessous
 "fin trajet" | chaine | Requis | voir § **Conditions de début et fin de trajet** ci-dessous
 "condition globale" | chaine | Requis | Condition globale d'utilisation du ticket (vide, "nothing", "exclusive", "with_changes" ou "symetric")
-"clef ticket" | chaine | Requis | ID tarif (lien avec prices.csv)
+"clef ticket" | chaine | Requis | ID tarif (lien avec prices.csv). Ce champ doit être vide pour indiquer que la transition ne requière pas de nouveau ticket. Sinon, il indique le nouveau ticket à acheter.
 
 **État avant et aprés changement :**
 Un état avant un changement (ou après un changement) est décrit par un objet TC, selon l'une des possibilités suivantes :
@@ -102,6 +102,12 @@ afin de créer une règle applicable uniquement depuis Orsay.
 On a donc une autre modélisation des OD, qui permet de combiner avec d'autres choses :
 Par exemple : `*;network=network:SNCF;stoparea=stop_area:SNC:Troyes;stoparea=stop_area:SNC:Reims;;1`
 appliquera le ticket "1" uniquement pour les sections qui font Troyes-Reims sur le réseau SNCF.
+* Restriction à un ticket déjà validé. Par exemple, si un ticket "ticket_star" donne 
+accès au réseau "STAR" et un ticket "ticket_sncf" donne accès aux 2 réseaux "STAR" et 
+"SNCF", la correspondance entre les 2 réseaux peut se faire seulement avec le 
+"ticket_sncf" (étant donné que le voyageur se trouve déjà dans le réseau "STAR" ayant 
+déjà validé le "ticket_sncf"). On aurait donc la modelisation suivante: 
+`network=network:STAR;network=network:SNCF;ticket=ticket_sncf;;;`
 * Restriction à une durée de voyage : préciser dans le champ la valeur _"duration<[nombre de minutes]"_.
 Par exemple : indiquer _"duration<60"_ pour préciser que le ticket n'est encore valable que si le voyageur l'utilise depuis moins de 60 minutes.
 * Restriction à un nombre de correspondances : préciser dans le champ la valeur _"nb_changes<[nombre de correspondances]"_.
@@ -131,3 +137,7 @@ Avant d'appliquer le ticket, on va donc vérifier la validité de :
 * la condition sur le debut de la section à emprunter (zone tarifaire, zone d'arrêt, durée, nombre de changements, ticket)
 * la condition sur la fin de la section à emprunter (zone tarifaire, zone d'arrêt, durée)
 * la condition globale
+
+NB: les identifiants des objets spécifiés dans les conditions de l'état avant/après 
+changement ainsi que début et fin de trajet sont transformés en lower_case avant vérification de validité, à l'exception de l'identifiant de type "ticket" qui doit être en minuscules dans la condition de début de tajet.
+
