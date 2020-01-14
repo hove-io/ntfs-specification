@@ -92,7 +92,8 @@ Par exemple, indiquer "network=network:Filbleu" pour indiquer que le voyageur se
 * Indiquer **"\*"** pour ne pas fournir de contrainte particulière
 
 **Conditions de début et fin de trajet :**
-Ces deux champs permettent d'ajouter des conditions au départ (ou à l'arrivée) du trajet :
+Les conditions suivantes peuvent apparaître comme conditions de "début de trajet" ou de "fin de trajet" :
+
 * Restriction à une zone tarifaire : préciser dans le champ la valeur _"zone=[fare_zone_id]"_
 Par exemple : si le voyageur est sur la commune de Paris, on peut indiquer _"zone=1"_ afin de créer une règle applicable uniquement depuis Paris.
 * Restriction à une zone d'arrêt : préciser dans le champ la valeur _"stoparea=[stop_area_id]"_
@@ -102,16 +103,27 @@ afin de créer une règle applicable uniquement depuis Orsay.
 On a donc une autre modélisation des OD, qui permet de combiner avec d'autres choses :
 Par exemple : `*;network=network:SNCF;stoparea=stop_area:SNC:Troyes;stoparea=stop_area:SNC:Reims;;1`
 appliquera le ticket "1" uniquement pour les sections qui font Troyes-Reims sur le réseau SNCF.
+
+Les conditions suivantes ne peuvent apparaitre que comme une condition de "début de trajet" : 
+
 * Restriction à un ticket déjà validé. Par exemple, si un ticket "ticket_star" donne 
 accès au réseau "STAR" et un ticket "ticket_sncf" donne accès aux 2 réseaux "STAR" et 
 "SNCF", la correspondance entre les 2 réseaux peut se faire seulement avec le 
 "ticket_sncf" (étant donné que le voyageur se trouve déjà dans le réseau "STAR" ayant 
 déjà validé le "ticket_sncf"). On aurait donc la modelisation suivante: 
 `network=network:STAR;network=network:SNCF;ticket=ticket_sncf;;;`
+* Restriction à ligne spécifique. préciser dans le champ la valeur _"ligne=[line_id]"_
+Par exemple : on peut indiquer _"line=line:MyLine"_ pour autoriser l'utilisation de la ligne _MyLine_
+* Interdiction d'un ligne spécifique. préciser dans le champ la valeur _"ligne!=[line_id]"_
+Par exemple : on peut indiquer _"line!=line:MyLine"_ pour interdire l'utilisation de la ligne _MyLine_
 * Restriction à une durée de voyage : préciser dans le champ la valeur _"duration<[nombre de minutes]"_.
 Par exemple : indiquer _"duration<60"_ pour préciser que le ticket n'est encore valable que si le voyageur l'utilise depuis moins de 60 minutes.
 * Restriction à un nombre de correspondances : préciser dans le champ la valeur _"nb_changes<[nombre de correspondances]"_.
 Par exemple : indiquer _"nb_changes<2"_ pour préciser que le ticket n'est utilisable que pour une correspondance.
+* Les conditions décrit ci-dessus peuvent être mis ensemble en séparant les conditions par des _"&"_
+Par exemple la ligne 
+`network=network:STAR;network=network:SNCF;line=line:MyLine & zone=1;;;`
+autorise les transitions du network STAR au network SNCF qui utilisent la ligne MyLine ET commencent en zone 1.
 
 **Condition globale :**
 Ce champ précise la condition globale d'utilisation du ticket :
@@ -138,6 +150,5 @@ Avant d'appliquer le ticket, on va donc vérifier la validité de :
 * la condition sur la fin de la section à emprunter (zone tarifaire, zone d'arrêt, durée)
 * la condition globale
 
-NB: les identifiants des objets spécifiés dans les conditions de l'état avant/après 
-changement ainsi que début et fin de trajet sont transformés en lower_case avant vérification de validité, à l'exception de l'identifiant de type "ticket" qui doit être en minuscules dans la condition de début de tajet.
+
 
