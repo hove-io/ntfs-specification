@@ -103,6 +103,12 @@ afin de créer une règle applicable uniquement depuis Orsay.
 On a donc une autre modélisation des OD, qui permet de combiner avec d'autres choses :
 Par exemple : `*;network=network:SNCF;stoparea=stop_area:SNC:Troyes;stoparea=stop_area:SNC:Reims;;1`
 appliquera le ticket "1" uniquement pour les sections qui font Troyes-Reims sur le réseau SNCF.
+* Restriction à une durée de voyage : préciser dans le champ la valeur _"duration<[nombre de minutes]"_.
+Attention :
+- en position "début de trajet" la condition _"duration<60"_ indique que le ticket en cours doit avoir été validé il y a moins de 
+60 minutes au moment de *l'embarquement* dans le prochain transport en commun
+- en position "fin de trajet" la condition _"duration<60"_ indique que le ticket en cours doit avoir été validé il y a moins de 
+60 minutes au moment du *débarquement* du le prochain transport en commun
 
 Les conditions suivantes ne peuvent apparaitre que comme une condition de "début de trajet" : 
 
@@ -116,8 +122,6 @@ déjà validé le "ticket_sncf"). On aurait donc la modelisation suivante:
 Par exemple : on peut indiquer _"line=line:MyLine"_ pour autoriser l'utilisation de la ligne _MyLine_
 * Interdiction d'un ligne spécifique. préciser dans le champ la valeur _"ligne!=[line_id]"_
 Par exemple : on peut indiquer _"line!=line:MyLine"_ pour interdire l'utilisation de la ligne _MyLine_
-* Restriction à une durée de voyage : préciser dans le champ la valeur _"duration<[nombre de minutes]"_.
-Par exemple : indiquer _"duration<60"_ pour préciser que le ticket n'est encore valable que si le voyageur l'utilise depuis moins de 60 minutes.
 * Restriction à un nombre de correspondances : préciser dans le champ la valeur _"nb_changes<[nombre de correspondances]"_.
 Par exemple : indiquer _"nb_changes<2"_ pour préciser que le ticket n'est utilisable que pour une correspondance.
 * Les conditions décrit ci-dessus peuvent être mis ensemble en séparant les conditions par des _"&"_
