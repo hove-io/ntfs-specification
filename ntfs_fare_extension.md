@@ -1,11 +1,6 @@
 NTFS - Fare extension
 ======================================
 
-# TODO :
-- ticket_price is expected to be decimal ?
-- ticket_currency is expected to be in EUR ? in centimes ?
-- all ticket_currency should be the same
-- 
 
 # Introduction
 This document describes an extension of the core [NTFS (fr)](./ntfs_fr.md) data format to add fares and tickets information into Navitia.
