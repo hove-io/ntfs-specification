@@ -98,7 +98,7 @@ Les conditions suivantes peuvent apparaître comme conditions de "début de traj
 Par exemple : si le voyageur est sur la commune de Paris, on peut indiquer _"zone=1"_ afin de créer une règle applicable uniquement depuis Paris.
 * Restriction à une zone d'arrêt : préciser dans le champ la valeur _"stoparea=[stop_area_id]"_
 (champ **stop_id** de l'arrêt ayant pour **location_type** la valeur **1** avec le préfixe _"stoparea:"_)
-Par exemple : si le voyageur est sur la zone d'arrêt sa:Orsay , on peut indiquer _"stoparea=sa:Orsay"_
+Par exemple : si le voyageur est sur la zone d'arrêt sa:Orsay , on peut indiquer _"stoparea=stop_area:sa:Orsay"_
 afin de créer une règle applicable uniquement depuis Orsay.
 On a donc une autre modélisation des OD, qui permet de combiner avec d'autres choses :
 Par exemple : `*;network=network:SNCF;stoparea=stop_area:SNC:Troyes;stoparea=stop_area:SNC:Reims;;1`
