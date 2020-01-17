@@ -79,6 +79,9 @@ Fichier | Contrainte | Commentaire
 [`grid_periods.txt`](#grid_periodstxt-optionnel) | Optionnel | Ce fichier contient les périodes des calendriers
 [`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optionnel) | Optionnel | Ce fichier contient les liens entre les lignes et ces calendriers
 
+## Visualisation 
+Pour aider à la compréhension, vous pouvez trouver un diagramme des relations entre les fichiers ici: https://dbdiagram.io/embed/5e218b4a9e76504e0ef05fcd ([editer le diagramme](https://dbdiagram.io/d/5e218b4a9e76504e0ef05fcd))
+
 # Description des fichiers
 ### networks.txt (requis)
 Ce fichier contient la description des différents réseaux.
