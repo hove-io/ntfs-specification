@@ -422,6 +422,7 @@ physical_mode_id | chaine | Requis | Identifiant du mode physique (lien vers le 
 trip_property_id | chaine | Optionnel | Identifiant de la propriété accessibilité (lien vers le fichier [`trip_properties.txt`](#trip_propertiestxt-optionnel))
 dataset_id | chaine | Requis | Identifiant du jeu de données ayant fourni la circulation (lien vers le fichier [`datasets.txt`](#datasetstxt-requis)).
 geometry_id | chaine | Optionnel | Identifiant du tracé représentant la circulation (lien vers le fichier [`geometries.txt`](#geometriestxt-optionnel))
+journey_pattern_id | chaine | Optionnel | Identifiant de la mission (i.e. une séquence ordonnée d'arrêts ayant les mêmes propriétés et parfois connue du voyageur)
 
     Pour préciser si la circulation est sur réservation (tout ou partie), il faut :
         Indiquer au niveau de l'horaire (fichier [`stop_times.txt`](#stop_timestxt-requis)) si la montée et/ou la descente est à réservation
