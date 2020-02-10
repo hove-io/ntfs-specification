@@ -79,3 +79,6 @@
     * Modification du nom et de la gestion pour le champ `date_time_estimated` dans `stop_times.txt`
 * Version 0.11.1 du 03/02/2020
     * Ajout du champ `journey_pattern_id` dans `trips.txt`
+    * Amélioration de la description du modèle tarifaire
+    * Amélioration de la description des `stop_sequence` dans `stop_times.txt`
+    * Ajout d'un graphe du modèle dans la documentation
