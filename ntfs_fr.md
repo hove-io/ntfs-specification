@@ -554,7 +554,7 @@ ntfs_version | chaine | Requis | Version du format NTFS utilisé dans l'export (
 feed_start_date | date | Optionnel | Date de début de validité du jeu de données
 feed_end_date | date | Optionnel | Date de fin de validité du jeu de données
 feed_creation_date |  date |  Optionnel | Date de génération du jeu de données
-feed_creation_time | heure | Optionnel | Heure de génération du jeu de données
+feed_creation_time | heure | Optionnel | Heure (UTC) de génération du jeu de données
 
 Le tableau ci-dessous indique les paramètres libres renseignés par Kisio Digital (dépend de l'outil qui génère les données).
 
