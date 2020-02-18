@@ -143,16 +143,35 @@ permet d'autoriser les correspondances en gardant le même ticket sur le réseau
 * "symetric": spécifie que ce tarif est également disponible en intervertissant l'état de début et de fin (par exemple : s'il est possible de changer du bus au tramway, la réciproque est vraie)
 
 **Fonctionnement grossier :**
-_warning : description sous réserve, non-contractuelle_
-Pour chaque ligne de ce fichier, le ticket est applicable avec une vérification faite au moment d'emprunter
-une nouvelle section de transport.
-Avant d'appliquer le ticket, on va donc vérifier la validité de :
 
-* l'état avant changement (ticket déjà présent, mode précédent, réseau précédent, ligne précédente)
-* l'état après changement (mode, réseau, ligne)
-* la condition sur le debut de la section à emprunter (zone tarifaire, zone d'arrêt, durée, nombre de changements, ticket)
-* la condition sur la fin de la section à emprunter (zone tarifaire, zone d'arrêt, durée)
-* la condition globale
+Etant donné un itineraire (i.e. une sequence de sections de transport en commun), le moteur tarifaire cherche une sequence de tickets qui :
+- soit valide pour l'itinéraire donné
+- coût le moins cher possible
+
+*Détermination d'une sequence valide de ticket pour un itinéraire*
+
+Commencons par décrire le fonctionnement du moteur pour un itinéraire comprenant une seule section de transport en commun.
+- on parcoure l'ensemble des lignes du fichier fares.csv 
+- une ligne de ce fichier est une _transition valide_ si les conditions avant/après changement et début/fin de trajet sont vérifiée 
+  par la section de transport en commun
+- pour chaque transition valide, on crée une séquence de tickets candidate pour être le résultat final. 
+- le ticket à ajouter dans le séquence candidate est déterminé en fonction du contenu de la ligne de fares.csv correspondant à la transition valide :
+  - si le champ "condition globale" vaut "with_changes", alors on va regarder si od_fares.csv contient une ligne qui est valide pour la section
+    de transport en commun en cours. Si une telle ligne est trouvée dans od_fares.csv, alors le champ "ticket_id" de cette ligne donne l'identifiant du ticket
+    à ajouter. Si aucune ligne de valide n'est trouvée dans od_fares.csv, alors la transition n'est pas valide et aucune séquence de ticket n'est crée.
+  - si le champ "clé ticket" est non vide, alors son contenu donne l'identifiant du ticket à ajouter à la séquence
+  - si le champ "clé ticket" est vide, alors aucun ticket n'est ajouté (la section de transport en commun peut être prise gratuitement)
+- s'il existe un transition valide dont le champ "condition globale" vaut "exclusive", alors les autres transitions valides ne sont pas considérées (i.e. on ne va pas créer de séquence de ticket canditate pour ces autres transitions valides)
+- on obtient ainsi plusieurs séquence de ticket candidate pour l'itinéraire. Le moteur renverra la séquence coutant le moins cher.
+
+Passons maintenant au cas d'un itinéraire comportant plusieurs sections de transport en commun.
+- on commence comme précédemment avec la première section de transport en commun, on obtient alors plusieurs séquences de ticket candidates.
+- pour chacune de ces séquences :
+  - on détermine les transitions valides pour la nouvelle section d'itinéraire de transport en commun
+  - pour chaque transition valide, on crée une nouvelle séquence candidate, pré-remplie avec la séquence candidate précédente, et éventuellement enrichie du nouveau ticket correspondant à la transition valide
+- on va itérer les opérations précédentes jusqu'à ce que toutes les sections de transport en commun de l'itinéraire aient été traitées
+- on sélectionne enfin la séquence de ticket candidate la moins chez parmi celle qui couvrent l'ensemble de l'itinéraire
+
 
 
 
