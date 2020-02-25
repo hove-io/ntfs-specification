@@ -161,7 +161,7 @@ Commencons par décrire le fonctionnement du moteur pour un itinéraire comprena
     à ajouter. Si aucune ligne de valide n'est trouvée dans od_fares.csv, alors la transition n'est pas valide et aucune séquence de ticket n'est crée.
   - si le champ "clé ticket" est non vide, alors son contenu donne l'identifiant du ticket à ajouter à la séquence
   - si le champ "clé ticket" est vide, alors aucun ticket n'est ajouté (la section de transport en commun peut être prise gratuitement)
-- s'il existe une transition valide dont le champ "condition globale" vaut "exclusive", alors les autres transitions valides ne sont pas considérées (i.e. on ne va pas créer de séquence de ticket canditate pour ces autres transitions valides). Si plusieurs transitions "exclusive" sont valide, une est selectionnée arbitrairement.
+- s'il existe une transition valide dont le champ "condition globale" vaut "exclusive", alors les autres transitions valides ne sont pas considérées (i.e. on ne va pas créer de séquence de tickets candidate pour ces autres transitions valides). Si plusieurs transitions "exclusives" sont valides, une est selectionnée arbitrairement.
 - on obtient ainsi plusieurs séquences de tickets candidates pour l'itinéraire. Le moteur renverra la séquence coûtant le moins cher.
 
 Passons maintenant au cas d'un itinéraire comportant plusieurs sections de transport en commun.
