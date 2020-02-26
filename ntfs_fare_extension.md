@@ -57,8 +57,8 @@ ticket_validity_end | Date | Required | Last day of usability of the ticket (inc
 For now, the only accepted ticket_currency is "EUR". 
 
 ## ticket_uses.txt (Optional)
-To be valid, a ticket_use_id must be appears in at least one line of ticket_use_perimeters.txt
-A ticket_use_id must not appears more than once in this file.
+To be valid, a ticket_use_id must appear in at least one line of ticket_use_perimeters.txt
+A ticket_use_id must not appear more than once in this file.
 
 Field | Type | Constraint | Description
 --- | --- | --- | ---

@@ -108,7 +108,7 @@ Attention :
 - en position "début de trajet" la condition _"duration<60"_ indique que le ticket en cours doit avoir été validé il y a moins de 
 60 minutes au moment de *l'embarquement* dans le prochain transport en commun
 - en position "fin de trajet" la condition _"duration<60"_ indique que le ticket en cours doit avoir été validé il y a moins de 
-60 minutes au moment du *débarquement* du le prochain transport en commun
+60 minutes au moment du *débarquement* du prochain transport en commun
 
 Les conditions suivantes ne peuvent apparaitre que comme une condition de "début de trajet" : 
 
@@ -118,13 +118,13 @@ accès au réseau "STAR" et un ticket "ticket_sncf" donne accès aux 2 réseaux 
 "ticket_sncf" (étant donné que le voyageur se trouve déjà dans le réseau "STAR" ayant 
 déjà validé le "ticket_sncf"). On aurait donc la modelisation suivante: 
 `network=network:STAR;network=network:SNCF;ticket=ticket_sncf;;;`
-* Restriction à ligne spécifique. préciser dans le champ la valeur _"ligne=[line_id]"_
+* Restriction à ligne spécifique : préciser dans le champ la valeur _"ligne=[line_id]"_
 Par exemple : on peut indiquer _"line=line:MyLine"_ pour autoriser l'utilisation de la ligne _MyLine_
-* Interdiction d'un ligne spécifique. préciser dans le champ la valeur _"ligne!=[line_id]"_
+* Interdiction d'un ligne spécifique : préciser dans le champ la valeur _"ligne!=[line_id]"_
 Par exemple : on peut indiquer _"line!=line:MyLine"_ pour interdire l'utilisation de la ligne _MyLine_
 * Restriction à un nombre de correspondances : préciser dans le champ la valeur _"nb_changes<[nombre de correspondances]"_.
 Par exemple : indiquer _"nb_changes<2"_ pour préciser que le ticket n'est utilisable que pour une correspondance.
-* Les conditions décrit ci-dessus peuvent être mis ensemble en séparant les conditions par des _"&"_
+* Les conditions décrit ci-dessus peuvent être mises ensemble en séparant les conditions par des _"&"_
 Par exemple la ligne 
 `network=network:STAR;network=network:SNCF;line=line:MyLine & zone=1;;;`
 autorise les transitions du network STAR au network SNCF qui utilisent la ligne MyLine ET commencent en zone 1.
