@@ -144,7 +144,7 @@ permet d'autoriser les correspondances en gardant le même ticket sur le réseau
 
 **Fonctionnement grossier :**
 
-Etant donné un itineraire (i.e. une sequence de sections de transport en commun, les sections de rabattement et de transfers ne sont pas prise en compte dans le calcul de tarifs), le moteur tarifaire cherche une sequence de tickets qui :
+Etant donné un itineraire (i.e. une sequence de sections de transport en commun, les sections de rabattement et de transfers ne sont pas prise en compte dans le calcul de tarifs), le moteur tarifaire cherche une sequence de tickets (i.e. une liste ordonnée de tickets qui est valide pour tout ou partie d'un itinéraire) qui :
 - soit valide pour l'itinéraire donné
 - coûte le moins cher possible
 
@@ -154,7 +154,7 @@ Commencons par décrire le fonctionnement du moteur pour un itinéraire comprena
 - on parcourt l'ensemble des lignes du fichier fares.csv 
 - une ligne de ce fichier est une _transition valide_ si les conditions avant/après changement et début/fin de trajet sont vérifiées 
   par la section de transport en commun
-- pour chaque transition valide, on crée une séquence de tickets candidate pour être le résultat final. 
+- pour chaque transition valide, on crée une séquence de tickets candidate pour être le résultat final (dans le cas d'un itinéraire ne comportant qu'une seule section, cette séquence ne contiendra qu'un seul ticket). 
 - le ticket à ajouter dans le séquence candidate est déterminé en fonction du contenu de la ligne de fares.csv correspondant à la transition valide :
   - si le champ "condition globale" vaut "with_changes", alors on va regarder si od_fares.csv contient une ligne qui est valide pour la section
     de transport en commun en cours. Si une telle ligne est trouvée dans od_fares.csv, alors le champ "ticket_id" de cette ligne donne l'identifiant du ticket
@@ -165,7 +165,7 @@ Commencons par décrire le fonctionnement du moteur pour un itinéraire comprena
 - on obtient ainsi plusieurs séquences de tickets candidates pour l'itinéraire. Le moteur renverra la séquence coûtant le moins cher.
 
 Passons maintenant au cas d'un itinéraire comportant plusieurs sections de transport en commun.
-- on commence comme précédemment avec la première section de transport en commun, on obtient alors plusieurs séquences de ticket candidates.
+- on commence comme précédemment avec la première section de transport en commun, on obtient alors plusieurs séquences candidates.
 - pour chacune de ces séquences :
   - on détermine les transitions valides pour la nouvelle section d'itinéraire de transport en commun
   - pour chaque transition valide, on crée une nouvelle séquence candidate, pré-remplie avec la séquence candidate précédente, et éventuellement enrichie du nouveau ticket correspondant à la transition valide
