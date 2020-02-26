@@ -1,6 +1,7 @@
 NTFS - Fare extension
 ======================================
 
+
 # Introduction
 This document describes an extension of the core [NTFS (fr)](./ntfs_fr.md) data format to add fares and tickets information into Navitia.
 The [old fare extension](./ntfs_fare_extension_fr_deprecated.md) is still in use in conjunction with the files described here for backward compatibility matters.
@@ -53,8 +54,11 @@ ticket_currency | Currency Code | Required | An ISO 4217 alphabetical currency c
 ticket_validity_start | Date | Required | First day of usability of the ticket (included)
 ticket_validity_end | Date | Required | Last day of usability of the ticket (included)
 
+For now, the only accepted ticket_currency is "EUR". 
+
 ## ticket_uses.txt (Optional)
-To be valid, a ticket_use must be associated with a ticket_use_perimeter.
+To be valid, a ticket_use_id must appear in at least one line of ticket_use_perimeters.txt
+A ticket_use_id must not appear more than once in this file.
 
 Field | Type | Constraint | Description
 --- | --- | --- | ---

@@ -92,26 +92,42 @@ Par exemple, indiquer "network=network:Filbleu" pour indiquer que le voyageur se
 * Indiquer **"\*"** pour ne pas fournir de contrainte particulière
 
 **Conditions de début et fin de trajet :**
-Ces deux champs permettent d'ajouter des conditions au départ (ou à l'arrivée) du trajet :
+Les conditions suivantes peuvent apparaître comme conditions de "début de trajet" ou de "fin de trajet" :
+
 * Restriction à une zone tarifaire : préciser dans le champ la valeur _"zone=[fare_zone_id]"_
 Par exemple : si le voyageur est sur la commune de Paris, on peut indiquer _"zone=1"_ afin de créer une règle applicable uniquement depuis Paris.
 * Restriction à une zone d'arrêt : préciser dans le champ la valeur _"stoparea=[stop_area_id]"_
 (champ **stop_id** de l'arrêt ayant pour **location_type** la valeur **1** avec le préfixe _"stoparea:"_)
-Par exemple : si le voyageur est sur la zone d'arrêt sa:Orsay , on peut indiquer _"stoparea=sa:Orsay"_
+Par exemple : si le voyageur est sur la zone d'arrêt sa:Orsay , on peut indiquer _"stoparea=stop_area:sa:Orsay"_
 afin de créer une règle applicable uniquement depuis Orsay.
 On a donc une autre modélisation des OD, qui permet de combiner avec d'autres choses :
 Par exemple : `*;network=network:SNCF;stoparea=stop_area:SNC:Troyes;stoparea=stop_area:SNC:Reims;;1`
 appliquera le ticket "1" uniquement pour les sections qui font Troyes-Reims sur le réseau SNCF.
+* Restriction à une durée de voyage : préciser dans le champ la valeur _"duration<[nombre de minutes]"_.
+Attention :
+- en position "début de trajet" la condition _"duration<60"_ indique que le ticket en cours doit avoir été validé il y a moins de 
+60 minutes au moment de *l'embarquement* dans le prochain transport en commun
+- en position "fin de trajet" la condition _"duration<60"_ indique que le ticket en cours doit avoir été validé il y a moins de 
+60 minutes au moment du *débarquement* du prochain transport en commun
+
+Les conditions suivantes ne peuvent apparaitre que comme une condition de "début de trajet" : 
+
 * Restriction à un ticket déjà validé. Par exemple, si un ticket "ticket_star" donne 
 accès au réseau "STAR" et un ticket "ticket_sncf" donne accès aux 2 réseaux "STAR" et 
 "SNCF", la correspondance entre les 2 réseaux peut se faire seulement avec le 
 "ticket_sncf" (étant donné que le voyageur se trouve déjà dans le réseau "STAR" ayant 
 déjà validé le "ticket_sncf"). On aurait donc la modelisation suivante: 
 `network=network:STAR;network=network:SNCF;ticket=ticket_sncf;;;`
-* Restriction à une durée de voyage : préciser dans le champ la valeur _"duration<[nombre de minutes]"_.
-Par exemple : indiquer _"duration<60"_ pour préciser que le ticket n'est encore valable que si le voyageur l'utilise depuis moins de 60 minutes.
+* Restriction à ligne spécifique : préciser dans le champ la valeur _"ligne=[line_id]"_
+Par exemple : on peut indiquer _"line=line:MyLine"_ pour autoriser l'utilisation de la ligne _MyLine_
+* Interdiction d'un ligne spécifique : préciser dans le champ la valeur _"ligne!=[line_id]"_
+Par exemple : on peut indiquer _"line!=line:MyLine"_ pour interdire l'utilisation de la ligne _MyLine_
 * Restriction à un nombre de correspondances : préciser dans le champ la valeur _"nb_changes<[nombre de correspondances]"_.
 Par exemple : indiquer _"nb_changes<2"_ pour préciser que le ticket n'est utilisable que pour une correspondance.
+* Les conditions décrit ci-dessus peuvent être mises ensemble en séparant les conditions par des _"&"_
+Par exemple la ligne 
+`network=network:STAR;network=network:SNCF;line=line:MyLine & zone=1;;;`
+autorise les transitions du network STAR au network SNCF qui utilisent la ligne MyLine ET commencent en zone 1.
 
 **Condition globale :**
 Ce champ précise la condition globale d'utilisation du ticket :
@@ -127,17 +143,31 @@ permet d'autoriser les correspondances en gardant le même ticket sur le réseau
 * "symetric": spécifie que ce tarif est également disponible en intervertissant l'état de début et de fin (par exemple : s'il est possible de changer du bus au tramway, la réciproque est vraie)
 
 **Fonctionnement grossier :**
-_warning : description sous réserve, non-contractuelle_
-Pour chaque ligne de ce fichier, le ticket est applicable avec une vérification faite au moment d'emprunter
-une nouvelle section de transport.
-Avant d'appliquer le ticket, on va donc vérifier la validité de :
 
-* l'état avant changement (ticket déjà présent, mode précédent, réseau précédent, ligne précédente)
-* l'état après changement (mode, réseau, ligne)
-* la condition sur le debut de la section à emprunter (zone tarifaire, zone d'arrêt, durée, nombre de changements, ticket)
-* la condition sur la fin de la section à emprunter (zone tarifaire, zone d'arrêt, durée)
-* la condition globale
+Etant donné un itineraire (i.e. une sequence de sections de transport en commun, les sections de rabattement et de transfers ne sont pas prise en compte dans le calcul de tarifs), le moteur tarifaire cherche une sequence de tickets (i.e. une liste ordonnée de tickets qui est valide pour tout ou partie d'un itinéraire) qui :
+- soit valide pour l'itinéraire donné
+- coûte le moins cher possible
 
-NB: les identifiants des objets spécifiés dans les conditions de l'état avant/après 
-changement ainsi que début et fin de trajet sont transformés en lower_case avant vérification de validité, à l'exception de l'identifiant de type "ticket" qui doit être en minuscules dans la condition de début de tajet.
+*Détermination d'une sequence valide de ticket pour un itinéraire*
 
+Commencons par décrire le fonctionnement du moteur pour un itinéraire comprenant une seule section de transport en commun.
+- on parcourt l'ensemble des lignes du fichier fares.csv 
+- une ligne de ce fichier est une _transition valide_ si les conditions avant/après changement et début/fin de trajet sont vérifiées 
+  par la section de transport en commun
+- pour chaque transition valide, on crée une séquence de tickets candidate pour être le résultat final (dans le cas d'un itinéraire ne comportant qu'une seule section, cette séquence ne contiendra qu'un seul ticket). 
+- le ticket à ajouter dans le séquence candidate est déterminé en fonction du contenu de la ligne de fares.csv correspondant à la transition valide :
+  - si le champ "condition globale" vaut "with_changes", alors on va regarder si od_fares.csv contient une ligne qui est valide pour la section
+    de transport en commun en cours. Si une telle ligne est trouvée dans od_fares.csv, alors le champ "ticket_id" de cette ligne donne l'identifiant du ticket
+    à ajouter. Si aucune ligne de valide n'est trouvée dans od_fares.csv, alors la transition n'est pas valide et aucune séquence de ticket n'est crée.
+  - si le champ "clé ticket" est non vide, alors son contenu donne l'identifiant du ticket à ajouter à la séquence
+  - si le champ "clé ticket" est vide, alors aucun ticket n'est ajouté (la section de transport en commun peut être prise gratuitement)
+- s'il existe une transition valide dont le champ "condition globale" vaut "exclusive", alors les autres transitions valides ne sont pas considérées (i.e. on ne va pas créer de séquence de tickets candidate pour ces autres transitions valides). Si plusieurs transitions "exclusives" sont valides, une est selectionnée arbitrairement.
+- on obtient ainsi plusieurs séquences de tickets candidates pour l'itinéraire. Le moteur renverra la séquence coûtant le moins cher.
+
+Passons maintenant au cas d'un itinéraire comportant plusieurs sections de transport en commun.
+- on commence comme précédemment avec la première section de transport en commun, on obtient alors plusieurs séquences candidates.
+- pour chacune de ces séquences :
+  - on détermine les transitions valides pour la nouvelle section d'itinéraire de transport en commun
+  - pour chaque transition valide, on crée une nouvelle séquence candidate, pré-remplie avec la séquence candidate précédente, et éventuellement enrichie du nouveau ticket correspondant à la transition valide
+- on va itérer les opérations précédentes jusqu'à ce que toutes les sections de transport en commun de l'itinéraire aient été traitées
+- on sélectionne enfin la séquence de tickets candidate la moins chère parmi celles qui couvrent l'ensemble de l'itinéraire
