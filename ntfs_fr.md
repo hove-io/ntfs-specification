@@ -20,6 +20,7 @@ Les données sont formatées de la manière suivante :
 * Le séparateur décimal est le **"."**
 * Le format de date est **YYYYMMDD**
 * Le format de l'heure est **HH:MM:SS**
+* le format d'un instant (date + heure) est au format ISO-8601 en UTC; il doit inclure le suffixe d'offset ou le `Z`
 * Le formatage des **URL** doit respecter le format du **W3C** : http://www.w3.org/Addressing/URL/4_URI_Recommentations.html
 * Les fuseaux horaires http://en.wikipedia.org/wiki/List_of_tz_zones
 * Les langues indiquées doivent respecter la norme **ISO 639-2** : http://www.loc.gov/standards/iso639-2/php/code_list.php
@@ -531,7 +532,7 @@ line_group_id | chaine | Requis | Identifiant du groupe de ligne
 line_id | chaine | Requis | Identifiant de la ligne faisant partie du groupe de lignes (lien vers le fichier [`lines.txt`](#linestxt-requis)). Attention, une ligne peut faire partie de plusieurs groupes de lignes.
 
 ### feed_infos.txt (requis)
-Ce fichier contient des informations sur le jeu de données et le système amont qui l'a généré. Pour faciliter son utiilisation, la structure du fichier est générique, et la liste des informations est listée ci-dessous.
+Ce fichier contient des informations sur le jeu de données et le système amont qui l'a généré. Pour faciliter son utilisation, la structure du fichier est générique, et la liste des informations est listée ci-dessous.
 
 #### Description du format du fichier
 Colonne | Type | Contrainte | Commentaire
@@ -555,6 +556,7 @@ feed_start_date | date | Optionnel | Date de début de validité du jeu de donn�
 feed_end_date | date | Optionnel | Date de fin de validité du jeu de données
 feed_creation_date |  date |  Optionnel | Date de génération du jeu de données
 feed_creation_time | heure | Optionnel | Heure (UTC) de génération du jeu de données
+feed_creation_datetime | instant | Optionnel | Date et heure (UTC) de génération du jeu de données
 
 Le tableau ci-dessous indique les paramètres libres renseignés par Kisio Digital (dépend de l'outil qui génère les données).
 
