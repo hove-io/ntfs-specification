@@ -82,3 +82,6 @@
     * Amélioration de la description du modèle tarifaire
     * Amélioration de la description des `stop_sequence` dans `stop_times.txt`
     * Ajout d'un graphe du modèle dans la documentation
+* Version 0.11.2 du 26/02/2020
+    * Amélioration de la description du modèle tarifaire
+    * Ajout d'un champ `feed_creation_datetime` recommandé dans `feed_infos.txt`
