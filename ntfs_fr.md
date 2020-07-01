@@ -554,7 +554,7 @@ Colonne | Type | Contrainte | Commentaire
 ntfs_version | chaine | Requis | Version du format NTFS utilisé dans l'export (par exemple : "0.3")
 feed_start_date | date | Optionnel | Date de début de validité du jeu de données
 feed_end_date | date | Optionnel | Date de fin de validité du jeu de données
-feed_creation_date |  date |  Optionnel | Date de génération du jeu de données
+feed_creation_date |  date |  Optionnel | Date (UTC) de génération du jeu de données
 feed_creation_time | heure | Optionnel | Heure (UTC) de génération du jeu de données
 feed_creation_datetime | instant | Optionnel | Date et heure (UTC) de génération du jeu de données
 
