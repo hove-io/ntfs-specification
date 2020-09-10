@@ -85,3 +85,5 @@
 * Version 0.11.2 du 26/02/2020
     * Amélioration de la description du modèle tarifaire
     * Ajout d'un champ `feed_creation_datetime` recommandé dans `feed_infos.txt`
+* Version 0.11.3 du 10/09/2020
+    * Amélioration de documentation des champs `network_address`, `stop_timezone` et `feed_creation_date`

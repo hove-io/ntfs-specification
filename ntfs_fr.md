@@ -95,7 +95,7 @@ network_url | chaine | Optionnel | Lien vers le site institutionnel
 network_timezone | chaine | Optionnel |
 network_lang | chaine | Optionnel |
 network_phone | chaine | Optionnel | Numéro de téléphone de contact
-network_address | chaine | Optionnel | Adresse du réseau.
+network_address | chaine | Optionnel | Adresse postale du réseau.
 network_sort_order | entier | Optionnel | Ordre de trie des réseaux, les plus petit sont en premier.
 
 ### calendar.txt (requis)
