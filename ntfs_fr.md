@@ -463,7 +463,7 @@ Ces propriétés sont sous forme de liste de clés / valeurs qui doivent être s
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
-object_type | chaine | Requis | Type d'objet sur lequel la propriété porte (network, line, route, trip, stop_area, stop_point)
+object_type | chaine | Requis | Type d'objet sur lequel la propriété porte (company, network, line, route, trip, stop_area, stop_point)
 object_id | chaine | Requis | Identifiant de l'objet sur lequel la propriété porte
 object_system | chaine | Requis | Nom du système d'identification de l'objet  (texte libre). Par exemple : "Timeo" ou "UIC" pour les arrêts, "Reflex" pour les lignes.
 object_code | chaine | Requis | Code d'identification de l'objet dans le système considéré.
