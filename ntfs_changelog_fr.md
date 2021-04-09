@@ -89,3 +89,5 @@
     * Amélioration de documentation des champs `network_address`, `stop_timezone` et `feed_creation_date`
 * Version 0.11.4 du 27/09/2020
     * Ajout de la gestion des codes externes pour les compagnies
+* Version 0.11.5 du 12/04/2021
+    * Amélioration de documentation pour `object_properties` et `object_codes`
