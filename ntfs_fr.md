@@ -449,6 +449,7 @@ geometry_wkt | géométrie | Requis | Représentation spatiale de la géométrie
 ### object_properties.txt (optionnel)
 Ce fichier contient la description des propriétés complémentaires sur les différents objets du référentiel.
 Ces propriétés sont sous forme de liste de clés / valeurs qui doivent être standardisées par processus.
+Une clé ne peut être utilisée qu'une seule fois (avec une seule valeur) pour un même objet.
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
@@ -460,6 +461,7 @@ object_property_value | chaine | Requis | Valeur de la propriété complémentai
 ### object_codes.txt (optionnel)
 Ce fichier contient la liste des codes d'identification complémentaires dans les systèmes externes des différents objets du référentiel.
 Ces propriétés sont sous forme de liste de clés / valeurs qui doivent être standardisées par processus.
+Une clé peut être utilisée plusieurs fois (avec des valeurs différentes) pour un même objet.
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
