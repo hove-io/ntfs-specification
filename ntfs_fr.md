@@ -356,7 +356,7 @@ departure_time | heure | Requis | Heure de départ. Si l'heure de départ n'est 
 boarding_duration | entier | Optionnel | Durée nécessaire à l'embarquement en secondes (train, avion, ferry, etc.). Cette valeur est obligatoirement positive ou nulle.
 alighting_duration | entier | Optionnel | Durée nécessaire au débarquement en secondes (train, avion, ferry, etc.). Cette valeur est obligatoirement positive ou nulle.
 stop_id | chaine | Requis | Identifiant de l'arrêt physique de passage (cas général). Ce champ peut également référencer une "zone géographique" (stop de type 2) ou une commune (stop de type 3) dans le cas de TAD zonal.
-stop_sequence | entier | Requis | Ordre de passage de desserte dans la circulation. Cette valeur est obligatoirement positive ou nulle.
+stop_sequence | entier | Requis | Ordre de passage de desserte dans la circulation. Cette valeur est obligatoirement positive ou nulle, et doit être strictement croissante.
 stop_headsign | chaine | Optionnel | Libellé qui doit être affiché au voyageur à la place du `trip_headsign` à cet arrêt.
 trip_short_name_at_stop | chaine | Optionnel | Nom qui doit être affiché au voyageur à la place du `trip_short_name` à cet arrêt.
 pickup_type | entier (1) | Optionnel | Indication sur l'horaire (issues du gtfs)

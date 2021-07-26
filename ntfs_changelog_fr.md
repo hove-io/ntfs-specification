@@ -91,3 +91,5 @@
     * Ajout de la gestion des codes externes pour les compagnies
 * Version 0.11.5 du 12/04/2021
     * Amélioration de documentation pour `object_properties` et `object_codes`
+* Version 0.11.6 du 26/07/2021
+    * Amélioration de la documentation pour les `stop_sequence`
