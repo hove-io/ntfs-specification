@@ -93,3 +93,5 @@
     * Amélioration de documentation pour `object_properties` et `object_codes`
 * Version 0.11.6 du 26/07/2021
     * Amélioration de la documentation pour les `stop_sequence`
+* Version 0.12.0 du 19/08/2021
+    * Ajout des adresses des arrêts physiques

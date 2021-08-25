@@ -71,6 +71,7 @@ Fichier | Contrainte | Commentaire
 [`line_group_links.txt`](#line_group_linkstxt-optionnel) | Optionnel | Ce fichier contient la liaison entre un groupe de ligne et la liste des lignes qui le compose
 [`pathways.txt`](#pathwaystxt-optionnel) | Optionnel | Ce fichier contient les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
 [`levels.txt`](#levelstxt-optionnel) | Optionnel | Ce fichier contient la liste des niveaux au sein d'une zone d'arrêt.
+[`addresses.txt`](#addressestxt-optionnel) | Optionnel | Ce fichier contient la liste des adresses des arrêts physiques.
 
 ## Fichiers des calendriers par période
 Fichier | Contrainte | Commentaire
@@ -336,6 +337,7 @@ stop_timezone | timezones | Optionnel | Fuseau horaire, se référer à http://e
 equipment_id | chaine | Optionnel | Identifiant de la propriété accessibilité
 level_id | chaine | Optionnel | lien vers un niveau décrit dans le fichier [`levels.txt`](#levelstxt-optionnel)
 platform_code | chaine | Optionnel | Identifiant de la plateforme d'un arrêt (par exemple `G` ou `3`). Ne peut être renseigné que pour les arrêts physiques (`location_type=0`) ou les zones d'embarquements (`location_type=5`)
+address_id | chaine | Optionnel | Identifiant de l'adresse de l'arrêt (lien vers le fichier [`addresses.txt`]). Ce champ ne s'applique que sur les arrêts physiques (`location_type=0`)
 
     (1) Type de l'arrêt ou de la zone :
         0 ou non spécifié - Arrêt physique (objet stop_point)
@@ -517,6 +519,13 @@ Colonne | Type | Contrainte | Commentaire
 level_id | chaine | Requis | Identifiant du niveau
 level_index | décimal | Requis | Numéro de l'étage, le rez-de-chaussée est indiqué à 0, les étages sous le sol sont avec une valeur négative.
 level_name | chaine | Optionnel | Nom associé au niveau (comme par exemple "Mezzanine").
+
+### addresses.txt (optionnel)
+Colonne | Type | Contrainte | Commentaire
+--- | --- | --- | ---
+address_id | chaine | Requis | Identifiant de l'adresse
+street_name | chaine | Requis | Nom de la voierie
+house_number | chaine | Optionnel | Numéro du seuil
 
 ### line_groups.txt (optionnel)
 Colonne | Type | Contrainte | Commentaire
