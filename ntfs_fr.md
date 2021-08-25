@@ -1,4 +1,4 @@
-NTFS version 0.11
+NTFS version 0.12
 =================
 
 # Introduction
