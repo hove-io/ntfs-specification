@@ -95,3 +95,5 @@
     * Amélioration de la documentation pour les `stop_sequence`
 * Version 0.12.0 du 19/08/2021
     * Ajout des adresses des arrêts physiques
+* Version 0.12.1 du 01/09/2021
+    * Les `stop_times` peuvent maintenant être des points de passage (pas d'arrêt du véhicule)

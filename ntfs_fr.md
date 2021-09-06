@@ -370,6 +370,7 @@ stop_time_precision | entier (2) | Optionnel | Précise si l'heure de passage es
         0 (par défaut) - Horaire régulier
         1 - Montée ou descente interdite
         2 - Horaire sur réservation associé à un TAD (si un message est associé au TAD, voir la liaison avec [`comment_links.txt`](#comment_linkstxt-optionnel))
+        3 - Le véhicule ne s'arrête pas (point de passage); dans ce cas, `pickup_type` et `drop_off_type` doivent tous les deux avoir la même valeur 3
 
     (2) La fiabilité peut prendre les valeurs suivantes :
         0 - L'heure de passage est fiable, i.e. l'horaire est exact.
