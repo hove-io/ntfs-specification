@@ -97,3 +97,5 @@
     * Ajout des adresses des arrêts physiques
 * Version 0.12.1 du 01/09/2021
     * Les `stop_times` peuvent maintenant être des points de passage (pas d'arrêt du véhicule)
+* Version 0.12.2 du 20/10/2021
+    * Correction de la documentation sur `date_time_estimated` qui est maintenant `stop_time_precision`
