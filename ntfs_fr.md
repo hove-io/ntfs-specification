@@ -353,8 +353,8 @@ Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 stop_time_id | chaine | Optionnel | Identifiant unique de l'horaire dans le jeu de données. Cette information n'est pas pérenne et permet uniquement de faire le lien entre un horaire (fichier [`stop_times.txt`](#stop_timestxt-requis)) et un commentaire (fichier [`comments.txt`](#commentstxt-optionnel)) en utilisant le fichier [`comment_links.txt`](#comment_linkstxt-optionnel). Si ce champ n'est pas fourni, l'horaire ne pourra pas êter lié à un commentaire.
 trip_id | chaine | Requis | Identifiant de la circulation
-arrival_time | heure | Requis | Heure d'arrivée. Si l'heure d'arrivée n'est pas connue, elle doit être estimée par le système fournissant les données et le champ *date_time_estimated* doit être spécifié à 1. Si la descente est interdite à cet arrêt, l'heure d'arrivée doit être indiquée et le champ *drop_off_type* doit être spécifié à 1.
-departure_time | heure | Requis | Heure de départ. Si l'heure de départ n'est pas connue, elle doit être estimée par le système fournissant les données et le champ *date_time_estimated* doit être spécifié à 1. Si la montée est interdite à cet arrêt, l'heure de départ doit être indiquée et le champ *pickup_type* doit être spécifié à 1.
+arrival_time | heure | Requis | Heure d'arrivée. Si l'heure d'arrivée n'est pas connue, elle doit être estimée par le système fournissant les données et le champ *stop_time_precision* doit être spécifié à 1. Si la descente est interdite à cet arrêt, l'heure d'arrivée doit être indiquée et le champ *drop_off_type* doit être spécifié à 1.
+departure_time | heure | Requis | Heure de départ. Si l'heure de départ n'est pas connue, elle doit être estimée par le système fournissant les données et le champ *stop_time_precision* doit être spécifié à 1. Si la montée est interdite à cet arrêt, l'heure de départ doit être indiquée et le champ *pickup_type* doit être spécifié à 1.
 boarding_duration | entier | Optionnel | Durée nécessaire à l'embarquement en secondes (train, avion, ferry, etc.). Cette valeur est obligatoirement positive ou nulle.
 alighting_duration | entier | Optionnel | Durée nécessaire au débarquement en secondes (train, avion, ferry, etc.). Cette valeur est obligatoirement positive ou nulle.
 stop_id | chaine | Requis | Identifiant de l'arrêt physique de passage (cas général). Ce champ peut également référencer une "zone géographique" (stop de type 2) ou une commune (stop de type 3) dans le cas de TAD zonal.
@@ -743,7 +743,7 @@ zone_2 | Zone 1 | 47.01 | 1.01 | 2 | id_vers_POLYGON((1 1,5 1,5 5,1 5,1 1)) |
 
 **Fichier [`stop_times.txt`](#stop_timestxt-requis): déclare les "horaires", estimés ou non**
 
-trip_id | stop_id | arrival_time | departure_time | stop_sequence | pickup_type | drop_off_type | date_time_estimated | zone_itl
+trip_id | stop_id | arrival_time | departure_time | stop_sequence | pickup_type | drop_off_type | stop_time_precision | zone_itl
 --- | --- | --- | --- | --- | --- | --- | --- | ---
 trip_1 | stop_point_A |  | 09:02:00 | 1 | 0 | 0 | 0 | 0
 trip_1 | stop_point_B | 09:15:00 | 09:05:00 | 2 | 2 | 2 | 1 | 1
