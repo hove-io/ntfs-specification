@@ -6,7 +6,7 @@ NTFS version 0.12
 NTFS est le format d'échange de données de Kisio Digital : Navitia Transit Feed Specification.
 Il a pour objectif de remplacer le format csv/Fusio afin de combler ses lacunes et permettre la gestion de tout type de données dans un seul format (horaires, TAD, etc.).
 
-Ce nouveau format s'inspire très fortement du format GTFS (https://developers.google.com/transit/gtfs/reference?hl=fr-FR), tout en l'adaptant afin de permettre une description des données la plus exhaustive possible. A ce titre, le format est amené à évoluer (voir le [changelog](./ntfs_changelog.md) ).
+Ce nouveau format s'inspire très fortement du format GTFS (https://developers.google.com/transit/gtfs/reference?hl=fr-FR), tout en l'adaptant afin de permettre une description des données la plus exhaustive possible. A ce titre, le format est amené à évoluer (voir le [changelog](./ntfs_changelog_fr.md) ).
 
 # Format des données
 
