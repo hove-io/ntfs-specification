@@ -3,30 +3,29 @@ NTFS version 0.12
 
 # Introduction
 
-NTFS est le format d'échange de données de Kisio Digital : Navitia Transit Feed Specification.
-Il a pour objectif de remplacer le format csv/Fusio afin de combler ses lacunes et permettre la gestion de tout type de données dans un seul format (horaires, TAD, etc.).
+NTFS is Kisio Digital's data exchange format : Navitia Transit Feed Specification. It aims to replace the csv/Fusio format by addressing its weaknesses and managing all types of data in a single format (schedules, ODT, etc.).
 
-Ce nouveau format s'inspire très fortement du format GTFS (https://developers.google.com/transit/gtfs/reference?hl=fr-FR), tout en l'adaptant afin de permettre une description des données la plus exhaustive possible. A ce titre, le format est amené à évoluer (voir le [changelog](./ntfs_changelog.md) ).
+This new data format is strongly based on the GTFS data format (https://developers.google.com/transit/gtfs/reference?hl=en-US), with some enhancements allowing a more exhaustive description of the data. As such, the data format is constantly evolving (voir le [changelog](./ntfs_changelog_fr.md) ).
 
-# Format des données
+# Data format
 
-Les données sont formatées de la manière suivante :
+Data must be compliant with the following rules :
 
-* Les fichiers sont compressées dans un fichier **ZIP**
-* Encodage des fichiers : tous les fichiers sont encodés en **UTF-8**
-* Chaque fichier est un fichier **CSV** contenant une ligne d'entête : http://tools.ietf.org/html/rfc4180
-* Le séparateur de champ est la **","**
-* Le système de coordonnées est le **WGS84**
-* Le séparateur décimal est le **"."**
-* Le format de date est **YYYYMMDD**
-* Le format de l'heure est **HH:MM:SS**
-* le format d'un instant (date + heure) est au format ISO-8601 en UTC; il doit inclure le suffixe d'offset ou le `Z`
-* Le formatage des **URL** doit respecter le format du **W3C** : http://www.w3.org/Addressing/URL/4_URI_Recommentations.html
-* Les fuseaux horaires http://en.wikipedia.org/wiki/List_of_tz_zones
-* Les langues indiquées doivent respecter la norme **ISO 639-2** : http://www.loc.gov/standards/iso639-2/php/code_list.php
-* Les couleurs sont spécifiées en RVB hexadécimal (par exemple **00FFFF**)
-* Les géométries sont décrites en utilisant le format **WKT** : http://fr.wikipedia.org/wiki/Well-known_text
-* Les identifiants des objets ne doivent pas contenir le type de l'objet. Ce dernier sera ajouté directement dans l'API navitia
+* All files are compressed into one **ZIP** file
+* File encoding : all files are **UTF-8** encoded
+* Each file is a **CSV** file with a header : http://tools.ietf.org/html/rfc4180
+* The field separator is the **","**
+* The coordinate system is [**WGS84**](https://www.wikiwand.com/en/World_Geodetic_System)
+* The decimal separator is the **"."**
+* The date format is **YYYYMMDD**
+* The time format is **HH:MM:SS**
+* The datetime format is ISO-8601 in UTC; it must include the time offset or the `Z`
+* The **URL** format must be compliant with [**W3C** recommandations](http://www.w3.org/Addressing/URL/4_URI_Recommentations.html)
+* TimeZone reference http://en.wikipedia.org/wiki/List_of_tz_zones
+* Languages must follow the [**ISO639-2** standard](http://www.loc.gov/standards/iso639-2/php/code_list.php)
+* Colors are encoded as Hexadecimal RGB characters (for example **00FFFF**)
+* Geometries are described using the format [**WKT**](http://fr.wikipedia.org/wiki/Well-known_text)
+* Objects' identifiers must not contain the object's type, as it will be added directly in Navitia's API.
 
 # Liste des fichiers du format
 ## Fichiers spéciaux
