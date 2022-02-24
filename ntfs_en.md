@@ -3,7 +3,7 @@ NTFS version 0.12
 
 # Introduction
 
-NTFS is Kisio Digital's data exchange format : Navitia Transit Feed Specification. It aims to replace the csv/Fusio format by addressing its weaknesses and managing all types of data in a single format (schedules, ODT, etc.).
+NTFS is Kisio Digital's data exchange format : Navitia Transit Feed Specification. It aims to replace the CSV/Fusio format by addressing its weaknesses and managing all types of data in a single format (schedules, ODT, etc.).
 
 This new data format is strongly based on the GTFS data format (https://developers.google.com/transit/gtfs/reference?hl=en-US), with some enhancements allowing a more exhaustive description of the data. As such, the data format is constantly evolving (voir le [changelog](./ntfs_changelog_fr.md) ).
 
@@ -30,62 +30,62 @@ Data must be compliant with the following rules :
 # List of the format files
 ## Special files
 These files are used to describe the origin of the data in the case of a merge of multiple sources of data. A _contributor_ represents a source of data (an operator may require the use of several contributors). A _dataset_ represents a set of data provided by a contributor.
-The file [`trips.txt`](#tripstxt-required) refers to the term dataset_id to link a trip to its source of data.
+The file [`trips.txt`](#tripstxt-required) refers to dataset_id in order to link a trip to its source of data.
 
 File | Constraint | Description
 --- | --- | ---
 [`contributors.txt`](#contributorstxt-required) | Required | This file contains the contributors.
 [`datasets.txt`](#datasetstxt-required) | Required | This file contains the sets of data of a contributor.
 
-## Fichiers de base
+## Core files
 File | Constraint | Description
 --- | --- | ---
-[`feed_infos.txt`](#feed_infostxt-required) | Required | This file contient des informations complémentaires sur la plage de validité des données, le fournisseur ou toute autre information complémentaires.
-[`networks.txt`](#networkstxt-required) | Required | This file contient la description des différents réseaux.
-[`commercial_modes.txt`](#commercial_modestxt-required) | Required | This file contient les modes commerciaux (Mode NAViTiA 1)
-[`companies.txt`](#companiestxt-required) | Required | This file contient les compagnies
-[`lines.txt`](#linestxt-required) | Required | This file contient les lignes
-[`physical_modes.txt`](#physical_modestxt-required) | Required | This file contient les modes physiques (ModeType NAViTiA 1)
-[`routes.txt`](#routestxt-required) | Required | This file contient les parcours
-[`stop_times.txt`](#stop_timestxt-required) | Required | This file contient les horaires
-[`stops.txt`](#stopstxt-required) | Required | This file contient les arrêts, les entrées/sorties et les points utilisés par les pathways.
-[`trips.txt`](#tripstxt-required) | Required | This file contient les circulations
-[`calendar.txt`](#calendartxt-required) | Required | This file contient les jours de fonctionnement
-[`calendar_dates.txt`](#calendar_datestxt-optional) | Optional | This file contient les exceptions sur les jours de fonctionnement décrits dans le File[`calendar.txt`](#calendartxt-required)
-[`comments.txt`](#commentstxt-optional) | Optional | This file contient les commentaires
-[`comment_links.txt`](#comment_linkstxt-optional) | Optional | This file contient les relations entre chaque commentaire et les objets du référentiels associés
+[`feed_infos.txt`](#feed_infostxt-required) | Required | This file contains additional informations on the data such as its validity period, its provider, etc.
+[`networks.txt`](#networkstxt-required) | Required | This file contains the description of the networks.
+[`commercial_modes.txt`](#commercial_modestxt-required) | Required | This file contains the commercial modes (NAViTiA 1 Mode).
+[`companies.txt`](#companiestxt-required) | Required | This file contains the companies.
+[`lines.txt`](#linestxt-required) | Required | This file contains the lines.
+[`physical_modes.txt`](#physical_modestxt-required) | Required | This file contains the physical modes (NAViTiA 1 ModeType).
+[`routes.txt`](#routestxt-required) | Required | This file contains the routes.
+[`stop_times.txt`](#stop_timestxt-required) | Required | This file contains the schedules.
+[`stops.txt`](#stopstxt-required) | Required | This file contains the stops, entrances/exits and pathways nodes.
+[`trips.txt`](#tripstxt-required) | Required | This file contains the trips.
+[`calendar.txt`](#calendartxt-required) | Required | This file contains the days of operation.
+[`calendar_dates.txt`](#calendar_datestxt-optional) | Optional | This file contains the exceptions on the operating days described in the file[`calendar.txt`](#calendartxt-required).
+[`comments.txt`](#commentstxt-optional) | Optional | This file contains the comments.
+[`comment_links.txt`](#comment_linkstxt-optional) | Optional | This file contains les links between each comment and the related objects.
 
-## Fichiers complémentaires (hors calendriers par période)
+## Additional files (excluding calendars per period)
 File | Constraint | Description
 --- | --- | ---
-[`frequencies.txt`](#frequenciestxt-optional) | Optional | This file contient les propriétés des fréquences
-[`equipments.txt`](#equipmentstxt-optional)  | Optional | This file contient les propriétés (notamment l’accessibilité) pour les arrêts  et les correspondances
-[`transfers.txt`](#transferstxt-optional) | Optional | This file contient les déclarations des correspondances
-[`trip_properties.txt`](#trip_propertiestxt-optional) | Optional | This file contient l’accessibilité au niveau des circulations
-[`geometries.txt`](#geometriestxt-optional) | Optional | This file contient la représentation spatiale d'une géometrie au format Well Known Text (WKT). Ces géométries sont référencées dans les fichiers [`lines.txt`](#linestxt-required), [`routes.txt`](#routestxt-required), [`trips.txt`](#tripstxt-required).
-[`object_properties.txt`](#object_propertiestxt-optional) | Optional | This file contient la description des propriétés complémentaires sur les différents objets du référentiel.
-[`object_codes.txt`](#object_codestxt-optional) | Optional | This file contient la liste des codes d'identification complémentaires dans les systèmes externes des différents objets du référentiel.
-[`admin_stations.txt`](#admin_stationstxt-optional) | Optional | This file contient la liste des arrêts d'accroche des communes pour les itinéraires au départ ou à l'arrivée d'une commune
-[`line_groups.txt`](#line_groupstxt-optional) | Optional | This file contient la définition de groupes de lignes
-[`line_group_links.txt`](#line_group_linkstxt-optional) | Optional | This file contient la liaison entre un groupe de ligne et la liste des lignes qui le compose
-[`pathways.txt`](#pathwaystxt-optional) | Optional | This file contient les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
-[`levels.txt`](#levelstxt-optional) | Optional | This file contient la liste des niveaux au sein d'une zone d'arrêt.
-[`addresses.txt`](#addressestxt-optional) | Optional | This file contient la liste des adresses des arrêts physiques.
+[`frequencies.txt`](#frequenciestxt-optional) | Optional | This file contains les propriétés des fréquences
+[`equipments.txt`](#equipmentstxt-optional)  | Optional | This file contains les propriétés (notamment l’accessibilité) pour les arrêts  et les correspondances
+[`transfers.txt`](#transferstxt-optional) | Optional | This file contains les déclarations des correspondances
+[`trip_properties.txt`](#trip_propertiestxt-optional) | Optional | This file contains l’accessibilité au niveau des circulations
+[`geometries.txt`](#geometriestxt-optional) | Optional | This file contains la représentation spatiale d'une géometrie au format Well Known Text (WKT). Ces géométries sont référencées dans les fichiers [`lines.txt`](#linestxt-required), [`routes.txt`](#routestxt-required), [`trips.txt`](#tripstxt-required).
+[`object_properties.txt`](#object_propertiestxt-optional) | Optional | This file contains la description des propriétés complémentaires sur les différents objets du référentiel.
+[`object_codes.txt`](#object_codestxt-optional) | Optional | This file contains la liste des codes d'identification complémentaires dans les systèmes externes des différents objets du référentiel.
+[`admin_stations.txt`](#admin_stationstxt-optional) | Optional | This file contains la liste des arrêts d'accroche des communes pour les itinéraires au départ ou à l'arrivée d'une commune
+[`line_groups.txt`](#line_groupstxt-optional) | Optional | This file contains la définition de groupes de lignes
+[`line_group_links.txt`](#line_group_linkstxt-optional) | Optional | This file contains la liaison entre un groupe de ligne et la liste des lignes qui le compose
+[`pathways.txt`](#pathwaystxt-optional) | Optional | This file contains les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
+[`levels.txt`](#levelstxt-optional) | Optional | This file contains la liste des niveaux au sein d'une zone d'arrêt.
+[`addresses.txt`](#addressestxt-optional) | Optional | This file contains la liste des adresses des arrêts physiques.
 
 ## Fichiers des calendriers par période
 File | Constraint | Description
 --- | --- | ---
-[`grid_calendars.txt`](#grid_calendarstxt-optional) | Optional |  This file contient les jours de fonctionnement des calendriers
-[`grid_exception_dates.txt`](#grid_exception_datestxt-optional) | Optional | This file contient les exceptions sur les jours de fonctionnement des calendriers
-[`grid_periods.txt`](#grid_periodstxt-optional) | Optional | This file contient les périodes des calendriers
-[`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optional) | Optional | This file contient les liens entre les lignes et ces calendriers
+[`grid_calendars.txt`](#grid_calendarstxt-optional) | Optional |  This file contains les jours de fonctionnement des calendriers
+[`grid_exception_dates.txt`](#grid_exception_datestxt-optional) | Optional | This file contains les exceptions sur les jours de fonctionnement des calendriers
+[`grid_periods.txt`](#grid_periodstxt-optional) | Optional | This file contains les périodes des calendriers
+[`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optional) | Optional | This file contains les liens entre les lignes et ces calendriers
 
 ## Visualisation 
 Pour aider à la compréhension, vous pouvez trouver un diagramme des relations entre les fichiers ici: https://dbdiagram.io/embed/5e218b4a9e76504e0ef05fcd ([editer le diagramme](https://dbdiagram.io/d/5e218b4a9e76504e0ef05fcd))
 
 # Description des fichiers
 ### networks.txt (required)
-This file contient la description des différents réseaux.
+This file contains la description des différents réseaux.
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
