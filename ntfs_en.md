@@ -58,30 +58,30 @@ File | Constraint | Description
 ## Additional files (excluding calendars per period)
 File | Constraint | Description
 --- | --- | ---
-[`frequencies.txt`](#frequenciestxt-optional) | Optional | This file contains les propriétés des fréquences
-[`equipments.txt`](#equipmentstxt-optional)  | Optional | This file contains les propriétés (notamment l’accessibilité) pour les arrêts  et les correspondances
-[`transfers.txt`](#transferstxt-optional) | Optional | This file contains les déclarations des correspondances
-[`trip_properties.txt`](#trip_propertiestxt-optional) | Optional | This file contains l’accessibilité au niveau des circulations
-[`geometries.txt`](#geometriestxt-optional) | Optional | This file contains la représentation spatiale d'une géometrie au format Well Known Text (WKT). Ces géométries sont référencées dans les fichiers [`lines.txt`](#linestxt-required), [`routes.txt`](#routestxt-required), [`trips.txt`](#tripstxt-required).
-[`object_properties.txt`](#object_propertiestxt-optional) | Optional | This file contains la description des propriétés complémentaires sur les différents objets du référentiel.
-[`object_codes.txt`](#object_codestxt-optional) | Optional | This file contains la liste des codes d'identification complémentaires dans les systèmes externes des différents objets du référentiel.
-[`admin_stations.txt`](#admin_stationstxt-optional) | Optional | This file contains la liste des arrêts d'accroche des communes pour les itinéraires au départ ou à l'arrivée d'une commune
-[`line_groups.txt`](#line_groupstxt-optional) | Optional | This file contains la définition de groupes de lignes
-[`line_group_links.txt`](#line_group_linkstxt-optional) | Optional | This file contains la liaison entre un groupe de ligne et la liste des lignes qui le compose
-[`pathways.txt`](#pathwaystxt-optional) | Optional | This file contains les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
-[`levels.txt`](#levelstxt-optional) | Optional | This file contains la liste des niveaux au sein d'une zone d'arrêt.
-[`addresses.txt`](#addressestxt-optional) | Optional | This file contains la liste des adresses des arrêts physiques.
+[`frequencies.txt`](#frequenciestxt-optional) | Optional | This file contains the frequencies properties.
+[`equipments.txt`](#equipmentstxt-optional)  | Optional | This file contains the properties (as accessibility) of the stops and the connections.
+[`transfers.txt`](#transferstxt-optional) | Optional | This file contains the connections.
+[`trip_properties.txt`](#trip_propertiestxt-optional) | Optional | This file contains the accessibility of the trips.
+[`geometries.txt`](#geometriestxt-optional) | Optional | This file contains the spatial representation of the geometries in the [Well Known Text (WKT)](https://www.wikiwand.com/fr/Well-known_text) format. Those geometries are referenced in the following files [`lines.txt`](#linestxt-required), [`routes.txt`](#routestxt-required), [`trips.txt`](#tripstxt-required).
+[`object_properties.txt`](#object_propertiestxt-optional) | Optional | This file contains the list of additional properties on any object of the model.
+[`object_codes.txt`](#object_codestxt-optional) | Optional | This file contains the list of additional identification codes for the objects of the model.
+[`admin_stations.txt`](#admin_stationstxt-optional) | Optional | This file contains the list of administrative stops for journeys to or from a town
+[`line_groups.txt`](#line_groupstxt-optional) | Optional | This file contains the list of groups of lines.
+[`line_group_links.txt`](#line_group_linkstxt-optional) | Optional | This file contains the link between a group of lines and the lines part of it.
+[`pathways.txt`](#pathwaystxt-optional) | Optional | This file contains the list of pathways within a stop area. (à compléter)
+[`levels.txt`](#levelstxt-optional) | Optional | This file contains the list of levels within a stop area.
+[`addresses.txt`](#addressestxt-optional) | Optional | This file contains the list of stops' addresses.
 
-## Fichiers des calendriers par période
+## Calendar files per period
 File | Constraint | Description
 --- | --- | ---
-[`grid_calendars.txt`](#grid_calendarstxt-optional) | Optional |  This file contains les jours de fonctionnement des calendriers
-[`grid_exception_dates.txt`](#grid_exception_datestxt-optional) | Optional | This file contains les exceptions sur les jours de fonctionnement des calendriers
-[`grid_periods.txt`](#grid_periodstxt-optional) | Optional | This file contains les périodes des calendriers
-[`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optional) | Optional | This file contains les liens entre les lignes et ces calendriers
+[`grid_calendars.txt`](#grid_calendarstxt-optional) | Optional |  This file contains the operating days of the calendars.
+[`grid_exception_dates.txt`](#grid_exception_datestxt-optional) | Optional | This file contains the exceptions on the operating days of the calendars.
+[`grid_periods.txt`](#grid_periodstxt-optional) | Optional | This file contains the calendar periods.
+[`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optional) | Optional | This file contains the relation between lines and calendars.
 
 ## Visualisation 
-Pour aider à la compréhension, vous pouvez trouver un diagramme des relations entre les fichiers ici: https://dbdiagram.io/embed/5e218b4a9e76504e0ef05fcd ([editer le diagramme](https://dbdiagram.io/d/5e218b4a9e76504e0ef05fcd))
+For a better understanding, you can find a diagram of the relationships between each file here : https://dbdiagram.io/embed/5e218b4a9e76504e0ef05fcd ([edit the diagram](https://dbdiagram.io/d/5e218b4a9e76504e0ef05fcd))
 
 # Description des fichiers
 ### networks.txt (required)
