@@ -96,7 +96,7 @@ network_timezone | string | Optional |
 network_lang | string | Optional |
 network_phone | string | Optional | Contact phone number.
 network_address | string | Optional | Postal address of the network.
-network_sort_order | integer | Optional | Sort order of the networks; the smallest are first.
+network_sort_order | integer | Optional | Sort order of the networks; smaller numbers are first.
 
 ### calendar.txt (required)
 This file described the dates when service is available for one or more routes. 
@@ -120,18 +120,18 @@ end_date | date | Required | End date of the circulation (included).
 * 1 - Service is not available on this day
 
 ### calendar_dates.txt (optional)
-This file décrit des exceptions aux calendriers définis dans le fichier [`calendar.txt`](#calendartxt-required). Pour faciliter la description de calendriers pour des circulations très ponctuelles, il est possible de définir un calendrier en n'utilisant que le fichier [`calendar_dates.txt`](#calendar_datestxt-optional). De ce fait, le `service_id` ne sera pas présant dans le fichier [`calendar.txt`](#calendartxt-required).
+This file contains the exceptions on the operating days described in the file [`calendar.txt`](#calendartxt-required). For specific circulations, it is possible to set a calendar using only the file calendar_dates.txt [`calendar_dates.txt`](#calendar_datestxt-optional). As a result, the header `service_id` will not appear in the file [`calendar.txt`](#calendartxt-required).
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-service_id | string | Required | Identifiant du calendrier de circulation
-date | date | Required | Date de l'exception
+service_id | string | Required | Unique identifier of a set of dates.
+date | date | Required | Eception date
 exception_type | integer | Required | (1)
 
-(1) Les valeurs possibles sont :
+(1) Possible options are :
 
-* 1 - Le service est ajouté pour cette date
-* 2 - Le service est supprimé pour cette date
+* 1 - Service is added on this date
+* 2 - Service is deleted on this date
 
 ### comments.txt (optional)
 
