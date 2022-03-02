@@ -166,26 +166,26 @@ commercial_mode_id | string | Required | Identifier of the commercial mode
 commercial_mode_name | string | Required | Name of the commercial mode 
 
 ### companies.txt (requis)
-This file décrit l'opérateur de transport exploitant tout ou partie d'un des réseaux contenus dans les données.
+This file describes the transport operator running all or part of one of the networks contained in the data.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-company_id | string | Required | Identifiant de la compagnie
-company_name | string | Required | Nom de la compagnie
-company_address | string | Optional | Adresse complète de société.
-company_url | string | Optional | Url du site institutionnel de la société. A ne pas confondre avec le lien vers le site du réseau.
-company_mail | string | Optional | Adresse mail de contact de la société
-company_phone | string | Optional | Numéro de téléphone de contact
+company_id | string | Required | Identifier of the company
+company_name | string | Required | Name of the company
+company_address | string | Optional | Full address of the company
+company_url | string | Optional | URL of the company's institutional website. Not to be confused with the link to the network's website
+company_mail | string | Optional | Contact email address of the company
+company_phone | string | Optional | Contact phone number
 
 ### contributors.txt (requis)
-This file permet d'identifier la ou les sources fournissant les données du présent jeu de données.
+This file is used to identify the source(s) providing the data of the set of datas.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-contributor_id | string | Required | Identifiant du contributeur
-contributor_name | string | Required | Nom du contributeur
-contributor_license | string | Optional | licence d'utilisation des données du contributeur pour le référentiel
-contributor_website | string | Optional | URL du site web associé au fournisseur de données
+contributor_id | string | Required | Identifier of the contributor
+contributor_name | string | Required | Name of the contributor
+contributor_license | string | Optional | Data use license of the contributor
+contributor_website | string | Optional | URL of the website associated with the data provider
 
 ### datasets.txt (requis)
 This file liste des jeux de données du contributeur associé contenus dans le référentiel.
