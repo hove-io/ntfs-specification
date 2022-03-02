@@ -157,7 +157,7 @@ object_id | string | Required | Identifier of the object associated with the not
 object_type | string | Required | Type of object associated with the comment. The possible options are : stop_area, stop_point, line, route, trip, stop_time or line_group.
 comment_id | string | Required | Identifier of the comment (link to the file [`comments.txt`](#commentstxt-optional))
 
-### commercial_modes.txt (requis)
+### commercial_modes.txt (required)
 This file describes the commercial modes, that is, a specific wording of a transport mode. For example, BusWay is a special name for BRT (Bus Rapid Transit) in Nantes.
 
 Column | Type | Constraint | Note
@@ -165,7 +165,7 @@ Column | Type | Constraint | Note
 commercial_mode_id | string | Required | Identifier of the commercial mode 
 commercial_mode_name | string | Required | Name of the commercial mode 
 
-### companies.txt (requis)
+### companies.txt (required)
 This file describes the transport operator running all or part of one of the networks contained in the data.
 
 Column | Type | Constraint | Note
@@ -177,7 +177,7 @@ company_url | string | Optional | URL of the company's institutional website. No
 company_mail | string | Optional | Contact email address of the company
 company_phone | string | Optional | Contact phone number
 
-### contributors.txt (requis)
+### contributors.txt (required)
 This file is used to identify the source(s) providing the data of the set of datas.
 
 Column | Type | Constraint | Note
@@ -187,35 +187,35 @@ contributor_name | string | Required | Name of the contributor
 contributor_license | string | Optional | Data use license of the contributor
 contributor_website | string | Optional | URL of the website associated with the data provider
 
-### datasets.txt (requis)
-This file liste des jeux de données du contributeur associé contenus dans le référentiel.
+### datasets.txt (required)
+This file lists the sets of data of a contributor.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-dataset_id | string | Required | Identifiant du jeu de données
-contributor_id | string | Required | Identifiant du contributeur (lien vers le fichier [`contributors.txt`](#contributorstxt-required))
-dataset_start_date | date | Required | Date de début de prise en compte du jeu de données (peut-être différent de la date de début de validité de l'export source)
-dataset_end_date | date | Required | Date de fin de prise en compte du jeu de données (peut-être différent de la date de fin de validité de l'export source)
-dataset_type | entier (1) | Optional | Type de données représentant la "fraicheur"
-dataset_extrapolation | entier | Optional | Indique si les données du service ont été extrapolées (le champ a pour valeur 1) ou non (le champ a pour valeur 0)
-dataset_desc | string | Optional | Note indiquant le contenu du jeu de données
-dataset_system | string | Optional | Nom du système source ayant généré les données ou du format des données
+dataset_id | string | Required | Identifier of the set of data
+contributor_id | string | Required | Identifiant of the contributor (link to the file [`contributors.txt`](#contributorstxt-required))
+dataset_start_date | date | Required | Start date of consideration of the set of data (may be different from the start date of validity of the initial export)
+dataset_end_date | date | Required | End date of consideration of the set of data (may be different from the end date of validity of the initial export)
+dataset_type | integer (1) | Optional | Type of data which represents the data freshness
+dataset_extrapolation | integer | Optional | Indicates whether the service's data has been extrapolated (field set to 1) or not (field set to 0)
+dataset_desc | string | Optional | Note which indicates the contents of the set of data
+dataset_system | string | Optional | Name of the system that generated the data orname of the data format
 
-(1) Spécifie le type de données :
+(1) Specifies the data type :
 
-* 0 - il s'agit de données théoriques
-* 1 - il s'agit de données de grèves ou révisées
-* 2 - il s'agit de données de production du jour J
+* 0 - These are theoretical data
+* 1 - These are strike or revised data
+* 2 - These are D-Day production data
 
 ### frequencies.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-trip_id | string | Required | Identifiant de la circulation
-start_time | heure | Required | Heure de début de la fréquence
-end_time | heure | Required | Heure de fin de la fréquence. Spécifier 26:00:00 pour 2h du matin du jour considéré.
-headway_secs | entier | Required | Fréquence de départ en secondes
+trip_id | string | Required | Identifier of the trip
+start_time | heure | Required | Frequency start time
+end_time | heure | Required | Frequency end time. Specify 26:00:00 for 2 a.m. of the day in question.
+headway_secs | integer | Required | Start frequency in seconds
 
-### lines.txt (requis)
+### lines.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 line_id | string | Required | Identifiant de la ligne commerciale
@@ -225,14 +225,14 @@ forward_line_name | string | Optional | Nom de la ligne en sens aller
 backward_line_name | string | Optional | Nom de la ligne en sens retour
 line_color | couleur | Optional | Couleur de la ligne
 line_text_color | couleur | Optional | Couleur du code de la ligne
-line_sort_order | entier | Optional | Clé de trie de la ligne au sein du réseau. Les indices les plus petits sont retournés en premier.
+line_sort_order | integer | Optional | Clé de trie de la ligne au sein du réseau. Les indices les plus petits sont retournés en premier.
 network_id | string | Required | Identifiant du réseau principal de la ligne (lien vers le fichier [`networks.txt`](#networkstxt-required))
 commercial_mode_id | string | Required | Identifiant du mode commercial (lien vers le fichier [`commercial_modes.txt`](#commercial_modestxt-required))
 geometry_id | string | Optional | Identifiant du tracé représentant la ligne (lien vers le fichier [`geometries.txt`](#geometriestxt-optional))
 line_opening_time | heure | Optional | Heure de début de service de la ligne (quelque soit le type de jour ou la periode). Si cette information n'est pas fournie, elle sera recalculée.
 line_closing_time | heure | Optional | Heure de fin de service de la ligne (quelque soit le type de jour ou la periode). Si cette information n'est pas fournie, elle sera recalculée. Spécifier une heure superieure à 24 pour indiquer une heure sur le jour d'après.
 
-### routes.txt (requis)
+### routes.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 route_id | string | Required | Identifiant du parcours
@@ -248,7 +248,7 @@ destination_id | string | Optional | Identifiant de la destination principale (l
 * Pour des parcours en boucle : _clockwise_ et _anticlockwise_
 * Pour des parcours entrant et sortants : _inbound_ et _outbound_
 
-### physical_modes.txt (requis)
+### physical_modes.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 physical_mode_id | string | Required | Identifiant du mode physique obligatoirement dans la liste ci-dessous.
@@ -301,35 +301,35 @@ Car | Voiture
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 equipment_id | string | Required | Identifiant de l'équipement |
-wheelchair_boarding | entier (1) | Optional | Accès UFR |
-sheltered | entier (1) | Optional | Abris couvert
-elevator | entier (1) | Optional | Ascenseur
-escalator | entier (1) | Optional | Escalier mécanique
-bike_accepted | entier (1) | Optional | Embarquement vélo
-bike_depot | entier (1) | Optional | Parc vélo
-visual_announcement | entier (1) | Optional | Annonce visuelle
-audible_announcement | entier (1) | Optional | Annonce sonore
-appropriate_escort | entier (1) | Optional | Accompagnement à l'arrêt
-appropriate_signage | entier (1) | Optional | Information claire à l'arrêt
+wheelchair_boarding | integer (1) | Optional | Accès UFR |
+sheltered | integer (1) | Optional | Abris couvert
+elevator | integer (1) | Optional | Ascenseur
+escalator | integer (1) | Optional | Escalier mécanique
+bike_accepted | integer (1) | Optional | Embarquement vélo
+bike_depot | integer (1) | Optional | Parc vélo
+visual_announcement | integer (1) | Optional | Annonce visuelle
+audible_announcement | integer (1) | Optional | Annonce sonore
+appropriate_escort | integer (1) | Optional | Accompagnement à l'arrêt
+appropriate_signage | integer (1) | Optional | Information claire à l'arrêt
 
     (1) Les valeurs possibles sont :
         0 ou non spécifié - aucune information disponible
         1 - l'équipement est disponible
         2 - l'équipement n'est pas disponible
 
-### stops.txt (requis)
+### stops.txt (required)
 Une ligne du fichier [`stops.txt`](#stopstxt-required) représente un point ou une zone où un véhicule dépose ou fait monter des voyageurs.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 stop_id | string | Required | Identifiant de l'arrêt
-visible | entier | Optional | Indique si le stop peut être retourné dans l'autocomplétion (valeur 1) ou s'il est ignoré (valeur 0).
+visible | integer | Optional | Indique si le stop peut être retourné dans l'autocomplétion (valeur 1) ou s'il est ignoré (valeur 0).
 stop_name | string | Required | Nom de l'arrêt
 stop_code | string | Optional | Code de l'arrêt connu du voyageur. Dans le cas d'une entrée/sortie, contient le code/le numéro de l'entrée/sortie.
-stop_lat | décimal | Requis (Spécial) | Latitude. Ce champ est obligatoire, sauf pour les noeuds et les zones d'embarquement (location_type = 4 et 5).
-stop_lon | décimal | Requis (Spécial) | Longitude. Ce champ est obligatoire, sauf pour les noeuds et les zones d'embarquement (location_type = 4 et 5).
+stop_lat | décimal | Required (Spécial) | Latitude. Ce champ est obligatoire, sauf pour les noeuds et les zones d'embarquement (location_type = 4 et 5).
+stop_lon | décimal | Required (Spécial) | Longitude. Ce champ est obligatoire, sauf pour les noeuds et les zones d'embarquement (location_type = 4 et 5).
 fare_zone_id | string | Optional | Zone tarifaire de l'arrêt. Ce champ ne s'applique que sur les arrêts physiques (location_type = 0)
-location_type | entier (1) | Required | Type de l'arrêt ou de la zone
+location_type | integer (1) | Required | Type de l'arrêt ou de la zone
 geometry_id | géometrie | Optional | Ce champ est un lien vers le fichier [`geometries.txt`](#geometriestxt-optional) qui décrit la géométrie associée à une zone géographique (type 2) afin de permettre au moteur de définir les adresses couvertes en cas de TAD zonal "adresse à adresse". Ce champ peut également être utilisé pour préciser une géométrie pour les zones d'arrêts (type 1) et les communes (type 4) pour enrichir le web service.
 parent_station | string | Optional | Identifiant de la zone d'arrêt. Ne doit pas être renseigné pour les zones d'arrêts et les zones géographiques (location_type = 1 ou 2)
 stop_timezone | timezones | Optional | Fuseau horaire, se référer à http://en.wikipedia.org/wiki/List_of_tz_zones. Ce champ n'est pris en compte que sur les points d'arrêts (location_type = 0). L'horaire associé à cet arrêt utilise la timezone du réseau (network) de la course, et non pas la timezone du point d'arrêt même si celle-ci est différente.
@@ -347,23 +347,23 @@ address_id | string | Optional | Identifiant de l'adresse de l'arrêt (lien vers
         5 - Zone d'embarquement (par exemple pour indiquer "milieu du quai")
 
 
-### stop_times.txt (requis)
+### stop_times.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 stop_time_id | string | Optional | Identifiant unique de l'horaire dans le jeu de données. Cette information n'est pas pérenne et permet uniquement de faire le lien entre un horaire (fichier [`stop_times.txt`](#stop_timestxt-required)) et un commentaire (fichier [`comments.txt`](#commentstxt-optional)) en utilisant le fichier [`comment_links.txt`](#comment_linkstxt-optional). Si ce champ n'est pas fourni, l'horaire ne pourra pas êter lié à un commentaire.
 trip_id | string | Required | Identifiant de la circulation
 arrival_time | heure | Required | Heure d'arrivée. Si l'heure d'arrivée n'est pas connue, elle doit être estimée par le système fournissant les données et le champ *stop_time_precision* doit être spécifié à 1. Si la descente est interdite à cet arrêt, l'heure d'arrivée doit être indiquée et le champ *drop_off_type* doit être spécifié à 1.
 departure_time | heure | Required | Heure de départ. Si l'heure de départ n'est pas connue, elle doit être estimée par le système fournissant les données et le champ *stop_time_precision* doit être spécifié à 1. Si la montée est interdite à cet arrêt, l'heure de départ doit être indiquée et le champ *pickup_type* doit être spécifié à 1.
-boarding_duration | entier | Optional | Durée nécessaire à l'embarquement en secondes (train, avion, ferry, etc.). Cette valeur est obligatoirement positive ou nulle.
-alighting_duration | entier | Optional | Durée nécessaire au débarquement en secondes (train, avion, ferry, etc.). Cette valeur est obligatoirement positive ou nulle.
+boarding_duration | integer | Optional | Durée nécessaire à l'embarquement en secondes (train, avion, ferry, etc.). Cette valeur est obligatoirement positive ou nulle.
+alighting_duration | integer | Optional | Durée nécessaire au débarquement en secondes (train, avion, ferry, etc.). Cette valeur est obligatoirement positive ou nulle.
 stop_id | string | Required | Identifiant de l'arrêt physique de passage (cas général). Ce champ peut également référencer une "zone géographique" (stop de type 2) ou une commune (stop de type 3) dans le cas de TAD zonal.
-stop_sequence | entier | Required | Ordre de passage de desserte dans la circulation. Cette valeur est obligatoirement positive ou nulle, et doit être strictement croissante.
+stop_sequence | integer | Required | Ordre de passage de desserte dans la circulation. Cette valeur est obligatoirement positive ou nulle, et doit être strictement croissante.
 stop_headsign | string | Optional | Libellé qui doit être affiché au voyageur à la place du `trip_headsign` à cet arrêt.
 trip_short_name_at_stop | string | Optional | Nom qui doit être affiché au voyageur à la place du `trip_short_name` à cet arrêt.
-pickup_type | entier (1) | Optional | Indication sur l'horaire (issues du gtfs)
-drop_off_type | entier (1) | Optional | Indication sur l'horaire (issues du gtfs)
-local_zone_id  | entier | Optional | identifiant de la zone d'ITL de l'horaire
-stop_time_precision | entier (2) | Optional | Précise si l'heure de passage est fiable ou si elle est donnée à titre indicative
+pickup_type | integer (1) | Optional | Indication sur l'horaire (issues du gtfs)
+drop_off_type | integer (1) | Optional | Indication sur l'horaire (issues du gtfs)
+local_zone_id  | integer | Optional | identifiant de la zone d'ITL de l'horaire
+stop_time_precision | integer (2) | Optional | Précise si l'heure de passage est fiable ou si elle est donnée à titre indicative
 
     (1) Indication sur l'horaire (issues du gtfs) :
         0 (par défaut) - Horaire régulier
@@ -384,22 +384,22 @@ Column | Type | Constraint | Note
 --- | --- | --- | ---
 from_stop_id | string | Required | Identifiant de l'arrêt de l’origine de la correspondance (lien vers le fichier [`stops.txt`](#stopstxt-required))
 to_stop_id | string | Required | Identifiant de l'arrêt de la destination de la correspondance (lien vers le fichier [`stops.txt`](#stopstxt-required))
-min_transfer_time | entier | Optional | Durée minimale de la correspondance en secondes. Cette valeur correspond à la durée de marche à pied qui sera affichée dans les médias. Si la valeur n'est pas spécifié, le système calcul un temps minimum sur la base de la distance Manhattan entre les deux arrêts. La valeur automatique alors calculée a une valeur minimum de 60 secondes. Note : Il est possible que la valeur fournie soit inferieur à 60 (ex : 0 dans le cas d'une correspondance garantie)
-real_min_transfer_time | entier | Optional | Durée réelle de correspondance en secondes. Cette valeur correspond à la durée de marche à pied (min_transfer_time) à laquelle on ajoute une durée de tolérance d'exécution (temps minimum de correspondance). Si la valeur n'est pas spécifié, le système utilise (en plus du min_transfer_time) un paramètre par défaut qui est de 120 secondes en général.  La valeur automatique alors calculée sera donc supérieur ou égale à 120 secondes. La valeur saisie ne peut être inférieure à min_transfer_time (mais peut-être égale).
+min_transfer_time | integer | Optional | Durée minimale de la correspondance en secondes. Cette valeur correspond à la durée de marche à pied qui sera affichée dans les médias. Si la valeur n'est pas spécifié, le système calcul un temps minimum sur la base de la distance Manhattan entre les deux arrêts. La valeur automatique alors calculée a une valeur minimum de 60 secondes. Note : Il est possible que la valeur fournie soit inferieur à 60 (ex : 0 dans le cas d'une correspondance garantie)
+real_min_transfer_time | integer | Optional | Durée réelle de correspondance en secondes. Cette valeur correspond à la durée de marche à pied (min_transfer_time) à laquelle on ajoute une durée de tolérance d'exécution (temps minimum de correspondance). Si la valeur n'est pas spécifié, le système utilise (en plus du min_transfer_time) un paramètre par défaut qui est de 120 secondes en général.  La valeur automatique alors calculée sera donc supérieur ou égale à 120 secondes. La valeur saisie ne peut être inférieure à min_transfer_time (mais peut-être égale).
 equipment_id | string | Optional | Identifiant de description des propriétés (lien vers le fichier [`equipments.txt`](#equipmentstxt-optional))
 
 ### trip_properties.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 trip_property_id | string | Required | Identifiant de la propriété |
-wheelchair_accessible | entier (1) | Optional | Le véhicule est accessible aux UFR |
-bike_accepted | entier (1) | Optional | Le véhicule permet l'embarquement de vélo
-air_conditioned | entier (1) | Optional | Le véhicule dispose de l'air conditionné
-visual_announcement | entier (1) | Optional | Le véhicule dispose d'annonces visuelles
-audible_announcement | entier (1) | Optional | Le véhicule dispose d'annonces sonores
-appropriate_escort | entier (1) | Optional | Un service d'accompagnement à bord est possible (à la montée et à la descente)
-appropriate_signage | entier (1) | Optional | L'affichage à bord est est claire et adapté aux personnes en déficience mentale
-school_vehicle_type | entier (2) | Optional | Type de transport scolaire
+wheelchair_accessible | integer (1) | Optional | Le véhicule est accessible aux UFR |
+bike_accepted | integer (1) | Optional | Le véhicule permet l'embarquement de vélo
+air_conditioned | integer (1) | Optional | Le véhicule dispose de l'air conditionné
+visual_announcement | integer (1) | Optional | Le véhicule dispose d'annonces visuelles
+audible_announcement | integer (1) | Optional | Le véhicule dispose d'annonces sonores
+appropriate_escort | integer (1) | Optional | Un service d'accompagnement à bord est possible (à la montée et à la descente)
+appropriate_signage | integer (1) | Optional | L'affichage à bord est est claire et adapté aux personnes en déficience mentale
+school_vehicle_type | integer (2) | Optional | Type de transport scolaire
 
     (1) Les valeurs possibles sont :
         0 ou non spécifié - aucune information disponible
@@ -411,7 +411,7 @@ school_vehicle_type | entier (2) | Optional | Type de transport scolaire
         1 : transport scolaire exclusif
         2 : transport mixte (scolaire et régulier)
 
-### trips.txt (requis)
+### trips.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 route_id | string | Required | Identifiant du parcours (lien vers le fichier [`routes.txt`](#routestxt-required))
@@ -493,11 +493,11 @@ Column | Type | Constraint | Note
 pathway_id | string | Required | Identifiant du chemin
 from_stop_id | string | Required | Identifiant noeud de début du chemin dans le fichier [`stops.txt`](#stopstxt-required). Ce noeud de départ peut être un point d'arrêt, une entrée/sortie, un noeud générique ou une zone d'embarquement.
 to_stop_id | string | Required | Identifiant noeud de fin du chemin (même contraintes que `from_stop_id`).
-pathway_mode | entier(1) | Required | Type de chemin. voir ci-dessous pour les valeurs possibles.
+pathway_mode | integer(1) | Required | Type de chemin. voir ci-dessous pour les valeurs possibles.
 is_bidirectional | booléen | Required | Indique si le chemin est utilisable dans les deux sens ou uniquement dans le sens from->to.
 length | décimal | Optional | Distance en mètres entre les deux extrémités du chemin
-traversal_time | entier | Optional | Temps moyen de parcours en secondes.
-stair_count | entier | Optional | Nombre de marches (approximatif).
+traversal_time | integer | Optional | Temps moyen de parcours en secondes.
+stair_count | integer | Optional | Nombre de marches (approximatif).
 max_slope | décimal | Optional | Ratio maximum de la pente sur ce chemin.
 min_width | décimal | Optional | Largeur minimale de ce chemin
 signposted_as | string | Optional | Texte indiqué au voyageur indiquant ce chemin
@@ -542,7 +542,7 @@ Column | Type | Constraint | Note
 line_group_id | string | Required | Identifiant du groupe de ligne
 line_id | string | Required | Identifiant de la ligne faisant partie du groupe de lignes (lien vers le fichier [`lines.txt`](#linestxt-required)). Attention, une ligne peut faire partie de plusieurs groupes de lignes.
 
-### feed_infos.txt (requis)
+### feed_infos.txt (required)
 This file contient des informations sur le jeu de données et le système amont qui l'a généré. Pour faciliter son utilisation, la structure du fichier est générique, et la liste des informations est listée ci-dessous.
 
 #### Description du format du fichier
@@ -591,13 +591,13 @@ Column | Type | Constraint | Note
 --- | --- | --- | ---
 grid_calendar_id | string | Required | Identifiant du calendrier
 name | string | Required | Nom du calendrier
-monday | entier | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-tuesday | entier | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-wednesday | entier | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-thursday | entier | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-friday | entier | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-saturday | entier | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-sunday | entier | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+monday | integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+tuesday | integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+wednesday | integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+thursday | integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+friday | integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+saturday | integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+sunday | integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
 
 ### grid_exception_dates.txt (optional)
 This file contient les exceptions sur les calendriers des grilles horaires.
@@ -606,7 +606,7 @@ Column | Type | Constraint | Note
 --- | --- | --- | ---
 grid_calendar_id | string | Required | Identifiant du calendrier de grille horaire
 date | date | Required | Date de l'exception
-type | entier | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+type | integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
 
 ### grid_periods.txt (optional)
 This file contient les périodes des calendriers des grilles horaires.
