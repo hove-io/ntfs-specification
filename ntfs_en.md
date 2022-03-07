@@ -253,7 +253,7 @@ Column | Type | Constraint | Note
 --- | --- | --- | ---
 physical_mode_id | String | Required | Identifier of the physical mode. Choosing from the list below is mandatory
 physical_mode_name | String | Required | Name of the physical mode
-co2_emission | décimal | Optional | CO2 emission rate of the physical mode per passenger per km.
+co2_emission | Decimal | Optional | CO2 emission rate of the physical mode per passenger per km.
 
 **List of available physical modes :**
 
@@ -318,33 +318,33 @@ appropriate_signage | Integer (1) | Optional | Appropriate signage at the stop
         2 - The equipment is not available
 
 ### stops.txt (required)
-Une ligne du fichier [`stops.txt`](#stopstxt-required) représente un point ou une zone où un véhicule dépose ou fait monter des voyageurs.
+A line in this file represents a location or an area where a vehicle drops off or picks up passengers.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-stop_id | String | Required | Identifiant de l'arrêt
-visible | Integer | Optional | Indique si le stop peut être retourné dans l'autocomplétion (valeur 1) ou s'il est ignoré (valeur 0).
-stop_name | String | Required | Nom de l'arrêt
-stop_code | String | Optional | Code de l'arrêt connu du voyageur. Dans le cas d'une entrée/sortie, contient le code/le numéro de l'entrée/sortie.
-stop_lat | décimal | Required (Spécial) | Latitude. Ce champ est obligatoire, sauf pour les noeuds et les zones d'embarquement (location_type = 4 et 5).
-stop_lon | décimal | Required (Spécial) | Longitude. Ce champ est obligatoire, sauf pour les noeuds et les zones d'embarquement (location_type = 4 et 5).
-fare_zone_id | String | Optional | Zone tarifaire de l'arrêt. Ce champ ne s'applique que sur les arrêts physiques (location_type = 0)
-location_type | Integer (1) | Required | Type de l'arrêt ou de la zone
-geometry_id | géometrie | Optional | Ce champ est un link to the file [`geometries.txt`](#geometriestxt-optional) qui décrit la géométrie associée à une zone géographique (type 2) afin de permettre au moteur de définir les adresses couvertes en cas de TAD zonal "adresse à adresse". Ce champ peut également être utilisé pour préciser une géométrie pour les zones d'arrêts (type 1) et les communes (type 4) pour enrichir le web service.
-parent_station | String | Optional | Identifiant de la zone d'arrêt. Ne doit pas être renseigné pour les zones d'arrêts et les zones géographiques (location_type = 1 ou 2)
-stop_timezone | timezones | Optional | Fuseau horaire, se référer à http://en.wikipedia.org/wiki/List_of_tz_zones. Ce champ n'est pris en compte que sur les points d'arrêts (location_type = 0). L'horaire associé à cet arrêt utilise la timezone du réseau (network) de la course, et non pas la timezone du point d'arrêt même si celle-ci est différente.
-equipment_id | String | Optional | Identifiant de la propriété accessibilité
-level_id | String | Optional | lien vers un niveau décrit dans le fichier [`levels.txt`](#levelstxt-optional)
-platform_code | String | Optional | Identifiant de la plateforme d'un arrêt (par exemple `G` ou `3`). Ne peut être renseigné que pour les arrêts physiques (`location_type=0`) ou les zones d'embarquements (`location_type=5`)
-address_id | String | Optional | Identifiant de l'adresse de l'arrêt (link to the file [`addresses.txt`]). Ce champ ne s'applique que sur les arrêts physiques (`location_type=0`)
+stop_id | String | Required | Identifier of the stop
+visible | Integer | Optional | Indicates whether the stop can be displayed in autocomplete (value 1) or whether it is ignored (value 0)
+stop_name | String | Required | Name of the stop
+stop_code | String | Optional | Code of the stop known to the traveler or code/number of the entrance/exit for entrances/exits
+stop_lat | Decimal | Required (Special) | Latitude of the location. This field is mandatory except for generic nodes (`location_type = 4`) and boarding areas (`location_type = 5`)
+stop_lon | Decimal | Required (Special) | Longitude of the location. This field is mandatory except for generic nodes (`location_type = 4`) and boarding areas (`location_type = 5`)
+fare_zone_id | String | Optional | Fare zone of the stop. This field only applies to stop points (`location_type = 0`)
+location_type | Integer (1) | Required | Type of the location
+geometry_id | geometry | Optional | This field is linked to the file [`geometries.txt`](#geometriestxt-optional) which describes the geometry associated to a stop zone (type 2) in other to allow the engine to define the addresses covered in case of zonal DOT "address to address". This field can also be used to specify a geometry for stop areas (type 1) and municipalities (type 4) to enrich the web service.
+parent_station | String | Optional | Identifier of the stop area. Must not be filled in for stop areas (location_type = 1) and stop zones (`location_type = 2`)
+stop_timezone | Timezone | Optional | Time zone of the location, refer to http://en.wikipedia.org/wiki/List_of_tz_zones. This field is considered only for stop points (location_type = 0). The schedule associated with this stop uses the timezone of the network of the circulation, and not the timezone of the stop point even if it is different.
+equipment_id | String | Optional | Identifier of the equipment
+level_id | String | Optional | Link to a level described in the file [`levels.txt`](#levelstxt-optional)
+platform_code | String | Optional | Identifier of the plateform of the stop (for example `G` or `3`). Can only be filled in for physical stops (`location_type = 0`) or boarding areas (`location_type = 5`)
+address_id | String | Optional | Identifier of the stop's address (link to the file [`addresses.txt`]). This field only applies to physical stop (`location_type = 0`)
 
-    (1) Type de l'arrêt ou de la zone :
-        0 ou non spécifié - Arrêt physique (objet stop_point)
-        1 - Zone d'arrêt (objet stop_area)
-        2 - Zone géographique (pour le TAD zonal de type "adressse à adresse", objet stop_zone)
-        3 - Entrée / Sortie
-        4 - Noeud d'interconnexion de pathways
-        5 - Zone d'embarquement (par exemple pour indiquer "milieu du quai")
+    (1) Type of the location :
+        0 (or empty) - Physical stop (object stop_point)
+        1 - Station (object stop_area)
+        2 - Geographical zone (for the zonal TAD of type "address to address", object stop_zone)
+        3 - Entrance/Exit
+        4 - Pathways Interconnection Node
+        5 - Boarding area (for example to indicate the "middle of the platform")
 
 
 ### stop_times.txt (required)
@@ -495,11 +495,11 @@ from_stop_id | String | Required | Identifiant noeud de début du chemin dans le
 to_stop_id | String | Required | Identifiant noeud de fin du chemin (même contraintes que `from_stop_id`).
 pathway_mode | integer(1) | Required | Type de chemin. voir ci-dessous pour les valeurs possibles.
 is_bidirectional | booléen | Required | Indique si le chemin est utilisable dans les deux sens ou uniquement dans le sens from->to.
-length | décimal | Optional | Distance en mètres entre les deux extrémités du chemin
+length | Decimal | Optional | Distance en mètres entre les deux extrémités du chemin
 traversal_time | Integer | Optional | Temps moyen de parcours en secondes.
 stair_count | Integer | Optional | Nombre de marches (approximatif).
-max_slope | décimal | Optional | Ratio maximum de la pente sur ce chemin.
-min_width | décimal | Optional | Largeur minimale de ce chemin
+max_slope | Decimal | Optional | Ratio maximum de la pente sur ce chemin.
+min_width | Decimal | Optional | Largeur minimale de ce chemin
 signposted_as | String | Optional | Texte indiqué au voyageur indiquant ce chemin
 reversed_signposted_as | String | Optional | Texte indiqué au voyageur dans le sens inverse (si le chemin est indiqué comme bidirectionnel)
 
@@ -517,7 +517,7 @@ reversed_signposted_as | String | Optional | Texte indiqué au voyageur dans le 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 level_id | String | Required | Identifiant du niveau
-level_index | décimal | Required | Numéro de l'étage, le rez-de-chaussée est indiqué à 0, les étages sous le sol sont avec une valeur négative.
+level_index | Decimal | Required | Numéro de l'étage, le rez-de-chaussée est indiqué à 0, les étages sous le sol sont avec une valeur négative.
 level_name | String | Optional | Nom associé au niveau (comme par exemple "Mezzanine").
 
 ### addresses.txt (optional)
