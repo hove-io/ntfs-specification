@@ -251,13 +251,13 @@ destination_id | String | Optional | Identifier of the main destination (stop ar
 ### physical_modes.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-physical_mode_id | String | Required | Identifiant du mode physique obligatoirement dans la liste ci-dessous.
-physical_mode_name | String | Required | Nom du mode physique
-co2_emission | décimal | Optional | Taux d’émission de CO2 du mode physique par voyageur et par km.
+physical_mode_id | String | Required | Identifier of the physical mode. Choosing from the list below is mandatory
+physical_mode_name | String | Required | Name of the physical mode
+co2_emission | décimal | Optional | CO2 emission rate of the physical mode per passenger per km.
 
-**Liste des modes physique disponible :**
+**List of available physical modes :**
 
-Il existe une hiérarchie des modes permettant de classer les zones d'arrêt par son mode de plus haut niveau (cf. norme [NeTEx](http://www.normes-donnees-tc.org/wp-content/uploads/2014/05/NF_Profil_NeTEx_pour_les_arrets-_F-_-_v2.pdf) , chapitre 6.2.3)
+There is a hierarchy of modes to classify stop areas by the highest level mode (cf. norme [NeTEx (find english url)](http://www.normes-donnees-tc.org/wp-content/uploads/2014/05/NF_Profil_NeTEx_pour_les_arrets-_F-_-_v2.pdf) , chapitre 6.2.3)
 
     1. Aérien
     2. Maritime/Fluvial
@@ -267,9 +267,9 @@ Il existe une hiérarchie des modes permettant de classer les zones d'arrêt par
     6. Funiculaire/Câble
     7. Bus/Car/Trolley
 
-La liste ci-dessous indique la hierarchie NeTEx associée à chaque mode (sans le préfixe du type d'objet retourné par l'API) :
+The list below shows the NeTEx hierarchy associated with each mode (without the prefix of the object type returned by the API) :
 
-Code du mode physique | Nom du mode physique | Hierarchie NeTEx
+Physical mode code | Physical mode name | NeTEx Hierarchy
 --- | --- | ---
 Air | Avion | 1
 Boat | Navette maritime/fluviale | 2
@@ -289,9 +289,9 @@ Taxi | Taxi | 7
 Train | Train | 3
 Tramway | Tramway | 5
 
-La liste ci-dessous complète cette liste de modes physiques avec les modes de rabattement possibles dans un itinéraire, afin de leur associer un taux de CO2 dans l'export.
+The list of physical modes below completes the previous one with the possible feeder modes in an itinerary in order to associate them with a CO2 rate in the export.
 
-Code du mode physique | Nom du mode physique
+Physical mode code | Physical mode name
 --- | ---
 BikeSharingService | Vélo en libre service
 Bike | Vélo
@@ -300,22 +300,22 @@ Car | Voiture
 ### equipments.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-equipment_id | String | Required | Identifiant de l'équipement |
-wheelchair_boarding | Integer (1) | Optional | Accès UFR |
-sheltered | Integer (1) | Optional | Abris couvert
-elevator | Integer (1) | Optional | Ascenseur
-escalator | Integer (1) | Optional | Escalier mécanique
-bike_accepted | Integer (1) | Optional | Embarquement vélo
-bike_depot | Integer (1) | Optional | Parc vélo
-visual_announcement | Integer (1) | Optional | Annonce visuelle
-audible_announcement | Integer (1) | Optional | Annonce sonore
-appropriate_escort | Integer (1) | Optional | Accompagnement à l'arrêt
-appropriate_signage | Integer (1) | Optional | Information claire à l'arrêt
+equipment_id | String | Required | Identifier of the equipement
+wheelchair_boarding | Integer (1) | Optional | Access for Passengers in Wheel-Chair (UFR in french)
+sheltered | Integer (1) | Optional | Covered shelters
+elevator | Integer (1) | Optional | Elevator/Lift
+escalator | Integer (1) | Optional | Escalator
+bike_accepted | Integer (1) | Optional | Bicycle boarding
+bike_depot | Integer (1) | Optional | Bicycle parking
+visual_announcement | Integer (1) | Optional | Visual announcement
+audible_announcement | Integer (1) | Optional | Audible announcement
+appropriate_escort | Integer (1) | Optional | Escort at the stop
+appropriate_signage | Integer (1) | Optional | Appropriate signage at the stop
 
-    (1) Les valeurs possibles sont :
-        0 ou non spécifié - aucune information disponible
-        1 - l'équipement est disponible
-        2 - l'équipement n'est pas disponible
+    (1) Valid options are :
+        0 or empty - No information available
+        1 - The equipment is available
+        2 - The equipment is not available
 
 ### stops.txt (required)
 Une ligne du fichier [`stops.txt`](#stopstxt-required) représente un point ou une zone où un véhicule dépose ou fait monter des voyageurs.
