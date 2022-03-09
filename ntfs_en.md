@@ -149,7 +149,7 @@ comment_url | String | Optional | URL giving more information about the note suc
 * on_demand_transport : indicates an information note about an On Demand Transportation service. This note must specify the reservation's conditions and telephone number.
 
 ### comment_links.txt (optional)
-This file links an object (line, stop, scheduled time, etc.) to a comment and allow to associate multiple notes with an object and multiple objects with a note.
+This file links an object (line, stop, scheduled time, etc.) to a comment and associates multiple notes with an object and multiple objects with a note.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
@@ -173,7 +173,7 @@ Column | Type | Constraint | Note
 company_id | String | Required | Identifier of the company.
 company_name | String | Required | Name of the company.
 company_address | String | Optional | Full address of the company.
-company_url | String | Optional | URL of the company's institutional website. Not to be confused with the link to the network's website.
+company_url | String | Optional | URL of the company's institutional website. Should not be confused with the link to the network's website.
 company_mail | String | Optional | Contact email address of the company.
 company_phone | String | Optional | Contact phone number.
 
@@ -185,7 +185,7 @@ Column | Type | Constraint | Note
 contributor_id | String | Required | Identifier of the contributor.
 contributor_name | String | Required | Name of the contributor.
 contributor_license | String | Optional | Data use license of the contributor.
-contributor_website | String | Optional | URL of the website associated with the data provider.
+contributor_website | String | Optional | URL of the data provider's website.
 
 ### datasets.txt (required)
 This file lists the sets of data of a contributor.
@@ -194,18 +194,18 @@ Column | Type | Constraint | Note
 --- | --- | --- | ---
 dataset_id | String | Required | Identifier of the set of data.
 contributor_id | String | Required | Identifier of the contributor (link to the file [`contributors.txt`](#contributorstxt-required)).
-dataset_start_date | Date | Required | Start date of consideration of the set of data (may be different from the start date of validity of the initial export).
-dataset_end_date | Date | Required | End date of consideration of the set of data (may be different from the end date of validity of the initial export).
-dataset_type | Integer (1) | Optional | Type of data which represents the data freshness
+dataset_start_date | Date | Required | Start date of consideration of the set of data (may be different from the validity start date of the initial export).
+dataset_end_date | Date | Required | End date of consideration of the set of data (may be different from the validity end date of the initial export).
+dataset_type | Integer (1) | Optional | Type of data which represents the data's freshness.
 dataset_extrapolation | Integer | Optional | Indicates whether the service's data has been extrapolated (field set to 1) or not (field set to 0).
-dataset_desc | String | Optional | Note which indicates the contents of the set of data
-dataset_system | String | Optional | Name of the system that generated the data orname of the data format.
+dataset_desc | String | Optional | Note which indicates the contents of the set of data.
+dataset_system | String | Optional | Name of the system that generated the data or name of the data format.
 
 (1) Specifies the data type :
 
 * 0 - These are theoretical data
 * 1 - These are strike or revised data
-* 2 - These are D-Day production data
+* 2 - These are D-Day production data ?
 
 ### frequencies.txt (optional)
 Column | Type | Constraint | Note
@@ -213,7 +213,7 @@ Column | Type | Constraint | Note
 trip_id | String | Required | Identifier of the trip.
 start_time | Time | Required | Frequency start time.
 end_time | Time | Required | Frequency end time. Specify 26:00:00 for 2 a.m. of the day in question.
-headway_secs | Integer | Required | Start frequency in seconds.
+headway_secs | Integer | Required | Departure frequency in seconds.
 
 ### lines.txt (required)
 Column | Type | Constraint | Note
@@ -226,21 +226,21 @@ backward_line_name | String | Optional | Name of the line in the return journey.
 line_color | Color | Optional | Color of the line.
 line_text_color | Color | Optional | Color of the line's code.
 line_sort_order | Integer | Optional | Sort key for the line within the network. The smallest values are displayed first.
-network_id | String | Required | Identifier of the network for the specified line (link to the file [`networks.txt`](#networkstxt-required)).
+network_id | String | Required | Identifier of the line's network (link to the file [`networks.txt`](#networkstxt-required)).
 commercial_mode_id | String | Required | Identifier of the commercial mode (link to the file [`commercial_modes.txt`](#commercial_modestxt-required)).
-geometry_id | String | Optional | Identifier of a geospatial shape that represents the line (link to the file [`geometries.txt`](#geometriestxt-optional)).
+geometry_id | String | Optional | Identifier of a geospatial shape representing the line (link to the file [`geometries.txt`](#geometriestxt-optional)).
 line_opening_time | Time | Optional | Start time of the line's service (regardless of the type of day or period). If this information is not provided, it will be recalculated.
-line_closing_time | Time | Optional | End time of the line's service (regardless of the type of day or period). If this information is not provided, it will be recalculated. Specify an hour greater than 24 to indicate a time on the next day.
+line_closing_time | Time | Optional | End time of the line's service (regardless of the type of day or period). If this information is not provided, it will be recalculated. Specify an hour higher than 24 to indicate a time on the next day.
 
 ### routes.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 route_id | String | Required | Identifier of the route.
 route_name | String | Required | Name of the route.
-direction_type | String (1) | Optional | Description of the direction of the route. This is a free text field, but it is advised to use one of the recommended elements below.
+direction_type | String (1) | Optional | Description of the direction of the route. This is a free text field however, it is recommended to use an item in the list below.
 line_id | String | Required | Identifier of the commercial line (link to the file [`lines.txt`](#linestxt-required)).
 geometry_id | String | Optional | Identifier of a geospatial shape for the route (link to the file [`geometries.txt`](#geometriestxt-optional)).
-destination_id | String | Optional | Identifier of the main destination (stop area in the file [`stops.txt`](#stopstxt-required)).
+destination_id | String | Optional | Identifier of the main destination (see stop area in the file [`stops.txt`](#stopstxt-required)).
 
 (1) List of recommended values for the field _direction_type_ :
 
@@ -251,13 +251,13 @@ destination_id | String | Optional | Identifier of the main destination (stop ar
 ### physical_modes.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-physical_mode_id | String | Required | Identifier of the physical mode. Choosing from the list below is mandatory
-physical_mode_name | String | Required | Name of the physical mode
+physical_mode_id | String | Required | Identifier of the physical mode. Choosing from the list below is mandatory.
+physical_mode_name | String | Required | Name of the physical mode.
 co2_emission | Decimal | Optional | CO2 emission rate of the physical mode per passenger per km.
 
 **List of available physical modes :**
 
-There is a hierarchy of modes to classify stop areas by the highest level mode (cf. norme ? [NeTEx (in french)](http://www.normes-donnees-tc.org/wp-content/uploads/2014/05/NF_Profil_NeTEx_pour_les_arrets-_F-_-_v2.pdf) , chapitre 6.2.3)
+There is a hierarchy of modes to classify stop areas by their highest level mode (cf. norme ? [NeTEx (in french)](http://www.normes-donnees-tc.org/wp-content/uploads/2014/05/NF_Profil_NeTEx_pour_les_arrets-_F-_-_v2.pdf) , chapitre 6.2.3)
 
     1. Aérien
     2. Maritime/Fluvial
@@ -267,7 +267,7 @@ There is a hierarchy of modes to classify stop areas by the highest level mode (
     6. Funiculaire/Câble
     7. Bus/Car/Trolley
 
-The list below shows the NeTEx hierarchy associated with each mode (without the prefix of the object type returned by the API) :
+The list below shows the NeTEx hierarchy of each mode (without the prefix of the object type returned by the API) :
 
 Physical mode code | Physical mode name | NeTEx Hierarchy
 --- | --- | ---
@@ -301,8 +301,8 @@ Car | Voiture
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 equipment_id | String | Required | Identifier of the equipment.
-wheelchair_boarding | Integer (1) | Optional | Access for Passengers in Wheel-Chair
-sheltered | Integer (1) | Optional | Covered shelters.
+wheelchair_boarding | Integer (1) | Optional | Access for Passengers in Wheel-Chair.
+sheltered | Integer (1) | Optional | Covered shelter.
 elevator | Integer (1) | Optional | Elevator/Lift.
 escalator | Integer (1) | Optional | Escalator.
 bike_accepted | Integer (1) | Optional | Bicycle boarding.
@@ -313,7 +313,7 @@ appropriate_escort | Integer (1) | Optional | Escort at the stop.
 appropriate_signage | Integer (1) | Optional | Appropriate signage at the stop.
 
     (1) Valid options are :
-        0 or empty - No information available
+        0 (or empty) - No information available
         1 - The equipment is available
         2 - The equipment is not available
 
@@ -323,25 +323,25 @@ A line in this file represents a location or an area where a vehicle drops off o
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 stop_id | String | Required | Identifier of the stop.
-visible | Integer | Optional | Indicates whether the stop can be displayed in autocomplete (value 1) or whether it is ignored (value 0).
+visible | Integer | Optional | Indicates whether the stop can be displayed in autocomplete (value 1) or ignored (value 0).
 stop_name | String | Required | Name of the stop.
 stop_code | String | Optional | Code of the stop known to the traveler or code/number of the entrance/exit for entrances/exits.
 stop_lat | Decimal | Required (Special) | Latitude of the location. This field is mandatory except for generic nodes (`location_type = 4`) and boarding areas (`location_type = 5`).
 stop_lon | Decimal | Required (Special) | Longitude of the location. This field is mandatory except for generic nodes (`location_type = 4`) and boarding areas (`location_type = 5`).
 fare_zone_id | String | Optional | Fare zone of the stop. This field only applies to stop points (`location_type = 0`).
 location_type | Integer (1) | Required | Type of the location.
-geometry_id | geometry | Optional | This field is linked to the file [`geometries.txt`](#geometriestxt-optional) which describes the geometry associated to a stop zone (type 2) in other to allow the engine to define the addresses covered in case of zonal ODT "address to address". This field can also be used to specify a geometry for stop areas (`location_type = 1`) and municipalities (`location_type = 4`) to enrich the web service.
+geometry_id | geometry | Optional | This field is linked to the file [`geometries.txt`](#geometriestxt-optional) which describes the geometry of a stop zone (`location_type = 2`) to let the engine define the addresses in case of an "address to address" zonal ODT. This field can also be used to specify a geometry for stop areas (`location_type = 1`) and municipalities (`location_type = 4`) to enrich the web service.
 parent_station | String | Optional | Identifier of the stop area. Must not be filled in for stop areas (`location_type = 1`) and stop zones (`location_type = 2`).
-stop_timezone | Timezone | Optional | Time zone of the location, refer to http://en.wikipedia.org/wiki/List_of_tz_zones. This field is considered only for stop points (`location_type = 0`). The schedule associated with this stop uses the timezone of the network of the trip, and not the timezone of the stop point even if it is different.
+stop_timezone | Timezone | Optional | Time zone of the location (refer to http://en.wikipedia.org/wiki/List_of_tz_zones). This field only concerns stop points (`location_type = 0`). The scheduled time of the stop uses the timezone of the trip's network, not the timezone of the stop even if they are different.
 equipment_id | String | Optional | Identifier of the equipment.
 level_id | String | Optional | Link to a level described in the file [`levels.txt`](#levelstxt-optional).
-platform_code | String | Optional | Identifier of the plateform of the stop (for example `G` or `3`). Can only be filled in for physical stops (`location_type = 0`) or boarding areas (`location_type = 5`).
-address_id | String | Optional | Identifier of the stop's address (link to the file [`addresses.txt`]). This field only applies to physical stop (`location_type = 0`).
+platform_code | String | Optional | Identifier of a stop's plateform (for example `G` or `3`). This field only concerns stop points (`location_type = 0`) or boarding areas (`location_type = 5`).
+address_id | String | Optional | Identifier of the stop's address (link to the file [`addresses.txt`]). This field only applies to stop points (`location_type = 0`).
 
     (1) Type of the location :
-        0 (or empty) - Physical stop (object stop_point)
-        1 - Station ? (object stop_area)
-        2 - Geographical zone (for the zonal ODT type "address to address", object stop_zone)
+        0 (or empty) - Stop point
+        1 - Stop area
+        2 - Stop zone (for the zonal ODT type "address to address")
         3 - Entrance/Exit
         4 - Pathways Interconnection Node
         5 - Boarding area (for example to indicate the "middle of the platform")
@@ -350,34 +350,34 @@ address_id | String | Optional | Identifier of the stop's address (link to the f
 ### stop_times.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-stop_time_id | String | Optional | Unique identifier of the schedule in a set of data. This information is not sustainable and only links a schedule (file [`stop_times.txt`](#stop_timestxt-required)) to a comment (file [`comments.txt`](#commentstxt-optional)) using the file [`comment_links.txt`](#comment_linkstxt-optional). If this field is not provided, the schedule cannot be linked to a comment.
+stop_time_id | String | Optional | Unique identifier of the scheduled time in a dataset. This information is not sustainable and only links a scheduled time (file [`stop_times.txt`](#stop_timestxt-required)) to a comment (file [`comments.txt`](#commentstxt-optional)) using the file [`comment_links.txt`](#comment_linkstxt-optional). If this field is not provided, the scheduled time will not be linked to a comment.
 trip_id | String | Required | Identifier of the trip.
-arrival_time | Time | Required | Arrival time. If the arrival time is unknown, it must be estimated by the system providing the data and the *stop_time_precision* field must be specified at 1. If alighting is prohibited at this stop, the arrival time must be indicated and the *drop_off_type* field must be specified at 1.
-departure_time | Time | Required | Departure time. If the departure time is unknown, it must be estimated by the system providing the data and the *stop_time_precision* field must be specified at 1. If boarding is prohibited at this stop, the departure time must be indicated and the field *pickup_type* must be specified at 1.
+arrival_time | Time | Required | Arrival time. If the arrival time is unknown, it must be estimated by the system providing the data and the field *stop_time_precision* must be specified at 1. If alighting is forbidden at this stop, the arrival time must be indicated and the field *drop_off_type* must be specified at 1.
+departure_time | Time | Required | Departure time. If the departure time is unknown, it must be estimated by the system providing the data and the field *stop_time_precision* must be specified at 1. If boarding is forbidden at this stop, the departure time must be indicated and the field *pickup_type* must be specified at 1.
 boarding_duration | Integer | Optional | Time required for boarding in seconds (train, plane, ferry, etc.). This value is necessarily positive or equal to zero.
 alighting_duration | Integer | Optional | Time required for alighting in seconds (train, plane, ferry, etc.). This value is necessarily positive or equal to zero.
-stop_id | String | Required | Identifier of the physical stop (general case). This field can also reference a "geographical area" (stop type 2) or a municipality (stop type 4) in the case of zonal ODT.
-stop_sequence | Integer | Required | Order of stops for a particular trip. This value must be necessarily positive or equal to zero and must increase along the trip.
+stop_id | String | Required | Identifier of the stop point (general case). This field can also reference a stop zone (stop type 2) or a municipality (stop type 4) in the case of zonal ODT.
+stop_sequence | Integer | Required | Order of stops scheduled for a trip. This value must be necessarily positive or equal to zero and must increase along the trip.
 stop_headsign | String | Optional | Wording to be displayed to the traveler instead of `trip_headsign` at that stop.
 trip_short_name_at_stop | String | Optional | Name to be displayed to the traveler instead of `trip_short_name` at that stop.
-pickup_type | Integer (1) | Optional | Indication on the schedule (from the gtfs file).
-drop_off_type | Integer (1) | Optional | Indication on the schedule (from the gtfs file).
-local_zone_id  | Integer | Optional | Identifier of the boarding restriction area of the schedule.
-stop_time_precision | Integer (2) | Optional | Indicates if the time is reliable or given as an indication (approximated).
+pickup_type | Integer (1) | Optional | Indication on the scheduled time (from the gtfs file).
+drop_off_type | Integer (1) | Optional | Indication on the scheduled time (from the gtfs file).
+local_zone_id  | Integer | Optional | Identifier of the boarding restriction area of the scheduled time.
+stop_time_precision | Integer (2) | Optional | Indicates whether the scheduled time is exact or approximative.
 
     (1)  Valid options are :
-        0 (default entry) - Regularly scheduled pickup or drop off
+        0 (default entry) - Continuous pickup or drop off
         1 - Boarding or alighting forbidden i.e. no pickup or drop off available
-        2 - Schedule on reservation associated with a ODT (if a message is associated with a ODT, see the link with the file comment_links.txt)
+        2 - Scheduled time on reservation for an ODT service. If a message is associated with an ODT, see the link with the file comment_links.txt
         3 - The vehicle does not stop (only passing through) ; in this case, both pickup_type and drop_off_type must have the same value of 3
 
     (2) Reliability can take the following values :
         0 - The scheduled time is expected to be precise
-        1 - The scheduled time is approximate (corresponding to the case in the GTFS where timepoint is equal to 0), e.g. a schedule which is regular but not associated with ? un horaire régulier mais qui n'est pas associé à un arrêt de régulation.
+        1 - The scheduled time is approximative (corresponding to the case in the GTFS where timepoint is equal to 0), e.g. a schedule which is regular but not associated with ? un horaire régulier mais qui n'est pas associé à un arrêt de régulation.?
         2 - The time is not guaranteed, e.g. the estimated time of a ODT
-        not specified :
-            if the schedule is associated with an area (stop with location_type = 2), the time is not guaranteed
-            else, the time is reliable
+        Not specified :
+            if the scheduled time is associated with a stop area (stop with location_type = 2), the time is not guaranteed
+            else, the scheduled time is exact
 
 ### transfers.txt (optional)
 Column | Type | Constraint | Note
