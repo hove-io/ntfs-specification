@@ -341,7 +341,7 @@ address_id | String | Optional | Identifier of the stop's address (link to the f
     (1) Type of the location :
         0 (or empty) - Stop point
         1 - Stop area
-        2 - Stop zone (for the zonal ODT type "address to address")
+        2 - Stop zone (for the "address to address" zonal ODT)
         3 - Entrance/Exit
         4 - Pathways Interconnection Node
         5 - Boarding area (for example to indicate the "middle of the platform")
@@ -368,26 +368,26 @@ stop_time_precision | Integer (2) | Optional | Indicates whether the scheduled t
     (1)  Valid options are :
         0 (default entry) - Continuous pickup or drop off
         1 - Boarding or alighting forbidden i.e. no pickup or drop off available
-        2 - Scheduled time on reservation for an ODT service. If a message is associated with an ODT, see the link with the file comment_links.txt
-        3 - The vehicle does not stop (only passing through) ; in this case, both pickup_type and drop_off_type must have the same value of 3
+        2 - Scheduled time on reservation for an ODT service. If a message is associated with an ODT, see its link with the file comment_links.txt
+        3 - The vehicle does not stop (only passing through) ; in this case, both pickup_type and drop_off_type must be equal to 3
 
     (2) Reliability can take the following values :
         0 - The scheduled time is expected to be precise
-        1 - The scheduled time is approximative (corresponding to the case in the GTFS where timepoint is equal to 0), e.g. a schedule which is regular but not associated with ? un horaire régulier mais qui n'est pas associé à un arrêt de régulation.?
-        2 - The time is not guaranteed, e.g. the estimated time of a ODT
+        1 - The scheduled time is approximative; corresponding to the case timepoint = 0 in the GTFS, e.g. a schedule which is regular but not associated with ? un horaire régulier mais qui n'est pas associé à un arrêt de régulation.?
+        ??? The time at a stop for a bus that is trying to regulate its delays
+        2 - The scheduled time is not guaranteed; corresponding to approximated or interpolated times e.g. the estimated time of a ODT
         Not specified :
-            if the scheduled time is associated with a stop area (stop with location_type = 2), the time is not guaranteed
-            else, the scheduled time is exact
+            if the location is a stop area (location_type = 2), the scheduled time is not guaranteed
+            else, the scheduled time is considered exact
 
 ### transfers.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 from_stop_id | String | Required | Identifier of the stop where the connection begins (link to the file [`stops.txt`](#stopstxt-required)).
 to_stop_id | String | Required | Identifier of the stop where the connection ends (link to the file [`stops.txt`](#stopstxt-required)).
-min_transfer_time | Integer | Optional | Minimum duration of the transfer in seconds. This value corresponds to the walking time that will be displayed in the ? (médias in french). If the value is not specified, the system calculates a minimum time based on the Manhattan distance between the two stops. That automatic value has a minimum value of 60 seconds. Note : It is possible that the value provided is below 60 (e.g. 0 in the case of a guaranteed connection).
-real_min_transfer_time | Integer | Optional | Real duration of the transfer in seconds. This value corresponds to the walking time (min_transfer_time) to which is added an execution tolerance time (minimum time of transfer). If the value is not specified, the system uses, in addition to the min_transfer_time, a default parameter equivalent to 120 seconds in general.  The automatic value then calculated will therefore be greater than or equal to 120 seconds. The value entered can be equal to min_transfer_time but not less than it.
-Cette valeur correspond à la durée de marche à pied (min_transfer_time) à laquelle on ajoute une durée de tolérance d'exécution (temps minimum de correspondance). Si la valeur n'est pas spécifié, le système utilise (en plus du min_transfer_time) un paramètre par défaut qui est de 120 secondes en général.  La valeur automatique alors calculée sera donc supérieur ou égale à 120 secondes. La valeur saisie ne peut être inférieure à min_transfer_time (mais peut-être égale).
-equipment_id | String | Optional | Identifiant de description des propriétés (link to the file [`equipments.txt`](#equipmentstxt-optional))
+min_transfer_time | Integer | Optional | Minimum duration of the transfer in seconds. This value corresponds to the walking time that will be displayed to the traveler. If the value is not specified, the system calculates a minimum time based on the Manhattan distance between the two stops. The resulting time has a minimum value of 60 seconds. Note : The value provided could be lower than 60 (e.g. 0 in the case of an ensured connection).
+real_min_transfer_time | Integer | Optional | Real duration of the transfer in seconds. This value corresponds to the walking time (min_transfer_time) to which a tolerance time (minimum time of transfer) is added. If the value is not specified, the system uses the min_transfer_time plus a default parameter equivalent to 120 seconds in general. The resulting time will therefore be greater than or equal to 120 seconds. The input value cannot be less than min_transfer_time but can be equal to it.
+equipment_id | String | Optional | Identifier of the accessibility properties (link to the file [`equipments.txt`](#equipmentstxt-optional))
 
 ### trip_properties.txt (optional)
 Column | Type | Constraint | Note
