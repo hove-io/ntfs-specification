@@ -301,7 +301,7 @@ Car | Voiture
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 equipment_id | String | Required | Identifier of the equipment.
-wheelchair_boarding | Integer (1) | Optional | Access for Passengers in Wheel-Chair.
+wheelchair_boarding | Integer (1) | Optional | Access for passengers in wheelchair.
 sheltered | Integer (1) | Optional | Covered shelter.
 elevator | Integer (1) | Optional | Elevator/Lift.
 escalator | Integer (1) | Optional | Escalator.
@@ -386,31 +386,31 @@ Column | Type | Constraint | Note
 from_stop_id | String | Required | Identifier of the stop where the connection begins (link to the file [`stops.txt`](#stopstxt-required)).
 to_stop_id | String | Required | Identifier of the stop where the connection ends (link to the file [`stops.txt`](#stopstxt-required)).
 min_transfer_time | Integer | Optional | Minimum duration of the transfer in seconds. This value corresponds to the walking time that will be displayed to the traveler. If the value is not specified, the system calculates a minimum time based on the Manhattan distance between the two stops. The resulting time has a minimum value of 60 seconds. Note : The value provided could be lower than 60 (e.g. 0 in the case of an ensured connection).
-real_min_transfer_time | Integer | Optional | Real duration of the transfer in seconds. This value corresponds to the walking time (min_transfer_time) to which a tolerance time (minimum time of transfer) is added. If the value is not specified, the system uses the min_transfer_time plus a default parameter equivalent to 120 seconds in general. The resulting time will therefore be greater than or equal to 120 seconds. The input value cannot be less than min_transfer_time but can be equal to it.
+real_min_transfer_time | Integer | Optional | Real duration of the transfer in seconds. This value corresponds to the walking time (min_transfer_time) to which a tolerance time (minimum time of transfer) is added. If the value is not specified, the system uses the min_transfer_time plus a default parameter equivalent to 120 seconds generally. The resulting time will therefore be greater than or equal to 120 seconds. The input value cannot be less than min_transfer_time but can be equal to it.
 equipment_id | String | Optional | Identifier of the accessibility properties (link to the file [`equipments.txt`](#equipmentstxt-optional))
 
 ### trip_properties.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-trip_property_id | String | Required | Identifiant de la propriété |
-wheelchair_accessible | Integer (1) | Optional | Le véhicule est accessible aux UFR |
-bike_accepted | Integer (1) | Optional | Le véhicule permet l'embarquement de vélo
-air_conditioned | Integer (1) | Optional | Le véhicule dispose de l'air conditionné
-visual_announcement | Integer (1) | Optional | Le véhicule dispose d'annonces visuelles
-audible_announcement | Integer (1) | Optional | Le véhicule dispose d'annonces sonores
-appropriate_escort | Integer (1) | Optional | Un service d'accompagnement à bord est possible (à la montée et à la descente)
-appropriate_signage | Integer (1) | Optional | L'affichage à bord est est claire et adapté aux personnes en déficience mentale
-school_vehicle_type | Integer (2) | Optional | Type de transport scolaire
+trip_property_id | String | Required | Identifier of the property.
+wheelchair_accessible | Integer (1) | Optional | The vehicule is accessible to passengers in wheelchair.
+bike_accepted | Integer (1) | Optional | The vehicle allows the boarding of bicycle.
+air_conditioned | Integer (1) | Optional | The vehicle has air conditioning.
+visual_announcement | Integer (1) | Optional | The vehicle has visual announcements.
+audible_announcement | Integer (1) | Optional | The vehicle has audible announcements.
+appropriate_escort | Integer (1) | Optional | An on-board escort service is possible (on boarding and alighting).
+appropriate_signage | Integer (1) | Optional | The display on board is clear and suitable for people with mental disabilities.
+school_vehicle_type | Integer (2) | Optional | Type of school transport.
 
-    (1) Les valeurs possibles sont :
-        0 ou non spécifié - aucune information disponible
-        1 - l'équipement est disponible
-        2 - l'équipement n'est pas disponible
+    (1) Valid options are :
+        0 (or empty) - No information available
+        1 - The equipment is available
+        2 - The equipment is not available
 
-    (2) Type de transport scolaire :
-        0 ou non spécifié  : transport régulier (non scolaire)
-        1 : transport scolaire exclusif
-        2 : transport mixte (scolaire et régulier)
+    (2) Type of school transport :
+        0 (or empty)  : regular transport (non-school)
+        1 - School transport exclusively
+        2 - Mixed transport (school and regular)
 
 ### trips.txt (required)
 Column | Type | Constraint | Note
