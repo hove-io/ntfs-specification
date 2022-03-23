@@ -325,7 +325,7 @@ Column | Type | Constraint | Note
 stop_id | String | Required | Identifier of the stop.
 visible | Integer | Optional | Indicates whether the stop can be displayed in autocomplete (value 1) or ignored (value 0).
 stop_name | String | Required | Name of the stop.
-stop_code | String | Optional | Code of the stop known to the traveler or code/number of the entrance/exit for entrances/exits.
+stop_code | String | Optional | Code of the stop known to the passenger or code/number of the entrance/exit for entrances/exits.
 stop_lat | Decimal | Required (Special) | Latitude of the location. This field is mandatory except for generic nodes (`location_type = 4`) and boarding areas (`location_type = 5`).
 stop_lon | Decimal | Required (Special) | Longitude of the location. This field is mandatory except for generic nodes (`location_type = 4`) and boarding areas (`location_type = 5`).
 fare_zone_id | String | Optional | Fare zone of the stop. This field only applies to stop points (`location_type = 0`).
@@ -358,8 +358,8 @@ boarding_duration | Integer | Optional | Time required for boarding in seconds (
 alighting_duration | Integer | Optional | Time required for alighting in seconds (train, plane, ferry, etc.). This value is necessarily positive or equal to zero.
 stop_id | String | Required | Identifier of the stop point (general case). This field can also reference a stop zone (stop type 2) or a municipality (stop type 4) in the case of zonal ODT.
 stop_sequence | Integer | Required | Order of stops scheduled for a trip. This value must be necessarily positive or equal to zero and must increase along the trip.
-stop_headsign | String | Optional | Wording to be displayed to the traveler instead of `trip_headsign` at that stop.
-trip_short_name_at_stop | String | Optional | Name to be displayed to the traveler instead of `trip_short_name` at that stop.
+stop_headsign | String | Optional | Wording to be displayed to the passenger instead of `trip_headsign` at that stop.
+trip_short_name_at_stop | String | Optional | Name to be displayed to the passenger instead of `trip_short_name` at that stop.
 pickup_type | Integer (1) | Optional | Indication on the scheduled time (from the gtfs file).
 drop_off_type | Integer (1) | Optional | Indication on the scheduled time (from the gtfs file).
 local_zone_id  | Integer | Optional | Identifier of the boarding restriction area of the scheduled time.
@@ -385,9 +385,9 @@ Column | Type | Constraint | Note
 --- | --- | --- | ---
 from_stop_id | String | Required | Identifier of the stop where the connection begins (link to the file [`stops.txt`](#stopstxt-required)).
 to_stop_id | String | Required | Identifier of the stop where the connection ends (link to the file [`stops.txt`](#stopstxt-required)).
-min_transfer_time | Integer | Optional | Minimum duration of the transfer in seconds. This value corresponds to the walking time that will be displayed to the traveler. If the value is not specified, the system calculates a minimum time based on the Manhattan distance between the two stops. The resulting time has a minimum value of 60 seconds. Note : The value provided could be lower than 60 (e.g. 0 in the case of an ensured connection).
+min_transfer_time | Integer | Optional | Minimum duration of the transfer in seconds. This value corresponds to the walking time that will be displayed to the passenger. If the value is not specified, the system calculates a minimum time based on the Manhattan distance between the two stops. The resulting time has a minimum value of 60 seconds. Note : The value provided could be lower than 60 (e.g. 0 in the case of an ensured connection).
 real_min_transfer_time | Integer | Optional | Real duration of the transfer in seconds. This value corresponds to the walking time (min_transfer_time) to which a tolerance time (minimum time of transfer) is added. If the value is not specified, the system uses the min_transfer_time plus a default parameter equivalent to 120 seconds generally. The resulting time will therefore be greater than or equal to 120 seconds. The input value cannot be less than min_transfer_time but can be equal to it.
-equipment_id | String | Optional | Identifier of the accessibility properties (link to the file [`equipments.txt`](#equipmentstxt-optional))
+equipment_id | String | Optional | Identifier of the accessibility properties (link to the file [`equipments.txt`](#equipmentstxt-optional)).
 
 ### trip_properties.txt (optional)
 Column | Type | Constraint | Note
@@ -415,22 +415,22 @@ school_vehicle_type | Integer (2) | Optional | Type of school transport.
 ### trips.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-route_id | String | Required | Identifiant du parcours (link to the file [`routes.txt`](#routestxt-required))
-service_id | String | Required | Identifiant dues jours de fonctionnements
-trip_id | String | Required | Identifiant de la circulation
-trip_headsign | String | Optional | Texte affiché au voyageur sur le vehicule (par exemple la destination du bus ou le code mission du RER)
-trip_short_name | String | Optional | Nom de la circulation connu du voyageur permettant de l'identifier de manière unique sur la journée (en général un numéro de train)
-block_id | String | Optional | Identifiant du prolongement de service
-company_id | String | Required | Identifiant de la compagnie (link to the file [`companies.txt`](#companiestxt-required))
-physical_mode_id | String | Required | Identifiant du mode physique (link to the file [`physical_modes.txt`](#physical_modestxt-required))
-trip_property_id | String | Optional | Identifiant de la propriété accessibilité (link to the file [`trip_properties.txt`](#trip_propertiestxt-optional))
-dataset_id | String | Required | Identifiant du jeu de données ayant fourni la circulation (link to the file [`datasets.txt`](#datasetstxt-required)).
-geometry_id | String | Optional | Identifiant du tracé représentant la circulation (link to the file [`geometries.txt`](#geometriestxt-optional))
-journey_pattern_id | String | Optional | Identifiant de la mission (i.e. une séquence ordonnée d'arrêts ayant les mêmes propriétés et parfois connue du voyageur)
+route_id | String | Required | Identifier of the route (link to the file [`routes.txt`](#routestxt-required)).
+service_id | String | Required | Identifier of the operating days.
+trip_id | String | Required | Identifier of the trip.
+trip_headsign | String | Optional | Text displayed to the passenger on the vehicle (e.g. the destination of a bus or a rapid transit mission code).
+trip_short_name | String | Optional | Name of the trip known by the passenger making it uniquely identifiable over the day (usually a train number).
+block_id | String | Optional | Identifier of the service extension.
+company_id | String | Required | Identifier of the company (link to the file [`companies.txt`](#companiestxt-required)).
+physical_mode_id | String | Required | Identifier of the physical mode (link to the file [`physical_modes.txt`](#physical_modestxt-required)).
+trip_property_id | String | Optional | Identifier of the accessibility property (link to the file [`trip_properties.txt`](#trip_propertiestxt-optional)).
+dataset_id | String | Required | Identifier of the set of data that provided the trip (link to the file [`datasets.txt`](#datasetstxt-required)).
+geometry_id | String | Optional | Identifier of a geospatial shape representing the trip (link to the file [`geometries.txt`](#geometriestxt-optional)).
+journey_pattern_id | String | Optional | Identifier of the mission (i.e. an ordered sequence of stops with the same properties and sometimes known to the passenger).
 
-    Pour préciser si la circulation est sur réservation (tout ou partie), il faut :
-        Indiquer au niveau de l'horaire (fichier [`stop_times.txt`](#stop_timestxt-required)) si la montée et/ou la descente est à réservation
-        Indiquer un commentaire (optional) de type TAD via les fichiers [`comments.txt`](#commentstxt-optional) et [`comment_links.txt`](#comment_linkstxt-optional)
+    To specify whether part or the whole trip is on reservation, it is necessary to :
+        Indicate at the scheduled time (file stop_times.txt) if the boarding and/or alighting is on reservation
+        Specify an ODT comment (optional) via the comments.txt and comment_links.txt files
 
 ### geometries.txt (optional)
 This file contient la représentation spatiale d'une géométrie (pour des lignes, parcours et/ou circulations). Chaque ligne du fichier représente une géométrie complète de l'objet.
