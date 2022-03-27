@@ -462,20 +462,20 @@ object_property_name | String | Required | Name of the additional property (free
 object_property_value | String | Required | Value of the additional property (free text field).
 
 ### object_codes.txt (optional)
-This file contient la liste des codes d'identification complémentaires dans les systèmes externes des différents objets du référentiel.
-Ces propriétés sont sous forme de liste de clés / valeurs qui doivent être standardisées par processus.
-Une clé peut être utilisée plusieurs fois (avec des valeurs différentes) pour un même objet.
+This file contains the list of additional identification codes in the external systems of the different the objects in the model (?).
+These properties are presented in the form of a list of keys/values that need to be standardized by process.
+A key can be used multiple times (with different values) for the same object.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-object_type | String | Required | Type d'objet sur lequel la propriété porte (company, network, line, route, trip, stop_area, stop_point)
-object_id | String | Required | Identifiant de l'objet sur lequel la propriété porte
-object_system | String | Required | Nom du système d'identification de l'objet  (texte libre). Par exemple : "Timeo" ou "UIC" pour les arrêts, "Reflex" pour les lignes.
-object_code | String | Required | Code d'identification de l'objet dans le système considéré.
+object_type | String | Required | Type of the object the property is about (company, network, line, route, trip, stop_area, stop_point).
+object_id | String | Required | Identifier of the object the property is about.
+object_system | String | Required | Name of the object identification system (free text field). For example : "Timeo" or "UIC" for stops, "Reflex" for lines.
+object_code | String | Required | Identification code of the object in the system in question.
 
-Kisio Digital fournit dans This file :
-* les identifiants des objets dans l'ancien système Navitia pour les objets "network", "line", "route", "trip", "stop_point" et "stop_area" avec pour object_system la chaine **"navitia1"**.
-* les identifiants des objets déclarés dans la source d'alimentation (NTFS ou GTFS par exemple) avec pour object_system la chaine **"source"**.
+Hove provides in this file :
+* the object identifiers in the old Navitia system for the objects "network", "line", "route", "trip", "stop_point" and "stop_area" with the object_system the string **"navitia1"**.
+* the identifiers of the objects declared in the input file (NTFS or GTFS for example) with the object_system the string **"source"**.
 
 ### admin_stations.txt (optional)
 Column | Type | Constraint | Note
