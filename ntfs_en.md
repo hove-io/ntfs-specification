@@ -62,7 +62,7 @@ File | Constraint | Description
 [`equipments.txt`](#equipmentstxt-optional)  | Optional | This file contains the properties (as accessibility) of the stops and the connections.
 [`transfers.txt`](#transferstxt-optional) | Optional | This file contains the connections.
 [`trip_properties.txt`](#trip_propertiestxt-optional) | Optional | This file contains the accessibility of the trips.
-[`geometries.txt`](#geometriestxt-optional) | Optional | This file contains the spatial representation of the geometries in the [Well Known Text (WKT)](https://www.wikiwand.com/fr/Well-known_text) format. Those geometries are referenced in the following files [`lines.txt`](#linestxt-required), [`routes.txt`](#routestxt-required), [`trips.txt`](#tripstxt-required).
+[`geometries.txt`](#geometriestxt-optional) | Optional | This file contains the spatial representation of the geometries in the [Well Known Text (WKT)](https://www.wikiwand.com/en/Well-known_text_representation_of_geometry) format. Those geometries are referenced in the following files [`lines.txt`](#linestxt-required), [`routes.txt`](#routestxt-required), [`trips.txt`](#tripstxt-required).
 [`object_properties.txt`](#object_propertiestxt-optional) | Optional | This file contains the list of additional properties on any object of the model.
 [`object_codes.txt`](#object_codestxt-optional) | Optional | This file contains the list of additional identification codes for the objects of the model.
 [`admin_stations.txt`](#admin_stationstxt-optional) | Optional | This file contains the list of administrative stops for journeys to or from a town
@@ -433,21 +433,21 @@ journey_pattern_id | String | Optional | Identifier of the mission (i.e. an orde
         Specify an ODT comment (optional) via the comments.txt and comment_links.txt files
 
 ### geometries.txt (optional)
-This file contient la représentation spatiale d'une géométrie (pour des lignes, parcours et/ou circulations). Chaque ligne du fichier représente une géométrie complète de l'objet.
+This file contains the spatial representation of a geometry (for lines, routes and/or trips). Each line in the file represents a complete geometry of the object.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-geometry_id | String | Required | Identifiant de la géométrie.
-geometry_wkt | géométrie | Required | Représentation spatiale de la géométrie selon le standard http://fr.wikipedia.org/wiki/Well-known_text.
+geometry_id | String | Required | Identifier of the geometry.
+geometry_wkt | géométrie | Required | Spatial representation of the geometry according to the [Well Known Text (WKT)](https://www.wikiwand.com/en/Well-known_text_representation_of_geometry) standard.
 
-    Les lignes et parcours peuvent être des LINESTRING ou des MULTILINESTRING.
-    Les circulations ne peuvent être que des LINESTRING. Si une MULTILINESTRING est spécifiée, seule la première LINESTRING sera utilisée.
-    Les points d'arrêts sont des POINT.
-    Les zones d'arrêt peuvent être des POINT, POLYGON ou MULTIPOLYGON.
-    Les zones géographiques et communes peuvent être des POLYGON ou MULTIPOLYGON.
-
-    Seules les types de géométries spécifiées sont retenues, les autres types géométries sont ignorées.
-    Le format du fichier est volontairement simple, une évolution pourra être envisagée si le besoin est rencontré.
+    Lines and routes can only be represented as LINESTRING or MULTILINESTRING.
+    Trips can only be represented as LINESTRING. If a MULTILINESTRING is specified, only the first LINESTRING will be used.
+    Stop points are represented as POINT.
+    Stop areas can be POINT, POLYGON or MULTIPOLYGON.
+    Stop zones are either POLYGON or MULTIPOLYGON.
+    
+    Only the specified types of geometry are considered, the other types are ignored.
+    The format of the file is deliberately simple, an evolution can be considered if necessary.
 
 ### object_properties.txt (optional)
 This file contient la description des propriétés complémentaires sur les différents objets du référentiel.
