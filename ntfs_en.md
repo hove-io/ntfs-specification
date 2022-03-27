@@ -450,16 +450,16 @@ geometry_wkt | géométrie | Required | Spatial representation of the geometry a
     The format of the file is deliberately simple, an evolution can be considered if necessary.
 
 ### object_properties.txt (optional)
-This file contient la description des propriétés complémentaires sur les différents objets du référentiel.
-Ces propriétés sont sous forme de liste de clés / valeurs qui doivent être standardisées par processus.
-Une clé ne peut être utilisée qu'une seule fois (avec une seule valeur) pour un même objet.
+This file contains the list of additional properties on the different object of the model.
+These properties are presented in the form of a list of keys/values that need to be standardized by process.
+A key can only be used once (with a single value) for the same object.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-object_type | String | Required | Type d'objet sur lequel la propriété porte (line, route, trip, stop_area, stop_point)
-object_id | String | Required | Identifiant de l'objet sur lequel la propriété porte
-object_property_name | String | Required | Nom de la propriété complémentaire (texte libre)
-object_property_value | String | Required | Valeur de la propriété complémentaire (texte libre)
+object_type | String | Required | Type of the object the property is about (line, route, trip, stop_area, stop_point).
+object_id | String | Required | Identifier of the object the property is about.
+object_property_name | String | Required | Name of the additional property (free text field).
+object_property_value | String | Required | Value of the additional property (free text field).
 
 ### object_codes.txt (optional)
 This file contient la liste des codes d'identification complémentaires dans les systèmes externes des différents objets du référentiel.
