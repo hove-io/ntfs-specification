@@ -480,10 +480,10 @@ Hove provides in this file :
 ### admin_stations.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-admin_id | String | Required | Identifiant de la commune (ou du quartier) tel que retourné par l'API Navitia
-admin_name | String | Required | Nom de la commune (ou quartier).
-stop_id | String | Required | Identifiant de la zone d'arrêt utilisée comme accroche de la commune (link to the file [`stops.txt`](#stopstxt-required)). Stop de type 1 oligatoirement.
-stop_name | String | Optional | Nom de la zone d'arrêt (pour faciliter la lisibilité du fichier)
+admin_id | String | Required | Identifier of the municipality (or district) as returned by the Navitia API.
+admin_name | String | Required | Name of the municipality (or district).
+stop_id | String | Required | Identifier of the stop area used to represent the municipality (link to the file [`stops.txt`](#stopstxt-required)). Type 1 stop mandatory.
+stop_name | String | Optional | Name of the stop area (to aid the readability of the file).
 
 ### pathways.txt (optional)
 Attention, This file décrit une modélisation de la station qui n'est pas nécessairement géographique, et peut également être simplifiée.
