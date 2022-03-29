@@ -19,7 +19,7 @@ Les données sont formatées de la manière suivante :
 * Le système de coordonnées est le **WGS84**
 * Le séparateur décimal est le **"."**
 * Le format de date est **YYYYMMDD**
-* Le format de l'heure est **HH:MM:SS**
+* Le format de l'heure est **HH:MM:SS**, se référer à la spécification du GTFS pour les détails, notamment concernant les changements d'heure (voir https://gtfs.org/reference/static/#field-types)
 * le format d'un instant (date + heure) est au format ISO-8601 en UTC; il doit inclure le suffixe d'offset ou le `Z`
 * Le formatage des **URL** doit respecter le format du **W3C** : http://www.w3.org/Addressing/URL/4_URI_Recommentations.html
 * Les fuseaux horaires http://en.wikipedia.org/wiki/List_of_tz_zones
