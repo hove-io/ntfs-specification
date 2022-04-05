@@ -3,7 +3,7 @@ NTFS version 0.12
 
 # Introduction
 
-NTFS est le format d'échange de données de Kisio Digital : Navitia Transit Feed Specification.
+NTFS est le format d'échange de données de Hove : Navitia Transit Feed Specification.
 Il a pour objectif de remplacer le format csv/Fusio afin de combler ses lacunes et permettre la gestion de tout type de données dans un seul format (horaires, TAD, etc.).
 
 Ce nouveau format s'inspire très fortement du format GTFS (https://developers.google.com/transit/gtfs/reference?hl=fr-FR), tout en l'adaptant afin de permettre une description des données la plus exhaustive possible. A ce titre, le format est amené à évoluer (voir le [changelog](./ntfs_changelog.md) ).
@@ -473,7 +473,7 @@ object_id | chaine | Requis | Identifiant de l'objet sur lequel la propriété p
 object_system | chaine | Requis | Nom du système d'identification de l'objet  (texte libre). Par exemple : "Timeo" ou "UIC" pour les arrêts, "Reflex" pour les lignes.
 object_code | chaine | Requis | Code d'identification de l'objet dans le système considéré.
 
-Kisio Digital fournit dans ce fichier :
+Hove fournit dans ce fichier :
 * les identifiants des objets dans l'ancien système Navitia pour les objets "network", "line", "route", "trip", "stop_point" et "stop_area" avec pour object_system la chaine **"navitia1"**.
 * les identifiants des objets déclarés dans la source d'alimentation (NTFS ou GTFS par exemple) avec pour object_system la chaine **"source"**.
 
@@ -570,7 +570,7 @@ feed_creation_date |  date |  Optionnel | Date (UTC) de génération du jeu de d
 feed_creation_time | heure | Optionnel | Heure (UTC) de génération du jeu de données
 feed_creation_datetime | instant | Optionnel | Date et heure (UTC) de génération du jeu de données
 
-Le tableau ci-dessous indique les paramètres libres renseignés par Kisio Digital (dépend de l'outil qui génère les données).
+Le tableau ci-dessous indique les paramètres libres renseignés par Hove (dépend de l'outil qui génère les données).
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
