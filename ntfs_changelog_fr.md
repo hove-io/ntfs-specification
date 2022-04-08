@@ -99,3 +99,5 @@
     * Les `stop_times` peuvent maintenant être des points de passage (pas d'arrêt du véhicule)
 * Version 0.12.2 du 20/10/2021
     * Correction de la documentation sur `date_time_estimated` qui est maintenant `stop_time_precision`
+* Version 0.12.3 du 06/04/2022
+    * Précisions sur la documentation concernant la gestion des timezones et les changements d'heures (Gestion similaire au GTFS)

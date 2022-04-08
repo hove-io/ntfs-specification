@@ -22,7 +22,7 @@ Les données sont formatées de la manière suivante :
 * Le format de l'heure est **HH:MM:SS**
 * le format d'un instant (date + heure) est au format ISO-8601 en UTC; il doit inclure le suffixe d'offset ou le `Z`
 * Le formatage des **URL** doit respecter le format du **W3C** : http://www.w3.org/Addressing/URL/4_URI_Recommentations.html
-* Les fuseaux horaires http://en.wikipedia.org/wiki/List_of_tz_zones
+* Les fuseaux horaires suivent les noms standards : http://en.wikipedia.org/wiki/List_of_tz_zones
 * Les langues indiquées doivent respecter la norme **ISO 639-2** : http://www.loc.gov/standards/iso639-2/php/code_list.php
 * Les couleurs sont spécifiées en RVB hexadécimal (par exemple **00FFFF**)
 * Les géométries sont décrites en utilisant le format **WKT** : http://fr.wikipedia.org/wiki/Well-known_text
@@ -93,7 +93,7 @@ Colonne | Type | Contrainte | Commentaire
 network_id | chaine | Requis | Identifiant unique et pérenne du réseau
 network_name | chaine | Requis | Nom du réseau
 network_url | chaine | Optionnel | Lien vers le site institutionnel
-network_timezone | chaine | Optionnel |
+network_timezone | chaine | Optionnel | Plus de détails sur [cette page](./daylight_saving.md) (en).
 network_lang | chaine | Optionnel |
 network_phone | chaine | Optionnel | Numéro de téléphone de contact
 network_address | chaine | Optionnel | Adresse postale du réseau.
@@ -333,7 +333,7 @@ fare_zone_id | chaine | Optionnel | Zone tarifaire de l'arrêt. Ce champ ne s'ap
 location_type | entier (1) | Requis | Type de l'arrêt ou de la zone
 geometry_id | géometrie | Optionnel | Ce champ est un lien vers le fichier [`geometries.txt`](#geometriestxt-optionnel) qui décrit la géométrie associée à une zone géographique (type 2) afin de permettre au moteur de définir les adresses couvertes en cas de TAD zonal "adresse à adresse". Ce champ peut également être utilisé pour préciser une géométrie pour les zones d'arrêts (type 1) et les communes (type 4) pour enrichir le web service.
 parent_station | chaine | Optionnel | Identifiant de la zone d'arrêt. Ne doit pas être renseigné pour les zones d'arrêts et les zones géographiques (location_type = 1 ou 2)
-stop_timezone | timezones | Optionnel | Fuseau horaire, se référer à http://en.wikipedia.org/wiki/List_of_tz_zones. Ce champ n'est pris en compte que sur les points d'arrêts (location_type = 0). L'horaire associé à cet arrêt utilise la timezone du réseau (network) de la course, et non pas la timezone du point d'arrêt même si celle-ci est différente.
+stop_timezone | timezones | Optionnel | Fuseau horaire, se référer à http://en.wikipedia.org/wiki/List_of_tz_zones. Ce champ n'est pris en compte que sur les points d'arrêts (location_type = 0). L'horaire associé à cet arrêt utilise la timezone du réseau (network) de la course, et non pas la timezone du point d'arrêt même si celle-ci est différente. Plus de détails sur [cette page](./daylight_saving.md) (en).
 equipment_id | chaine | Optionnel | Identifiant de la propriété accessibilité
 level_id | chaine | Optionnel | lien vers un niveau décrit dans le fichier [`levels.txt`](#levelstxt-optionnel)
 platform_code | chaine | Optionnel | Identifiant de la plateforme d'un arrêt (par exemple `G` ou `3`). Ne peut être renseigné que pour les arrêts physiques (`location_type=0`) ou les zones d'embarquements (`location_type=5`)
