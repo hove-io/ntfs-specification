@@ -586,46 +586,45 @@ tartare_contributor_id | String | Free | Identifier of the Tartare contributor t
     (1) Only one of the following fields 'tartare_coverage_id' and 'tartare_contributor_id' will be present. They are used to track the source of the data in Tartare in order to facilitate diagnosis.
 
 ### grid_calendars.txt (optional)
-This file contient les calendriers.
+This file contains the calendars.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-grid_calendar_id | String | Required | Identifiant du calendrier
-name | String | Required | Nom du calendrier
-monday | Integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-tuesday | Integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-wednesday | Integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-thursday | Integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-friday | Integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-saturday | Integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
-sunday | Integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+grid_calendar_id | String | Required | Identifier of the calendar.
+name | String | Required | Name of the calendar.
+monday | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
+tuesday | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
+wednesday | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
+thursday | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
+friday | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
+saturday | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
+sunday | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
 
 ### grid_exception_dates.txt (optional)
-This file contient les exceptions sur les calendriers des grilles horaires.
-
+This file contains the exceptions on the calendars of the schedules.
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-grid_calendar_id | String | Required | Identifiant du calendrier de grille horaire
-date | Date | Required | Date de l'exception
-type | Integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
+grid_calendar_id | String | Required | Identifier of the calendar of the schedules.
+date | Date | Required | Exception date.
+type | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
 
 ### grid_periods.txt (optional)
-This file contient les périodes des calendriers des grilles horaires.
+This file contains the periods of the calendars of the schedules.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-grid_calendar_id | String | Required | Identifiant du calendrier de grille horaire
-start_date | Date | Required | Date de début
-end_date | Date | Required | Date de fin
+grid_calendar_id | String | Required | Identifier of the calendar of the schedules.
+start_date | Date | Required | Start date.
+end_date | Date | Required | End date.
 
 ### grid_rel_calendar_line.txt (optional)
-This file contient toutes les relations entre les lignes et les calendriers des grilles horaires.
+This file contains all the links between the lines and the calendars of the schedules.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-grid_calendar_id | String | Required | Identifiant du calendrier de grille horaire
-line_id | String | Required | Identifiant de la ligne associée à ce calendrier (link to the file [`lines.txt`](#linestxt-required)). Ce champ peut être vide si le champ line_external_code est renseigné.
-line_external_code | String | Required | cette colonne contient le code externe NAViTiA 1 de la ligne (link to the file [`lines.txt`](#linestxt-required)). Ce champ peut être vide si le champ line_id et renseigné
+grid_calendar_id | String | Required | Identifier of the calendar of the schedules.
+line_id | String | Required | Identifier of the line associated with this calendar (link to the file [`lines.txt`](#linestxt-required)). This field can be empty if the line_external_code field is filled.
+line_external_code | String | Required | This column contains the external code NAViTiA 1 of the line (link to the file [`lines.txt`](#linestxt-required)). This field can be empty if the line_id field is filled.
 
 # Évolutions possibles du format
 Ce chapitre liste des évolutions du format qui peuvent être intéressantes si elles sont utiles concrètement.
