@@ -517,25 +517,25 @@ reversed_signposted_as | String | Optional | String of text which informs the tr
 ### levels.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-level_id | String | Required | Identifiant du niveau
-level_index | Decimal | Required | Numéro de l'étage, le rez-de-chaussée est indiqué à 0, les étages sous le sol sont avec une valeur négative.
-level_name | String | Optional | Nom associé au niveau (comme par exemple "Mezzanine").
+level_id | String | Required | Identifier of the level.
+level_index | Decimal | Required | Numeric index of the level. The ground floor has index 0 and levels below ground are indicated by negative indices.
+level_name | String | Optional | Name of the level (e.g. "Mezzanine").
 
 ### addresses.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-address_id | String | Required | Identifiant de l'adresse
-street_name | String | Required | Nom de la voierie
-house_number | String | Optional | Numéro du seuil
+address_id | String | Required | Identifier of the address.
+street_name | String | Required | Name of the street.
+house_number | String | Optional | Number of the building.
 
 ### line_groups.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-line_group_id | String | Required | Identifiant du groupe de ligne
-line_group_name | String | Required | Nom du groupe de ligne
-main_line_id | String | Required | Identifiant de la ligne principale du groupe de lignes (link to the file [`lines.txt`](#linestxt-required))
+line_group_id | String | Required | Identifier of the group of lines.
+line_group_name | String | Required | Name of the group of lines.
+main_line_id | String | Required | Identifier of the main line of the group of lines (link to the file [`lines.txt`](#linestxt-required))
 
-Un commentaire peut être associé à un groupe de lignes dans les fichiers [`comments.txt`](#commentstxt-optional) et et [`comment_links.txt`](#comment_linkstxt-optional) .
+A comment can be associated with a group of lines in the files [`comments.txt`](#commentstxt-optional) and [`comment_links.txt`](#comment_linkstxt-optional) .
 
 ### line_group_links.txt (optional)
 Column | Type | Constraint | Note
