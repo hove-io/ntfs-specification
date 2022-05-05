@@ -116,8 +116,8 @@ end_date | Date | Required | End date of the circulation (included).
 
 (1) Valid options are :
 
-* 0 - Service is available on this day
-* 1 - Service is not available on this day
+* 0 - Service is not available on this day
+* 1 - Service is available on this day
 
 ### calendar_dates.txt (optional)
 This file contains the exceptions on the operating days described in the file [`calendar.txt`](#calendartxt-required). For specific circulations, it is possible to set a calendar using the file [`calendar_dates.txt`](#calendar_datestxt-optional) only. As a result, the header `service_id` will not appear in the file [`calendar.txt`](#calendartxt-required).
@@ -344,7 +344,7 @@ address_id | String | Optional | Identifier of the stop's address (link to the f
         2 - Stop zone (for the "address to address" zonal ODT)
         3 - Entrance/Exit
         4 - Pathways Interconnection Node
-        5 - Boarding area (for example to indicate the "middle of the platform")
+        5 - Boarding area (for example to indicate "middle of the platform")
 
 
 ### stop_times.txt (required)
