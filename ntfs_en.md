@@ -111,8 +111,8 @@ thursday | Integer | Required | (1)
 friday | Integer | Required | (1)
 saturday | Integer | Required | (1)
 sunday | Integer | Required | (1)
-start_date | date | Required |  Start date of the circulation (included).
-end_date | date | Required | End date of the circulation (included).
+start_date | Date | Required |  Start date of the circulation (included).
+end_date | Date | Required | End date of the circulation (included).
 
 (1) Valid options are :
 
@@ -125,7 +125,7 @@ This file contains the exceptions on the operating days described in the file [`
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 service_id | String | Required | Unique identifier of a set of dates.
-date | date | Required | Exception date
+date | Date | Required | Exception date
 exception_type | Integer | Required | (1)
 
 (1) Possible options are :
@@ -330,7 +330,7 @@ stop_lat | Decimal | Required (Special) | Latitude of the location. This field i
 stop_lon | Decimal | Required (Special) | Longitude of the location. This field is mandatory except for generic nodes (`location_type = 4`) and boarding areas (`location_type = 5`).
 fare_zone_id | String | Optional | Fare zone of the stop. This field only applies to stop points (`location_type = 0`).
 location_type | Integer (1) | Required | Type of the location.
-geometry_id | geometry | Optional | This field is linked to the file [`geometries.txt`](#geometriestxt-optional) which describes the geometry of a stop zone (`location_type = 2`) to let the engine define the addresses in case of an "address to address" zonal ODT. This field can also be used to specify a geometry for stop areas (`location_type = 1`) and municipalities (`location_type = 4`) to enrich the web service.
+geometry_id | Geometry | Optional | This field is linked to the file [`geometries.txt`](#geometriestxt-optional) which describes the geometry of a stop zone (`location_type = 2`) to let the engine define the addresses in case of an "address to address" zonal ODT. This field can also be used to specify a geometry for stop areas (`location_type = 1`) and municipalities (`location_type = 4`) to enrich the web service.
 parent_station | String | Optional | Identifier of the stop area. Must not be filled in for stop areas (`location_type = 1`) and stop zones (`location_type = 2`).
 stop_timezone | Timezone | Optional | Time zone of the location (refer to http://en.wikipedia.org/wiki/List_of_tz_zones). This field only concerns stop points (`location_type = 0`). The scheduled time of the stop uses the timezone of the trip's network, not the timezone of the stop even if they are different.
 equipment_id | String | Optional | Identifier of the equipment.
@@ -486,32 +486,32 @@ stop_id | String | Required | Identifier of the stop area used to represent the 
 stop_name | String | Optional | Name of the stop area (to aid the readability of the file).
 
 ### pathways.txt (optional)
-Attention, This file décrit une modélisation de la station qui n'est pas nécessairement géographique, et peut également être simplifiée.
-La modélisation des chemins d'une zone d'arrêt ne peut pas être partielle. Dès qu'un chemin est renseigné pour une zone d'arrêt, il est considéré que toute la station est renseignée.
+Note : This file describes a modeling of the station that is not necessarily geographical and can also be simplified. Modeling the pathways of a stop zone cannot be partial. Once a pathway is filled in for a stop zone, the entire station is considered filled in.
+Attention, ce fichier décrit une modélisation de la station qui n'est pas nécessairement géographique, et peut également être simplifiée.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-pathway_id | String | Required | Identifiant du chemin
-from_stop_id | String | Required | Identifiant noeud de début du chemin dans le fichier [`stops.txt`](#stopstxt-required). Ce noeud de départ peut être un point d'arrêt, une entrée/sortie, un noeud générique ou une zone d'embarquement.
-to_stop_id | String | Required | Identifiant noeud de fin du chemin (même contraintes que `from_stop_id`).
-pathway_mode | integer(1) | Required | Type de chemin. voir ci-dessous pour les valeurs possibles.
-is_bidirectional | booléen | Required | Indique si le chemin est utilisable dans les deux sens ou uniquement dans le sens from->to.
-length | Decimal | Optional | Distance en mètres entre les deux extrémités du chemin
-traversal_time | Integer | Optional | Temps moyen de parcours en secondes.
-stair_count | Integer | Optional | Nombre de marches (approximatif).
-max_slope | Decimal | Optional | Ratio maximum de la pente sur ce chemin.
-min_width | Decimal | Optional | Largeur minimale de ce chemin
-signposted_as | String | Optional | Texte indiqué au voyageur indiquant ce chemin
-reversed_signposted_as | String | Optional | Texte indiqué au voyageur dans le sens inverse (si le chemin est indiqué comme bidirectionnel)
+pathway_id | String | Required | Identifier of the pathway. 
+from_stop_id | String | Required | Identifier of the start node of the pathway in the [`stops.txt`](#stopstxt-required) file. This start node can be a stop point, an entrance/exit, a generic node or a boarding area.
+to_stop_id | String | Required | Identifier of the end node of the pathway (same constraints as `from_stop_id`).
+pathway_mode | Integer (1) | Required | Type of pathway. See below for valid values.
+is_bidirectional | Boolean | Required | Indicates whether the path can be used in both directions or only in the from->to direction.
+length | Decimal | Optional | Distance in meters between the two endpoints of the path.
+traversal_time | Integer | Optional | Average travel time in seconds.
+stair_count | Integer | Optional | Number of stairs (estimated).
+max_slope | Decimal | Optional | Maximum slope ratio on the pathway.
+min_width | Decimal | Optional | Minimum width of the pathway.
+signposted_as | String | Optional | String of text which informs the travelers about the pathway.
+reversed_signposted_as | String | Optional | String of text which informs the travelers in the opposite direction (if the pathway is specified as bidirectional).
 
-    (1) pathway_mode - Les valeurs possibles sont :
-        1 - Couloir
-        2 - Escalier
-        3 - Trottoir roulant / travelator
-        4 - Escalier mécanique
-        5 - Ascenseur
-        6 - Entrée dans une zone payante ("fare gate")
-        7 - Sortie de zone payante ("exit gate")
+    (1) pathway_mode - Valid values are :
+        1 - Walkway
+        2 - Stair
+        3 - Moving sidewalk / travelator
+        4 - Escalator
+        5 - Elevator
+        6 - Fare gate
+        7 - Exit gate
 
 
 ### levels.txt (optional)
