@@ -5,7 +5,7 @@ NTFS version 0.12
 
 NTFS is Kisio Digital's data exchange format : Navitia Transit Feed Specification. It aims to replace the CSV/Fusio format by addressing its weaknesses and managing all types of data in a single format (schedules, ODT, etc.).
 
-This new data format is strongly based on the GTFS data format (https://developers.google.com/transit/gtfs/reference?hl=en-US), with some enhancements allowing a more exhaustive description of the data. As such, the data format is constantly evolving (voir le [changelog](./ntfs_changelog_fr.md) ).
+This new data format is strongly based on the GTFS data format (https://developers.google.com/transit/gtfs/reference?hl=en-US), with some enhancements allowing a more exhaustive description of the data. As such, the data format is constantly evolving (see [changelog](./ntfs_changelog_fr.md)).
 
 # Data format
 
@@ -53,7 +53,7 @@ File | Constraint | Description
 [`calendar.txt`](#calendartxt-required) | Required | This file contains the days of operation.
 [`calendar_dates.txt`](#calendar_datestxt-optional) | Optional | This file contains the exceptions on the operating days described in the file [`calendar.txt`](#calendartxt-required).
 [`comments.txt`](#commentstxt-optional) | Optional | This file contains the comments.
-[`comment_links.txt`](#comment_linkstxt-optional) | Optional | This file contains les links between each comment and the related objects.
+[`comment_links.txt`](#comment_linkstxt-optional) | Optional | This file contains the links between each comment and the related objects.
 
 ## Additional files (excluding calendars per period)
 File | Constraint | Description
@@ -65,7 +65,7 @@ File | Constraint | Description
 [`geometries.txt`](#geometriestxt-optional) | Optional | This file contains the spatial representation of the geometries in the [Well Known Text (WKT)](https://www.wikiwand.com/en/Well-known_text_representation_of_geometry) format. Those geometries are referenced in the following files [`lines.txt`](#linestxt-required), [`routes.txt`](#routestxt-required), [`trips.txt`](#tripstxt-required).
 [`object_properties.txt`](#object_propertiestxt-optional) | Optional | This file contains the list of additional properties on any object of the model.
 [`object_codes.txt`](#object_codestxt-optional) | Optional | This file contains the list of additional identification codes for the objects of the model.
-[`admin_stations.txt`](#admin_stationstxt-optional) | Optional | This file contains the list of administrative stops for journeys to or from a town
+[`admin_stations.txt`](#admin_stationstxt-optional) | Optional | This file contains the list of administrative stops for journeys to or from a town.
 [`line_groups.txt`](#line_groupstxt-optional) | Optional | This file contains the list of groups of lines.
 [`line_group_links.txt`](#line_group_linkstxt-optional) | Optional | This file contains the links between a group of lines and the lines part of it.
 [`pathways.txt`](#pathwaystxt-optional) | Optional | This file contains the list of pathways within a stop area. (à compléter)
@@ -125,7 +125,7 @@ This file contains the exceptions on the operating days described in the file [`
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 service_id | String | Required | Unique identifier of a set of dates.
-date | Date | Required | Exception date
+date | Date | Required | Exception date.
 exception_type | Integer | Required | (1)
 
 (1) Possible options are :
@@ -137,7 +137,7 @@ exception_type | Integer | Required | (1)
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-comment_id | String | required | Identifier of the comment.
+comment_id | String | Required | Identifier of the comment.
 comment_type | String | Optional | (1)
 comment_label | String | Optional | Cross-reference character to the comment. If not specified, it will be generated automatically.
 comment_name | String | Required | Text of the comment.
@@ -438,7 +438,7 @@ This file contains the spatial representation of a geometry (for lines, routes a
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 geometry_id | String | Required | Identifier of the geometry.
-geometry_wkt | géométrie | Required | Spatial representation of the geometry according to the [Well Known Text (WKT)](https://www.wikiwand.com/en/Well-known_text_representation_of_geometry) standard.
+geometry_wkt | Geometry | Required | Spatial representation of the geometry according to the [Well Known Text (WKT)](https://www.wikiwand.com/en/Well-known_text_representation_of_geometry) standard.
 
     Lines and routes can only be represented as LINESTRING or MULTILINESTRING.
     Trips can only be represented as LINESTRING. If a MULTILINESTRING is specified, only the first LINESTRING will be used.
@@ -519,7 +519,7 @@ Column | Type | Constraint | Note
 --- | --- | --- | ---
 level_id | String | Required | Identifier of the level.
 level_index | Decimal | Required | Numeric index of the level. The ground floor has index 0 and levels below ground are indicated by negative indices.
-level_name | String | Optional | Name of the level (e.g. "Mezzanine").
+level_name | String | Optional | Name of the level (for example, "Mezzanine").
 
 ### addresses.txt (optional)
 Column | Type | Constraint | Note
@@ -540,50 +540,50 @@ A comment can be associated with a group of lines in the files [`comments.txt`](
 ### line_group_links.txt (optional)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-line_group_id | String | Required | Identifiant du groupe de ligne
-line_id | String | Required | Identifiant de la ligne faisant partie du groupe de lignes (link to the file [`lines.txt`](#linestxt-required)). Attention, une ligne peut faire partie de plusieurs groupes de lignes.
+line_group_id | String | Required | Identifier of the group of lines.
+line_id | String | Required | Identifier of the line part of the group of lines (link to the file [`lines.txt`](#linestxt-required)). Note : A line can be part of several groups of lines.
 
 ### feed_infos.txt (required)
-This file contient des informations sur le jeu de données et le système amont qui l'a généré. Pour faciliter son utilisation, la structure du fichier est générique, et la liste des informations est listée ci-dessous.
+This file contains information about the dataset and the system that generated it. For ease of use, the structure of the file is generic and the list of information is listed below.
 
-#### Description du format du fichier
+#### Description of the file format
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-feed_info_param | String | Required | Nom du paramètre
-feed_info_value | String | Required | Valeur du paramètre
+feed_info_param | String | Required | Name of the parameter.
+feed_info_value | String | Required | Value of the parameter.
 
-#### Description du contenu du fichier
+#### Description of the contents of the file
 
-This file contient 3 types de paramètres :
-* des paramètres obligatoires
-* des paramètres recommandés (optionals)
-* des paramètres libres (possibilité d'ajouter autant de paramètre que souhaité)
+This file contains 3 types of parameters :
+* mandatory parameters
+* recommended parameters (optional)
+* free parameters (possible to add as many parameters as desired).
 
-Le tableau ci-dessous liste les paramètres obligatoires et recommandés.
-
-Column | Type | Constraint | Note
---- | --- | --- | ---
-ntfs_version | String | Required | Version du format NTFS utilisé dans l'export (par exemple : "0.3")
-feed_start_date | date | Optional | Date de début de validité du jeu de données
-feed_end_date | date | Optional | Date de fin de validité du jeu de données
-feed_creation_date |  date |  Optional | Date (UTC) de génération du jeu de données
-feed_creation_time | heure | Optional | Heure (UTC) de génération du jeu de données
-feed_creation_datetime | instant | Optional | Date et heure (UTC) de génération du jeu de données
-
-Le tableau ci-dessous indique les paramètres libres renseignés par Kisio Digital (dépend de l'outil qui génère les données).
+The table below lists the required and recommended parameters.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-feed_publisher_name | String | Libre | Société/Entité fournissant le jeu de données
-feed_license | String | Libre | Licence d'utilisation des données globale du référentiel
-feed_license_url | String | Libre | URL associée à la license d'utilisation des données
-fusio_url | String | Libre | URL du système ayant généré le jeu de données
-fusio_version | String | Libre | Version du système ayant généré le jeu de données
-tartare_platform | String | Libre | Tag indiquant la plateforme qui a généré les données
-tartare_coverage_id | String | Libre | Id du coverage Tartare ayant généré le jeu de données (1)
-tartare_contributor_id | String | Libre | Id du contributeur Tartare ayant généré le jeu de données (1)
+ntfs_version | String | Required | Version of the NTFS format used in the export file (for example, "0.3").
+feed_start_date | Date | Optional | Validity start date of the dataset.
+feed_end_date | Date | Optional | Validity end date of the dataset.
+feed_creation_date |  Date |  Optional | Date (UTC) on which the dataset was created.
+feed_creation_time | Time | Optional | Time (UTC) on which the dataset was created.
+feed_creation_datetime | Datetime | Optional | Date and time (UTC) on which the dataset was created.
 
-    (1) seul l'un des champs `tartare_coverage_id` et `tartare_contributor_id` sera présent. Il servent a tracer la source de la donnée dans Tartare afin de faciliter les diagnostiques.
+The table below shows the free parameters entered by Hove (depends on the tool that generates the data).
+
+Column | Type | Constraint | Note
+--- | --- | --- | ---
+feed_publisher_name | String | Free | Name of the organization that provides the dataset.
+feed_license | String | Free | Data license of the model.
+feed_license_url | String | Free | URL associated with the data license.
+fusio_url | String | Free | URL of the system that generated the dataset.
+fusio_version | String | Free | Version of the system that generated the dataset.
+tartare_platform | String | Free | Tag indicating the platform that generated the data.
+tartare_coverage_id | String | Free | Identifier of the Tartare coverage that generated the dataset (1).
+tartare_contributor_id | String | Free | Identifier of the Tartare contributor that generated the dataset (1).
+
+    (1) Only one of the following fields 'tartare_coverage_id' and 'tartare_contributor_id' will be present. They are used to track the source of the data in Tartare in order to facilitate diagnosis.
 
 ### grid_calendars.txt (optional)
 This file contient les calendriers.
@@ -606,7 +606,7 @@ This file contient les exceptions sur les calendriers des grilles horaires.
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 grid_calendar_id | String | Required | Identifiant du calendrier de grille horaire
-date | date | Required | Date de l'exception
+date | Date | Required | Date de l'exception
 type | Integer | Required | 0 : Ne circule pas ce jour <br> 1 : Circule ce jour
 
 ### grid_periods.txt (optional)
@@ -615,8 +615,8 @@ This file contient les périodes des calendriers des grilles horaires.
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 grid_calendar_id | String | Required | Identifiant du calendrier de grille horaire
-start_date | date | Required | Date de début
-end_date | date | Required | Date de fin
+start_date | Date | Required | Date de début
+end_date | Date | Required | Date de fin
 
 ### grid_rel_calendar_line.txt (optional)
 This file contient toutes les relations entre les lignes et les calendriers des grilles horaires.
