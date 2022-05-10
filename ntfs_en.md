@@ -330,7 +330,7 @@ stop_lat | Decimal | Required (Special) | Latitude of the location. This field i
 stop_lon | Decimal | Required (Special) | Longitude of the location. This field is mandatory except for generic nodes (`location_type = 4`) and boarding areas (`location_type = 5`).
 fare_zone_id | String | Optional | Fare zone of the stop. This field only applies to stop points (`location_type = 0`).
 location_type | Integer (1) | Required | Type of the location.
-geometry_id | Geometry | Optional | This field is linked to the file [`geometries.txt`](#geometriestxt-optional) which describes the geometry of a stop zone (`location_type = 2`) to let the engine define the addresses in case of an "address to address" zonal ODT. This field can also be used to specify a geometry for stop areas (`location_type = 1`) and municipalities (`location_type = 4`) to enrich the web service.
+geometry_id | Geometry | Optional | This field is linked to the file [`geometries.txt`](#geometriestxt-optional) that describes the geometry of a stop zone (`location_type = 2`) to let the engine define the addresses for an "address to address" zonal ODT. This field can also be used to specify a geometry for stop areas (`location_type = 1`) and municipalities (`location_type = 4`) to enrich the web service.
 parent_station | String | Optional | Identifier of the stop area. Must not be filled in for stop areas (`location_type = 1`) and stop zones (`location_type = 2`).
 stop_timezone | Timezone | Optional | Time zone of the location (refer to http://en.wikipedia.org/wiki/List_of_tz_zones). This field only concerns stop points (`location_type = 0`). The scheduled time of the stop uses the timezone of the trip's network, not the timezone of the stop even if they are different.
 equipment_id | String | Optional | Identifier of the equipment.
@@ -375,7 +375,7 @@ stop_time_precision | Integer (2) | Optional | Indicates whether the scheduled t
         0 - The scheduled time is expected to be precise
         1 - The scheduled time is approximative; corresponding to the case timepoint = 0 in the GTFS, e.g. a schedule which is regular but not associated with ? un horaire régulier mais qui n'est pas associé à un arrêt de régulation.?
         ??? The time at a stop for a bus that is trying to regulate its delays
-        2 - The scheduled time is not guaranteed; corresponding to approximated or interpolated times e.g. the estimated time of a ODT
+        2 - The scheduled time is not guaranteed; corresponding to approximated or interpolated times e.g. the estimated time of an ODT
         Not specified :
             if the location is a stop area (location_type = 2), the scheduled time is not guaranteed
             else, the scheduled time is considered exact
@@ -408,9 +408,9 @@ school_vehicle_type | Integer (2) | Optional | Type of school transport.
         2 - The equipment is not available
 
     (2) Type of school transport :
-        0 (or empty)  : regular transport (non-school)
+        0 (or empty)  : regular transport (non-school one)
         1 - School transport exclusively
-        2 - Mixed transport (school and regular)
+        2 - Mixed transport (school and regular one)
 
 ### trips.txt (required)
 Column | Type | Constraint | Note
@@ -566,9 +566,9 @@ Column | Type | Constraint | Note
 ntfs_version | String | Required | Version of the NTFS format used in the export file (for example, "0.3").
 feed_start_date | Date | Optional | Validity start date of the dataset.
 feed_end_date | Date | Optional | Validity end date of the dataset.
-feed_creation_date |  Date |  Optional | Date (UTC) on which the dataset was created.
-feed_creation_time | Time | Optional | Time (UTC) on which the dataset was created.
-feed_creation_datetime | Datetime | Optional | Date and time (UTC) on which the dataset was created.
+feed_creation_date |  Date |  Optional | Date (UTC) of creation of the dataset.
+feed_creation_time | Time | Optional | Time (UTC) of creation of the dataset..
+feed_creation_datetime | Datetime | Optional | Date and time (UTC) of creation of the dataset.
 
 The table below shows the free parameters entered by Hove (depends on the tool that generates the data).
 
