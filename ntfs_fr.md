@@ -254,7 +254,7 @@ Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 physical_mode_id | chaine | Requis | Identifiant du mode physique obligatoirement dans la liste ci-dessous.
 physical_mode_name | chaine | Requis | Nom du mode physique
-co2_emission | décimal | Optionnel | Taux d’émission de CO2 du mode physique par voyageur et par km.
+co2_emission | décimal | Optionnel | Taux d’émission de CO2 du mode physique en grammes par voyageur et par km.
 
 **Liste des modes physique disponible :**
 

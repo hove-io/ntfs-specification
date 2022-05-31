@@ -99,3 +99,5 @@
     * Les `stop_times` peuvent maintenant être des points de passage (pas d'arrêt du véhicule)
 * Version 0.12.2 du 20/10/2021
     * Correction de la documentation sur `date_time_estimated` qui est maintenant `stop_time_precision`
+* Version 0.12.3 du 31/05/2022
+    * Précision de documentation concernant l'unité utilisée pour le CO2
