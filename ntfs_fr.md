@@ -196,13 +196,15 @@ Colonne | Type | Contrainte | Commentaire
 dataset_id | chaine | Requis | Identifiant du jeu de données
 contributor_id | chaine | Requis | Identifiant du contributeur (lien vers le fichier [`contributors.txt`](#contributorstxt-requis))
 dataset_start_date | date | Requis | Date de début de prise en compte du jeu de données (peut-être différent de la date de début de validité de l'export source)
-dataset_end_date | date | Requis | Date de fin de prise en compte du jeu de données (peut-être différent de la date de fin de validité de l'export source)
-dataset_type | entier (1) | Optionnel | Type de données représentant la "fraicheur"
+dataset_end_date | date (1) | Requis | Date de fin de prise en compte du jeu de données (peut-être différent de la date de fin de validité de l'export source).
+dataset_type | entier (2) | Optionnel | Type de données représentant la "fraicheur"
 dataset_extrapolation | entier | Optionnel | Indique si les données du service ont été extrapolées (le champ a pour valeur 1) ou non (le champ a pour valeur 0)
 dataset_desc | chaine | Optionnel | Note indiquant le contenu du jeu de données
 dataset_system | chaine | Optionnel | Nom du système source ayant généré les données ou du format des données
 
-(1) Spécifie le type de données :
+(1) La date indiquée est interprétée comme J à 00:00 UTC+2. Si vous indiquez une date de fin au 28/08/2022, Navitia considère donc que le dataset se termine au 28/08/2022 00:00 UTC+2 (il n'inclut donc pas l'éventuelle journée d'exploitation du 28/08/2022)
+
+(2) Spécifie le type de données :
 
 * 0 - il s'agit de données théoriques
 * 1 - il s'agit de données de grèves ou révisées
