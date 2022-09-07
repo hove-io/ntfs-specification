@@ -202,7 +202,7 @@ dataset_extrapolation | entier | Optionnel | Indique si les données du service 
 dataset_desc | chaine | Optionnel | Note indiquant le contenu du jeu de données
 dataset_system | chaine | Optionnel | Nom du système source ayant généré les données ou du format des données
 
-(1) La date indiquée est interprétée comme J à 00:00 UTC+2. Si vous indiquez une date de fin au 28/08/2022, Navitia considère donc que le dataset se termine au 28/08/2022 00:00 UTC+2 (il n'inclu donc pas l'éventuelle journée d'exploitation du 28/08/2022)
+(1) La date indiquée est interprétée comme J à 00:00 UTC+2. Si vous indiquez une date de fin au 28/08/2022, Navitia considère donc que le dataset se termine au 28/08/2022 00:00 UTC+2 (il n'inclut donc pas l'éventuelle journée d'exploitation du 28/08/2022)
 
 (2) Spécifie le type de données :
 
