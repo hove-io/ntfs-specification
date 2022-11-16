@@ -203,8 +203,8 @@ dataset_system | String | Optional | Name of the system that generated the data 
 
 (1) Specifies the data type :
 
-* 0 - These are theoretical data
-* 1 - These are strike or revised data
+* 0 - These are planned data
+* 1 - These are adjusted or strike data
 * 2 - These are D-Day production data ?
 
 ### frequencies.txt (optional)
@@ -626,35 +626,36 @@ grid_calendar_id | String | Required | Identifier of the calendar of the schedul
 line_id | String | Required | Identifier of the line associated with this calendar (link to the file [`lines.txt`](#linestxt-required)). This field can be empty if the line_external_code field is filled.
 line_external_code | String | Required | This column contains the external code NAViTiA 1 of the line (link to the file [`lines.txt`](#linestxt-required)). This field can be empty if the line_id field is filled.
 
-# Évolutions possibles du format
-Ce chapitre liste des évolutions du format qui peuvent être intéressantes si elles sont utiles concrètement.
-## Modification du champ service_id et du nom du fichier [`calendar.txt`](#calendartxt-required)
-L'identifiant d'un calendrier ne suit pas la même convention que les autres identifiants (même s'il est cohérent avec le GTFS). Une évolution possible serait de changer le libellé du champ pour indiquer "calendar_id".
-De plus, le nom du fichier pourra être changé en `calendars.txt` pour améliorer la cohérence.
+# Possible developments of the format
+This chapter lists interesting changes that can be made to the format if useful.
 
-## Gestion des données perturbées / de grèves
-Afin de limiter la complexité du format, la gestion des données de grève sera effectuée par plusieurs exports :
+## Change the name of the file [`calendar.txt`](#calendartxt-required) and its field service_id
+The identifier of a calendar does not follow the same convention as the other identifiers (although consistent with the GTFS format). It could be interesting to change the wording to "calendar_id". The name of the file could also be changed to `calendars.txt` to improve its consistency.
 
-1. un export contenant toutes les données théoriques du référentiel. L'export NTFS est un export classique, et dont la clé "revised_networks" du fichier [`feed_infos.txt`](#feed_infostxt-required) est vide ou non renseignée.
-2. un ou plusieurs exports NTFS de grèves, dont chaque export fournit toutes les données (impactées par la grève ou non) :
-    * de un ou plusieurs réseaux spécifiés par la clé **revised_networks** du fichier [`feed_infos.txt`](#feed_infostxt-required)
-    * pour des données valides entre les dates spécifiées par **feed_start_date** et **feed_end_date**
+## Management of adjusted / strike data
+In order to limit the complexity of the format, the management of strike data will be done by several exports :
 
-Un champ complémentaire et optionnel "base_trip_id" est à prévoir dans le fichier [`trips.txt`](#tripstxt-required) afin de permettre d'associer la circulation théorique et la circulation adaptée (en cas de données de grève par exemple).
+1. an export containing the planned data of the repository. The NTFS export is a traditional export and the key "revised_networks" of its file [`feed_infos.txt`](#feed_infostxt-required) is empty.
 
-## Gestion avancée des géométries (tracés des lignes, parcours et circulations)
-Afin de ne pas complexifier inutilement le format NTFS et les outils qui vont le manipuler, le fichier [`geometries.txt`](#geometriestxt-optional) indique un tracé complet pour une géométrie, comme une ligne en fourche ou une ligne à tiroir.  Afin de pouvoir afficher le tracé réel des bus dans la feuille de route (ie. n'avoir que la portion utilisée de la ligne), un découpage de cette géométrie est réalisé dans Navitia de manière automatique.
-Si le besoin d'affiner cette gestion est validé, une évolution du format du fichier [`geometries.txt`](#geometriestxt-optional) peut être envisagé de la manière suivante (à confirmer) :
-* Une ligne représentera un segment de la ligne/parcours/circulation entre deux points d'arrêts consécutifs (et de manière orientée ?)
-* La précision des points d'arrêts d'origine et de destination du segment est faite par l'ajout de deux colonnes optionnelles
+2. one or several strike NTFS exports, each of them providing all the data (affected by the strike or not) :
+    * of one or more networks specified by the key **revised_networks** of the file [`feed_infos.txt`](#feed_infostxt-required)
+    * for valid data between the dates specified by **feed_start_date** and **feed_end_date**
 
-## Gestion de l'émission de CO2 par ligne ou véhicule
-L'émission de CO2 est gérée en France par mode de transport. Les valeurs sont spécifiées par l'ADEME. Le format NTFS permet d'échanger cette information au niveau du mode physique. En fonction des besoins rencontrés à l'avenir, un ajout de cette informaion au niveau de la ligne et/ou du véhicule est envisagée. Dans ce cas, un système de "surcharge" de l'inforamtion sera à mettre en place pour prendre en compte par priorité :
+An additional and optional field "base_trip_id" should be provided in the file [`trips.txt`](#tripstxt-required) in order to associate the planned and adjusted circulations (in case of strike data for instance).
 
-1. le taux au niveau du véhicule s'il est disponible
-2. le taux au niveau de la ligne s'il est disponible
-3. le taux au niveau du mode s'il est disponible
-4. une indication sur le fait que la valeur est inconnue
+## Advanced management of geometries (shape of lines, routes and circulations)
+In order not to unnecessarily complicate the NTFS format and the tools that will manipulate it, the file [`geometries.txt`](#geometriestxt-optional) indicates a complete layout for a geometry, such as a forked line or a drawer line. To be able to display the real layout of the buses in the road map (i.e. the section used by the line only), a segmentation of this geometry is done automatically in Navitia.
+If the need to refine this management is confirmed, the format of the file [`geometries.txt`](#geometriestxt-optional) can be improved as follows (to be confirmed):
+* A line will represent a segment of the line/course/circulation between two consecutive stop points (and in an oriented way?)
+* The definition of the origin and destination stop points of the segment is made by adding two optional columns
+
+## Management of CO2 emissions per line or vehicle
+CO2 emissions are managed in France per transport mode. The values are specified by ADEME, the French Environment and Energy Control Agency. The NTFS format allows this information to be linked to the physical mode. Depending on the needs in the future, an addition of this information to the line and/or the vehicle is considered. In this case, an "overload" system of the information has to be set up to take into account by priority:
+
+1. the ratio at the vehicle level if available
+2. the ratio at the line level if available
+3. the ratio at the mode level if available
+4. an indication that the value is unknown
 
 ## Gestion d'un service (ex : Acces+)
 Ajouter la notion de "service" pour un accompagnement sur un réseau de transport, comme par exemple :
