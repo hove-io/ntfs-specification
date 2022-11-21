@@ -3,7 +3,7 @@ NTFS version 0.12
 
 # Introduction
 
-NTFS is Kisio Digital's data exchange format : Navitia Transit Feed Specification. It aims to replace the CSV/Fusio format by addressing its weaknesses and managing all types of data in a single format (schedules, ODT, etc.).
+NTFS is Kisio Digital's data exchange format : Navitia Transit Feed Specification. It aims to replace the CSV/Fusio format by addressing its weaknesses and managing all types of data in a single format (timetables, ODT, etc.).
 
 This new data format is strongly based on the GTFS data format (https://developers.google.com/transit/gtfs/reference?hl=en-US), with some enhancements allowing a more exhaustive description of the data. As such, the data format is constantly evolving (see [changelog](./ntfs_changelog_fr.md)).
 
@@ -47,7 +47,7 @@ File | Constraint | Description
 [`lines.txt`](#linestxt-required) | Required | This file contains the lines.
 [`physical_modes.txt`](#physical_modestxt-required) | Required | This file contains the physical modes (NAViTiA 1 ModeType).
 [`routes.txt`](#routestxt-required) | Required | This file contains the routes.
-[`stop_times.txt`](#stop_timestxt-required) | Required | This file contains the scheduled times.
+[`stop_times.txt`](#stop_timestxt-required) | Required | This file contains the timetables.
 [`stops.txt`](#stopstxt-required) | Required | This file contains the stops, entrances/exits and pathways nodes.
 [`trips.txt`](#tripstxt-required) | Required | This file contains the trips.
 [`calendar.txt`](#calendartxt-required) | Required | This file contains the days of operation.
@@ -149,7 +149,7 @@ comment_url | String | Optional | URL giving more information about the note suc
 * on_demand_transport : indicates an information note about an On Demand Transportation service. This note must specify the reservation's conditions and telephone number.
 
 ### comment_links.txt (optional)
-This file links an object (line, stop, scheduled time, etc.) to a comment and associates multiple notes with an object and multiple objects with a note.
+This file links an object (line, stop, timetables, etc.) to a comment and associates multiple notes with an object and multiple objects with a note.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
@@ -205,7 +205,7 @@ dataset_system | String | Optional | Name of the system that generated the data 
 
 * 0 - These are planned data
 * 1 - These are adjusted or strike data
-* 2 - These are D-Day production data ?
+* 2 - These are D-Day production data
 
 ### frequencies.txt (optional)
 Column | Type | Constraint | Note
@@ -257,7 +257,7 @@ co2_emission | Decimal | Optional | CO2 emission rate of the physical mode per p
 
 **List of available physical modes :**
 
-There is a hierarchy of modes to classify stop areas by their highest level mode (cf. norme ? [NeTEx (in french)](http://www.normes-donnees-tc.org/wp-content/uploads/2014/05/NF_Profil_NeTEx_pour_les_arrets-_F-_-_v2.pdf) , chapitre 6.2.3)
+There is a hierarchy of modes to classify stop areas by their highest level mode (cf. norme [NeTEx (in french)](http://www.normes-donnees-tc.org/wp-content/uploads/2014/05/NF_Profil_NeTEx_pour_les_arrets-_F-_-_v2.pdf) , chapitre 6.2.3)
 
     1. Aérien
     2. Maritime/Fluvial
@@ -289,7 +289,7 @@ Taxi | Taxi | 7
 Train | Train | 3
 Tramway | Tramway | 5
 
-The list of physical modes below completes the previous one with the possible feeder modes in an itinerary in order to associate them with a CO2 rate in the export.
+The list of physical modes below completes the previous one with the possible feeder modes in an itinerary in order to associate them with a CO2 emission rate in the export.
 
 Physical mode code | Physical mode name
 --- | ---
@@ -332,7 +332,7 @@ fare_zone_id | String | Optional | Fare zone of the stop. This field only applie
 location_type | Integer (1) | Required | Type of the location.
 geometry_id | Geometry | Optional | This field is linked to the file [`geometries.txt`](#geometriestxt-optional) that describes the geometry of a stop zone (`location_type = 2`) to let the engine define the addresses for an "address to address" zonal ODT. This field can also be used to specify a geometry for stop areas (`location_type = 1`) and municipalities (`location_type = 4`) to enrich the web service.
 parent_station | String | Optional | Identifier of the stop area. Must not be filled in for stop areas (`location_type = 1`) and stop zones (`location_type = 2`).
-stop_timezone | Timezone | Optional | Time zone of the location (refer to http://en.wikipedia.org/wiki/List_of_tz_zones). This field only concerns stop points (`location_type = 0`). The scheduled time of the stop uses the timezone of the trip's network, not the timezone of the stop even if they are different.
+stop_timezone | Timezone | Optional | Time zone of the location (refer to http://en.wikipedia.org/wiki/List_of_tz_zones). This field only concerns stop points (`location_type = 0`). The timetable of the stop uses the timezone of the trip's network, not the timezone of the stop even if they are different.
 equipment_id | String | Optional | Identifier of the equipment.
 level_id | String | Optional | Link to a level described in the file [`levels.txt`](#levelstxt-optional).
 platform_code | String | Optional | Identifier of a stop's plateform (for example `G` or `3`). This field only concerns stop points (`location_type = 0`) or boarding areas (`location_type = 5`).
@@ -350,7 +350,7 @@ address_id | String | Optional | Identifier of the stop's address (link to the f
 ### stop_times.txt (required)
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-stop_time_id | String | Optional | Unique identifier of the scheduled time in a dataset. This information is not sustainable and only links a scheduled time (file [`stop_times.txt`](#stop_timestxt-required)) to a comment (file [`comments.txt`](#commentstxt-optional)) using the file [`comment_links.txt`](#comment_linkstxt-optional). If this field is not provided, the scheduled time will not be linked to a comment.
+stop_time_id | String | Optional | Unique identifier of the timetable in a dataset. This information is not sustainable and only links a timetable (file [`stop_times.txt`](#stop_timestxt-required)) to a comment (file [`comments.txt`](#commentstxt-optional)) using the file [`comment_links.txt`](#comment_linkstxt-optional). If this field is not provided, the timetable will not be linked to a comment.
 trip_id | String | Required | Identifier of the trip.
 arrival_time | Time | Required | Arrival time. If the arrival time is unknown, it must be estimated by the system providing the data and the field *stop_time_precision* must be specified at 1. If alighting is forbidden at this stop, the arrival time must be indicated and the field *drop_off_type* must be specified at 1.
 departure_time | Time | Required | Departure time. If the departure time is unknown, it must be estimated by the system providing the data and the field *stop_time_precision* must be specified at 1. If boarding is forbidden at this stop, the departure time must be indicated and the field *pickup_type* must be specified at 1.
@@ -360,25 +360,24 @@ stop_id | String | Required | Identifier of the stop point (general case). This 
 stop_sequence | Integer | Required | Order of stops scheduled for a trip. This value must be necessarily positive or equal to zero and must increase along the trip.
 stop_headsign | String | Optional | Wording to be displayed to the passenger instead of `trip_headsign` at that stop.
 trip_short_name_at_stop | String | Optional | Name to be displayed to the passenger instead of `trip_short_name` at that stop.
-pickup_type | Integer (1) | Optional | Indication on the scheduled time (from the gtfs file).
-drop_off_type | Integer (1) | Optional | Indication on the scheduled time (from the gtfs file).
-local_zone_id  | Integer | Optional | Identifier of the boarding restriction area of the scheduled time.
-stop_time_precision | Integer (2) | Optional | Indicates whether the scheduled time is exact or approximative.
+pickup_type | Integer (1) | Optional | Indication on the timetable (from the gtfs file).
+drop_off_type | Integer (1) | Optional | Indication on the timetable (from the gtfs file).
+local_zone_id  | Integer | Optional | Identifier of the ITL (french acronym for local traffic ban) area of the timetable.
+stop_time_precision | Integer (2) | Optional | Indicates whether the timetable is exact or approximative.
 
     (1)  Valid options are :
         0 (default entry) - Continuous pickup or drop off
         1 - Boarding or alighting forbidden i.e. no pickup or drop off available
-        2 - Scheduled time on reservation for an ODT service. If a message is associated with an ODT, see its link with the file comment_links.txt
+        2 - Timetable on reservation for an ODT service. If a message is associated with an ODT, see its link with the file comment_links.txt
         3 - The vehicle does not stop (only passing through) ; in this case, both pickup_type and drop_off_type must be equal to 3
 
     (2) Reliability can take the following values :
-        0 - The scheduled time is expected to be precise
-        1 - The scheduled time is approximative; corresponding to the case timepoint = 0 in the GTFS, e.g. a schedule which is regular but not associated with ? un horaire régulier mais qui n'est pas associé à un arrêt de régulation.?
-        ??? The time at a stop for a bus that is trying to regulate its delays
-        2 - The scheduled time is not guaranteed; corresponding to approximated or interpolated times e.g. the estimated time of an ODT
+        0 - The timetable is expected to be precise
+        1 - The timetable is approximative (case where timepoint = 0 in the GTFS), e.g. a regular timetable not associated to a stop of regulation
+        2 - The timetable is not guaranteed; corresponding to approximated or interpolated timetables e.g. the estimated timetable of an ODT
         Not specified :
-            if the location is a stop area (location_type = 2), the scheduled time is not guaranteed
-            else, the scheduled time is considered exact
+            if the location is a stop area (location_type = 2), the timetable is not guaranteed
+            else, the timetable is considered exact
 
 ### transfers.txt (optional)
 Column | Type | Constraint | Note
@@ -429,7 +428,7 @@ geometry_id | String | Optional | Identifier of a geospatial shape representing 
 journey_pattern_id | String | Optional | Identifier of the mission (i.e. an ordered sequence of stops with the same properties and sometimes known to the passenger).
 
     To specify whether part or the whole trip is on reservation, it is necessary to :
-        Indicate at the scheduled time (file stop_times.txt) if the boarding and/or alighting is on reservation
+        Indicate at the timetable (file stop_times.txt) if the boarding and/or alighting is on reservation
         Specify an ODT comment (optional) via the comments.txt and comment_links.txt files
 
 ### geometries.txt (optional)
@@ -450,7 +449,7 @@ geometry_wkt | Geometry | Required | Spatial representation of the geometry acco
     The format of the file is deliberately simple, an evolution can be considered if necessary.
 
 ### object_properties.txt (optional)
-This file contains the list of additional properties on the different object of the model.
+This file contains the list of additional properties on the different objects of the model.
 These properties are presented in the form of a list of keys/values that need to be standardized by process.
 A key can only be used once (with a single value) for the same object.
 
@@ -462,7 +461,7 @@ object_property_name | String | Required | Name of the additional property (free
 object_property_value | String | Required | Value of the additional property (free text field).
 
 ### object_codes.txt (optional)
-This file contains the list of additional identification codes in the external systems of the different the objects in the model (?).
+This file contains the list of additional identification codes in the external systems of the different objects of the model.
 These properties are presented in the form of a list of keys/values that need to be standardized by process.
 A key can be used multiple times (with different values) for the same object.
 
@@ -601,24 +600,24 @@ saturday | Integer | Required | 0 : Service is not available on this day. <br> 1
 sunday | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
 
 ### grid_exception_dates.txt (optional)
-This file contains the exceptions on the calendars of the schedules.
+This file contains the exceptions on the calendars of the timetables.
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-grid_calendar_id | String | Required | Identifier of the calendar of the schedules.
+grid_calendar_id | String | Required | Identifier of the calendar of the timetable.
 date | Date | Required | Exception date.
 type | Integer | Required | 0 : Service is not available on this day. <br> 1 : Service is available on this day.
 
 ### grid_periods.txt (optional)
-This file contains the periods of the calendars of the schedules.
+This file contains the periods of the calendars of the timetables.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
-grid_calendar_id | String | Required | Identifier of the calendar of the schedules.
+grid_calendar_id | String | Required | Identifier of the calendar of the timetable.
 start_date | Date | Required | Start date.
 end_date | Date | Required | End date.
 
 ### grid_rel_calendar_line.txt (optional)
-This file contains all the links between the lines and the calendars of the schedules.
+This file contains all the links between the lines and the calendars of the timetables.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
@@ -657,73 +656,73 @@ CO2 emissions are managed in France per transport mode. The values are specified
 3. the ratio at the mode level if available
 4. an indication that the value is unknown
 
-## Gestion d'un service (ex : Acces+)
-Ajouter la notion de "service" pour un accompagnement sur un réseau de transport, comme par exemple :
-* Accès+ TER ou Accès+ TGV sur le réseau SNCF
-* OptiBus de Keolis PMR Rhone d'accompagnement sur le réseau de TCL
+## Management of a service (ex : Acces+)
+Introduce the concept of "service" for support on a transport network such as:
+* Accès+ TER (french acronym for regional railway network) or Accès+ TGV (french acronym for  High Velocity Train) on the SNCF network
+* OptiBus by Keolis PMR (french acronym for People of Reduced Mobility) Rhone for support on the TCL (french acronym for Lyon public transport) network
 
-Ce service permet d'ajouter de l'accessibilité (UFR, Cognitif ou autre) sur un ou plusieurs objets ou directement dans le calcul.
+This service allows accessibility (wheelchair access, Cognitive or other) to be added on one or more objects or directly in the calculation.
 
-# Exemples de modélisation de TAD
-Voici quelques exemples de modélisation de TAD dans les fichiers NTFS. Seuls les fichiers impactés sont représentés ([`stops.txt`](#stopstxt-required) et [`stop_times.txt`](#stop_timestxt-required)).
-Il est à également à noter qu'il est possible :
-* de faire du rabattement vers horaire en spécifiant bien un horaire à un point d'arrivé (et pas une zone) dans le ficheir stop_time,
-* de faire de la fréquence sur du TAD zonal en utilisant le fichier [`frequencies.txt`](#frequenciestxt-optional)
+# ODT modeling examples
+Here are some examples of ODT modeling in NTFS files. Only affected files are represented ([`stops.txt`](#stopstxt-required) and [`stop_times.txt`](#stop_timestxt-required)).
+Note that it is possible:
+* to have feeder service based on a timetable by specifying it at an arrival stop (and not a zone) in the file stop_times,
+* to add frequencies on zonal ODT using the file [`frequencies.txt`](#frequenciestxt-optional)
 
-**Attention, les coordonnées et les surfaces des zones ne sont pas cohérentes, c'est l'architecture des données dans les fichiers qui est importante ici.**
+**Attention, the coordinates and the surfaces of the zones are not consistent, it is the architecture of the data in the files which is important here.**
 
-Pour résumé, il suffit de connaitre les points suivants:
-* Les horaires sont portés par des « stop » (un stop est une ligne issue du fichier stop)
-* Les stop peuvent être
-    * Des stop_points (type=0)
-    * Des stop_area (type=1)
-    * Des area (type=2): représentant une surface géographique (commune, quartier, zone...)
-* Et ensuite, on peut accrocher des horaires sur ces stops, quelque soient leur type
-    * dans les faits, on accrochera des horaires sur les stop_points et les area, mais pas sur les stop_areas: les impacts sur les différentes utilisations (itinéraire, fiche horaire) seraient non maitrisés
+To sum up, you only need to know the following elements:
+* The timetables are linked to the "stops" (rows in the file stops.txt)
+* Stops can be
+     * Stop_points (type = 0)
+     * Stop_areas (type = 1)
+     * Areas (type = 2): representing a geographical area (municipality, district, zone, ...)
+* Then, we can link timetables to those stops, regardless of their type
+     * effectively, timetables will be linked to stop_points and areas, but not stop_areas: the impacts on the different uses (route, timetable) would not be controlled
 
-Cette modélisation unique traite l'ensemble des possibilité:
-* TAD zonal d'adresse à adresse
-* TAD zonal d'arrêts à arrêts
-* TAD de rabattement d'adresse à arrêts
-* TAD de rabattement d'arrêts à arrêts
-* TAD "multiple" Zones - Arrêts - Zones, Arrêts - Zones - Arrêts, etc...
+This unique modeling deals with all the possibilities:
+* Address to address zonal ODT
+* Stops to stops zonal ODT 
+* Address to stops ODT feeder service
+* Stops to stops ODT feeder service
+* "Multiple" ODT services : Zones - Stops - Zones, Stops - Zones - Stops, etc.
 
-### Modélisation NTFS
+### NTFS modeling
 
-* Les lignes intégralement TAD, sans horaire, sont déclarée en "fréquence"
-* Les stop_point du fichier [`stops.txt`](#stopstxt-required) de type "shape", ne devraient pas être en correspondance avec d'autres stop_point.
-    * A l'intégration des données, les correspondances éventuellement déclarées seront ignorées
-* Les correspondances entre 2 circulations ne sont autorisées QUE si un des 2 horaires est fixe
-    * Les correspondances entre 2 horaires estimés sont interdites (stop.estimated vers stop.estimated)
-* Des lignes peuvent traiter de zones d'adresse à adresse
-    * Les itinéraires adresse à adresse au sein de ces zones ne seront pas proposés
-* les lignes TAD ne sont plus typées
-    * Ce sont les stop_times qui détermine le type de TAD
-* Par exemple:
-    * Gestion du TAD zonal adresse à adresse et arrêt à arrêt en horaire estimé
-        * tous les horaires sont estimés
-            * adresse à adresse=depuis un stop_point de type shape vers un stop_point de type shape
-                * donc pas en correspondance parce que les hsape ne sotn pas en correspondance
-            * arrêt à arrêt
-                * correspondance proposée avec des lignes à horaires fixes
-    * Gestion des correspondances entre TAD de rabattement, la même règle est appliquée
-        * si l'horaire de rabattement est fixe
-            * la correspondance sera proposée
-        * si l'horaire de rabattement est estimé
-            * la correspondance avec un horaire fixe (train) est possible
-            * la correspondance avec un autre TAD à rabattement estimé ne sera pas possible
+* Full ODT lines, without timetable, are declared as "frequency"
+* The stop_points type "shape" of the file [`stops.txt`](#stopstxt-required) should not be connected to other stop_points.
+    * When integrating the data, any connection/transfer declared will be ignored
+* Connections between 2 circulations are authorized only if one of the 2 timetables is fixed
+    * Connections between 2 estimated timetables are prohibited (stop.estimated to stop.estimated)
+* Lines can handle address to address zones
+    * Address-to-address routes within these areas will not be suggested
+* ODT lines are no longer typed
+    * It is the stop_times which determine the ODT type
+* For instance :
+    * Management of address to address and stop to stop zonal ODT in estimated timetable
+        * all timetables are estimated
+            * address to address = from a stop_point type shape to a stop_point type shape
+                * so not matched because the shapes are not matched
+            * stop to stop
+                * connection suggested with lines at fixed timetables
+    * Management of connection between ODT feeder services, the same rule is applied
+        * if the feeder service timetable is fixed
+            * the connection will be suggested
+        * if the feeder service timetable is estimated
+            * the connection with a fixed timetable (train) is possible
+            * the connection with another ODT feeder service with an estimated timetable will not be possible
 
 
-### Exemples
-#### Ligne mixte
-Le cas de la zone 2 ci-dessous est trivial: on définit cette zone à l'aide d'un shape qui englobe les adresses ayant accès au TAD. Il suffit ensuite d'associer un horaire à ce shape.
+### Examples
+#### Mixed line
+The case of zone 2 below is trivial : this zone is defined using a shape which includes the addresses having access to the ODT. The next step is to associate a timetable to that shape.
 
-![Exemple de ligne mixte](NTFS_image1.png)
+![Example of mixed line](NTFS_image1.png)
 
-Les zones de dessertes ne remontent pas en autocompletion: elles permettent de déterminer l'offre uniquement.
-On peut alimenter le fichier [`stop_times.txt`](#stop_timestxt-required) en mettant des horaires précis sur chacun des points d'arrêt pouvant appartenir à des zones d'arrêts différentes, avec des informations ITL manuelles:
+The transportation service areas do not show up in autocompletion : they make it possible to determine the offer only.
+You can enrich the file [`stop_times.txt`](#stop_timestxt-required) by putting precise timetables on each of the stop points that may belong to different stop zones, with manual ITL (french acronym for local traffic ban) information :
 
-**Fichier stop: déclare les "arrêts"**
+**File [`stops.txt`](#stopstxt-required): declares the "stops"**
 
 stop_id | stop_name | stop_lat | stop_lon | location_type | geometry_id | parent_station
 --- | --- | --- | --- | --- | --- | ---
@@ -741,9 +740,9 @@ stop_area_E | A | 47.01 | 1.01 | 1 |  |
 stop_area_H | A | 47.01 | 1.01 | 1 |  |
 zone_2 | Zone 1 | 47.01 | 1.01 | 2 | id_vers_POLYGON((1 1,5 1,5 5,1 5,1 1)) |
 
-**Fichier [`stop_times.txt`](#stop_timestxt-required): déclare les "horaires", estimés ou non**
+**File [`stop_times.txt`](#stop_timestxt-required): declares the "timetables", estimated or not**
 
-trip_id | stop_id | arrival_time | departure_time | stop_sequence | pickup_type | drop_off_type | stop_time_precision | zone_itl
+trip_id | stop_id | arrival_time | departure_time | stop_sequence | pickup_type | drop_off_type | stop_time_precision | local_zone_id
 --- | --- | --- | --- | --- | --- | --- | --- | ---
 trip_1 | stop_point_A |  | 09:02:00 | 1 | 0 | 0 | 0 | 0
 trip_1 | stop_point_B | 09:15:00 | 09:05:00 | 2 | 2 | 2 | 1 | 1
@@ -753,26 +752,26 @@ trip_1 | stop_point_E | 09:17:00 | 09:18:00 | 1 | 0 | 0 | 0 | 2
 trip_1 | zone_2 | 09:25:00 | 09:20:00 | 2 | 2 | 2 | 1 | 3
 trip_1 | stop_point_H | 09:27:00 |  | 1 | 0 | 0 | 0 | 4
 
-#### Ligne arrêt à arrêt sans horaires
-![Exemple de ligne arrêt à arrêt](NTFS_image2.png)
+#### Stop-to-stop line without timetables
+![Example of a stop-to-stop line](NTFS_image2.png)
 
-Les zones n'ont pas de valeur dans le NTFS: la prise des passagers se fait sur des stop_point. L'idée est de déclarer des "blocs d'horaires" sur chacun des stop_point de chaque zone :
+Zones have no value in NTFS : passengers are picked up at stop_points. The idea is to declare "blocks of timetables" on each stop_points of each zone:
 
 * A>B>C
-    * descente interdite
-    * 08h00 partout
+     * alighting prohibited
+     * 08:00 a.m. everywhere
 * A>B>C
-    * montée interdite
-    * 08h10 partout
+     * boarding prohibited
+     * 08:10 a.m. everywhere
 * D>E>F
-    * descente interdite
-    * 09h00 partout
+     * alighting prohibited
+     * 09:00 a.m. everywhere
 * D>E>F
-    * montée interdite
-    * 09h10 partout
+     * boarding prohibited
+     * 09:10 a.m. everywhere
 * G>H>I
-    * descente interdite
-    * 10h00 partout
+     * alighting prohibited
+     * 10 a.m. everywhere
 * G>H>I
-    * montée interdite
-    * 10h10 partout
+     * boarding prohibited
+     * 10:10 a.m. everywhere
