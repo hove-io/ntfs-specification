@@ -3,9 +3,9 @@ NTFS version 0.12
 
 # Introduction
 
-NTFS is Kisio Digital's data exchange format : Navitia Transit Feed Specification. It aims to replace the CSV/Fusio format by addressing its weaknesses and managing all types of data in a single format (timetables, ODT, etc.).
+NTFS is Hove's data exchange format : Navitia Transit Feed Specification. It aims to replace the CSV/Fusio format by addressing its weaknesses and managing all types of data in a single format (timetables, ODT, etc.).
 
-This new data format is strongly based on the GTFS data format (https://developers.google.com/transit/gtfs/reference?hl=en-US), with some enhancements allowing a more exhaustive description of the data. As such, the data format is constantly evolving (see [changelog](./ntfs_changelog_fr.md)).
+This new data format is strongly based on the GTFS data format (https://developers.google.com/transit/gtfs/reference?hl=en-US), with some enhancements allowing a more exhaustive description of the data. As such, the data format is constantly evolving (see [changelog (in french)](./ntfs_changelog_fr.md)).
 
 # Data format
 
@@ -25,7 +25,7 @@ Data must be compliant with the following rules :
 * Languages codes must follow the [**ISO639-2** standard](http://www.loc.gov/standards/iso639-2/php/code_list.php)
 * Colors are encoded as Hexadecimal RGB characters (for example **00FFFF**)
 * Geometries are described using the format [**WKT**](http://fr.wikipedia.org/wiki/Well-known_text)
-* Objects' identifiers must not contain the object's type, as it will be added directly in Navitia's API.
+* Objects identifiers must not contain the object type, as it will be added directly in Navitia API.
 
 # List of the format files
 ## Special files
@@ -59,7 +59,7 @@ File | Constraint | Description
 File | Constraint | Description
 --- | --- | ---
 [`frequencies.txt`](#frequenciestxt-optional) | Optional | This file contains the frequencies properties.
-[`equipments.txt`](#equipmentstxt-optional)  | Optional | This file contains the properties (as accessibility) of the stops and the connections.
+[`equipments.txt`](#equipmentstxt-optional)  | Optional | This file contains the properties (including accessibility) of the stops and the connections.
 [`transfers.txt`](#transferstxt-optional) | Optional | This file contains the connections.
 [`trip_properties.txt`](#trip_propertiestxt-optional) | Optional | This file contains the accessibility of the trips.
 [`geometries.txt`](#geometriestxt-optional) | Optional | This file contains the spatial representation of the geometries in the [Well Known Text (WKT)](https://www.wikiwand.com/en/Well-known_text_representation_of_geometry) format. Those geometries are referenced in the following files [`lines.txt`](#linestxt-required), [`routes.txt`](#routestxt-required), [`trips.txt`](#tripstxt-required).
@@ -68,9 +68,9 @@ File | Constraint | Description
 [`admin_stations.txt`](#admin_stationstxt-optional) | Optional | This file contains the list of administrative stops for journeys to or from a town.
 [`line_groups.txt`](#line_groupstxt-optional) | Optional | This file contains the list of groups of lines.
 [`line_group_links.txt`](#line_group_linkstxt-optional) | Optional | This file contains the links between a group of lines and the lines part of it.
-[`pathways.txt`](#pathwaystxt-optional) | Optional | This file contains the list of pathways within a stop area. (à compléter)
+[`pathways.txt`](#pathwaystxt-optional) | Optional | This file contains the list of pathways within a stop area. These pathways are not necessarily geographical, there may be simplifications.
 [`levels.txt`](#levelstxt-optional) | Optional | This file contains the list of levels within a stop area.
-[`addresses.txt`](#addressestxt-optional) | Optional | This file contains the list of stops' addresses.
+[`addresses.txt`](#addressestxt-optional) | Optional | This file contains the list of addresses of stop_points.
 
 ## Calendars files per period
 File | Constraint | Description
@@ -81,7 +81,7 @@ File | Constraint | Description
 [`grid_rel_calendar_line.txt`](#grid_rel_calendar_linetxt-optional) | Optional | This file contains the links between lines and calendars.
 
 ## Visualisation 
-For a better understanding, you can find a diagram of the relationships between each file here : https://dbdiagram.io/embed/5e218b4a9e76504e0ef05fcd ([edit the diagram](https://dbdiagram.io/d/5e218b4a9e76504e0ef05fcd))
+For a better understanding, you can find a diagram of the relations between each file here : https://dbdiagram.io/embed/5e218b4a9e76504e0ef05fcd ([edit the diagram](https://dbdiagram.io/d/5e218b4a9e76504e0ef05fcd))
 
 # Files description
 ### networks.txt (required)
@@ -99,7 +99,7 @@ network_address | String | Optional | Postal address of the network.
 network_sort_order | Integer | Optional | Sort order of the networks. Those with smaller values are displayed first.
 
 ### calendar.txt (required)
-This file described the dates when service is available for one or more routes. 
+This file described the period of circulation associated to the trips. 
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
@@ -111,8 +111,8 @@ thursday | Integer | Required | (1)
 friday | Integer | Required | (1)
 saturday | Integer | Required | (1)
 sunday | Integer | Required | (1)
-start_date | Date | Required |  Start date of the circulation (included).
-end_date | Date | Required | End date of the circulation (included).
+start_date | Date | Required |  Start date of the trip.
+end_date | Date | Required | End date of the trip (included).
 
 (1) Valid options are :
 
@@ -120,7 +120,7 @@ end_date | Date | Required | End date of the circulation (included).
 * 1 - Service is available on this day
 
 ### calendar_dates.txt (optional)
-This file contains the exceptions on the operating days described in the file [`calendar.txt`](#calendartxt-required). For specific circulations, it is possible to set a calendar using the file [`calendar_dates.txt`](#calendar_datestxt-optional) only. As a result, the header `service_id` will not appear in the file [`calendar.txt`](#calendartxt-required).
+This file contains the exceptions on the operating days described in the file [`calendar.txt`](#calendartxt-required). For specific trip, it is possible to set a calendar using the file [`calendar_dates.txt`](#calendar_datestxt-optional) only. As a result, the header `service_id` will not appear in the file [`calendar.txt`](#calendartxt-required).
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
@@ -143,10 +143,10 @@ comment_label | String | Optional | Cross-reference character to the comment. If
 comment_name | String | Required | Text of the comment.
 comment_url | String | Optional | URL giving more information about the note such as a link to the description page of the ODT service.
 
-(1) Comment's categories differentiating them on display. Valid options are :
+(1) Comment categories that differentiate them on display. Valid options are :
 
 * information (or empty field) : indicates a general information note
-* on_demand_transport : indicates an information note about an On Demand Transportation service. This note must specify the reservation's conditions and telephone number.
+* on_demand_transport : indicates an information note about an On Demand Transportation service. This note must specify the conditions and the telephone number of the reservation.
 
 ### comment_links.txt (optional)
 This file links an object (line, stop, timetables, etc.) to a comment and associates multiple notes with an object and multiple objects with a note.
@@ -158,7 +158,7 @@ object_type | String | Required | Type of object associated with the comment. Th
 comment_id | String | Required | Identifier of the comment (link to the file [`comments.txt`](#commentstxt-optional)).
 
 ### commercial_modes.txt (required)
-This file describes the commercial modes, that is, a specific wording of a transport mode. For example, BusWay is a special name for BRT (Bus Rapid Transit) in Nantes.
+This file describes the commercial modes, that is, a specific wording of a transport mode. For example, BusWay is a special name for BHNS (french equivalent of BRT, Bus Rapid Transit) in Nantes.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
@@ -173,7 +173,7 @@ Column | Type | Constraint | Note
 company_id | String | Required | Identifier of the company.
 company_name | String | Required | Name of the company.
 company_address | String | Optional | Full address of the company.
-company_url | String | Optional | URL of the company's institutional website. Should not be confused with the link to the network's website.
+company_url | String | Optional | URL of the company institutional website. Should not be confused with the link to the network website.
 company_mail | String | Optional | Contact email address of the company.
 company_phone | String | Optional | Contact phone number.
 
@@ -184,8 +184,8 @@ Column | Type | Constraint | Note
 --- | --- | --- | ---
 contributor_id | String | Required | Identifier of the contributor.
 contributor_name | String | Required | Name of the contributor.
-contributor_license | String | Optional | Data use license of the contributor.
-contributor_website | String | Optional | URL of the data provider's website.
+contributor_license | String | Optional | Data license of the contributor.
+contributor_website | String | Optional | URL of the data provider website.
 
 ### datasets.txt (required)
 This file lists the sets of data of a contributor.
@@ -196,8 +196,8 @@ dataset_id | String | Required | Identifier of the set of data.
 contributor_id | String | Required | Identifier of the contributor (link to the file [`contributors.txt`](#contributorstxt-required)).
 dataset_start_date | Date | Required | Start date of consideration of the set of data (may be different from the validity start date of the initial export).
 dataset_end_date | Date | Required | End date of consideration of the set of data (may be different from the validity end date of the initial export).
-dataset_type | Integer (1) | Optional | Type of data which represents the data's freshness.
-dataset_extrapolation | Integer | Optional | Indicates whether the service's data has been extrapolated (field set to 1) or not (field set to 0).
+dataset_type | Integer (1) | Optional | Type of data which represents the data freshness.
+dataset_extrapolation | Integer | Optional | Indicates whether the service data has been extrapolated (field set to 1) or not (field set to 0).
 dataset_desc | String | Optional | Note which indicates the contents of the set of data.
 dataset_system | String | Optional | Name of the system that generated the data or name of the data format.
 
@@ -224,13 +224,13 @@ line_name | String | Required | Name of the commercial line.
 forward_line_name | String | Optional | Name of the line in the outward journey.
 backward_line_name | String | Optional | Name of the line in the return journey.
 line_color | Color | Optional | Color of the line.
-line_text_color | Color | Optional | Color of the line's code.
+line_text_color | Color | Optional | Color of the code of the line.
 line_sort_order | Integer | Optional | Sort key for the line within the network. The smallest values are displayed first.
-network_id | String | Required | Identifier of the line's network (link to the file [`networks.txt`](#networkstxt-required)).
+network_id | String | Required | Identifier of the network of the line (link to the file [`networks.txt`](#networkstxt-required)).
 commercial_mode_id | String | Required | Identifier of the commercial mode (link to the file [`commercial_modes.txt`](#commercial_modestxt-required)).
 geometry_id | String | Optional | Identifier of a geospatial shape representing the line (link to the file [`geometries.txt`](#geometriestxt-optional)).
-line_opening_time | Time | Optional | Start time of the line's service (regardless of the type of day or period). If this information is not provided, it will be recalculated.
-line_closing_time | Time | Optional | End time of the line's service (regardless of the type of day or period). If this information is not provided, it will be recalculated. Specify an hour higher than 24 to indicate a time on the next day.
+line_opening_time | Time | Optional | Start time of the line service (regardless of the type of day or period). If this information is not provided, it will be recalculated.
+line_closing_time | Time | Optional | End time of the line service (regardless of the type of day or period). If this information is not provided, it will be recalculated. Specify an hour higher than 24 to indicate a time on the next day.
 
 ### routes.txt (required)
 Column | Type | Constraint | Note
@@ -301,7 +301,7 @@ Car | Voiture
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 equipment_id | String | Required | Identifier of the equipment.
-wheelchair_boarding | Integer (1) | Optional | Access for passengers in wheelchair.
+wheelchair_boarding | Integer (1) | Optional | UFR (french acronym for passengers in wheelchair) access.
 sheltered | Integer (1) | Optional | Covered shelter.
 elevator | Integer (1) | Optional | Elevator/Lift.
 escalator | Integer (1) | Optional | Escalator.
@@ -318,7 +318,7 @@ appropriate_signage | Integer (1) | Optional | Appropriate signage at the stop.
         2 - The equipment is not available
 
 ### stops.txt (required)
-A line in this file represents a location or an area where a vehicle drops off or picks up passengers.
+A row in this file represents a location or an area where a vehicle drops off or picks up passengers.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
@@ -362,7 +362,7 @@ stop_headsign | String | Optional | Wording to be displayed to the passenger ins
 trip_short_name_at_stop | String | Optional | Name to be displayed to the passenger instead of `trip_short_name` at that stop.
 pickup_type | Integer (1) | Optional | Indication on the timetable (from the gtfs file).
 drop_off_type | Integer (1) | Optional | Indication on the timetable (from the gtfs file).
-local_zone_id  | Integer | Optional | Identifier of the ITL (french acronym for local traffic ban) area of the timetable.
+local_zone_id  | Integer | Optional | Identifier of the ITL (french acronym for local traffic ban) zone of the timetable.
 stop_time_precision | Integer (2) | Optional | Indicates whether the timetable is exact or approximative.
 
     (1)  Valid options are :
@@ -392,7 +392,7 @@ equipment_id | String | Optional | Identifier of the accessibility properties (l
 Column | Type | Constraint | Note
 --- | --- | --- | ---
 trip_property_id | String | Required | Identifier of the property.
-wheelchair_accessible | Integer (1) | Optional | The vehicule is accessible to passengers in wheelchair.
+wheelchair_accessible | Integer (1) | Optional | The vehicule is accessible to UFR (french acrocnym for passengers in wheelchair).
 bike_accepted | Integer (1) | Optional | The vehicle allows the boarding of bicycle.
 air_conditioned | Integer (1) | Optional | The vehicle has air conditioning.
 visual_announcement | Integer (1) | Optional | The vehicle has visual announcements.
@@ -417,7 +417,7 @@ Column | Type | Constraint | Note
 route_id | String | Required | Identifier of the route (link to the file [`routes.txt`](#routestxt-required)).
 service_id | String | Required | Identifier of the operating days.
 trip_id | String | Required | Identifier of the trip.
-trip_headsign | String | Optional | Text displayed to the passenger on the vehicle (e.g. the destination of a bus or a rapid transit mission code).
+trip_headsign | String | Optional | Text displayed to the passenger on the vehicle, e.g. the destination of a bus or an RER (french acronym for rapid transit mission) code.
 trip_short_name | String | Optional | Name of the trip known by the passenger making it uniquely identifiable over the day (usually a train number).
 block_id | String | Optional | Identifier of the service extension.
 company_id | String | Required | Identifier of the company (link to the file [`companies.txt`](#companiestxt-required)).
@@ -428,8 +428,8 @@ geometry_id | String | Optional | Identifier of a geospatial shape representing 
 journey_pattern_id | String | Optional | Identifier of the mission (i.e. an ordered sequence of stops with the same properties and sometimes known to the passenger).
 
     To specify whether part or the whole trip is on reservation, it is necessary to :
-        Indicate at the timetable (file stop_times.txt) if the boarding and/or alighting is on reservation
-        Specify an ODT comment (optional) via the comments.txt and comment_links.txt files
+        Indicate at the timetable level (file stop_times.txt) if the boarding and/or alighting is on reservation
+        Specify an ODT comment (optional) via the files comments.txt and comment_links.txt 
 
 ### geometries.txt (optional)
 This file contains the spatial representation of a geometry (for lines, routes and/or trips). Each line in the file represents a complete geometry of the object.
@@ -443,7 +443,7 @@ geometry_wkt | Geometry | Required | Spatial representation of the geometry acco
     Trips can only be represented as LINESTRING. If a MULTILINESTRING is specified, only the first LINESTRING will be used.
     Stop points are represented as POINT.
     Stop areas can be POINT, POLYGON or MULTIPOLYGON.
-    Stop zones are either POLYGON or MULTIPOLYGON.
+    Stop zones or municipalities are either POLYGON or MULTIPOLYGON.
     
     Only the specified types of geometry are considered, the other types are ignored.
     The format of the file is deliberately simple, an evolution can be considered if necessary.
@@ -486,7 +486,6 @@ stop_name | String | Optional | Name of the stop area (to aid the readability of
 
 ### pathways.txt (optional)
 Note : This file describes a modeling of the station that is not necessarily geographical and can also be simplified. Modeling the pathways of a stop zone cannot be partial. Once a pathway is filled in for a stop zone, the entire station is considered filled in.
-Attention, ce fichier décrit une modélisation de la station qui n'est pas nécessairement géographique, et peut également être simplifiée.
 
 Column | Type | Constraint | Note
 --- | --- | --- | ---
@@ -494,8 +493,8 @@ pathway_id | String | Required | Identifier of the pathway.
 from_stop_id | String | Required | Identifier of the start node of the pathway in the [`stops.txt`](#stopstxt-required) file. This start node can be a stop point, an entrance/exit, a generic node or a boarding area.
 to_stop_id | String | Required | Identifier of the end node of the pathway (same constraints as `from_stop_id`).
 pathway_mode | Integer (1) | Required | Type of pathway. See below for valid values.
-is_bidirectional | Boolean | Required | Indicates whether the path can be used in both directions or only in the from->to direction.
-length | Decimal | Optional | Distance in meters between the two endpoints of the path.
+is_bidirectional | Boolean | Required | Indicates whether the pathway can be used in both directions or only in the from->to direction.
+length | Decimal | Optional | Distance in meters between the two endpoints of the pathway.
 traversal_time | Integer | Optional | Average travel time in seconds.
 stair_count | Integer | Optional | Number of stairs (estimated).
 max_slope | Decimal | Optional | Maximum slope ratio on the pathway.
@@ -566,7 +565,7 @@ ntfs_version | String | Required | Version of the NTFS format used in the export
 feed_start_date | Date | Optional | Validity start date of the dataset.
 feed_end_date | Date | Optional | Validity end date of the dataset.
 feed_creation_date |  Date |  Optional | Date (UTC) of creation of the dataset.
-feed_creation_time | Time | Optional | Time (UTC) of creation of the dataset..
+feed_creation_time | Time | Optional | Time (UTC) of creation of the dataset.
 feed_creation_datetime | Datetime | Optional | Date and time (UTC) of creation of the dataset.
 
 The table below shows the free parameters entered by Hove (depends on the tool that generates the data).
@@ -640,16 +639,16 @@ In order to limit the complexity of the format, the management of strike data wi
     * of one or more networks specified by the key **revised_networks** of the file [`feed_infos.txt`](#feed_infostxt-required)
     * for valid data between the dates specified by **feed_start_date** and **feed_end_date**
 
-An additional and optional field "base_trip_id" should be provided in the file [`trips.txt`](#tripstxt-required) in order to associate the planned and adjusted circulations (in case of strike data for instance).
+An additional and optional field "base_trip_id" should be provided in the file [`trips.txt`](#tripstxt-required) in order to associate the planned and adjusted trips (in case of strike data for instance).
 
-## Advanced management of geometries (shape of lines, routes and circulations)
+## Advanced management of geometries (shape of lines, routes and trips)
 In order not to unnecessarily complicate the NTFS format and the tools that will manipulate it, the file [`geometries.txt`](#geometriestxt-optional) indicates a complete layout for a geometry, such as a forked line or a drawer line. To be able to display the real layout of the buses in the road map (i.e. the section used by the line only), a segmentation of this geometry is done automatically in Navitia.
 If the need to refine this management is confirmed, the format of the file [`geometries.txt`](#geometriestxt-optional) can be improved as follows (to be confirmed):
-* A line will represent a segment of the line/course/circulation between two consecutive stop points (and in an oriented way?)
+* A line will represent a segment of the line/course/trip between two consecutive stop points (and in an oriented way?)
 * The definition of the origin and destination stop points of the segment is made by adding two optional columns
 
 ## Management of CO2 emissions per line or vehicle
-CO2 emissions are managed in France per transport mode. The values are specified by ADEME, the French Environment and Energy Control Agency. The NTFS format allows this information to be linked to the physical mode. Depending on the needs in the future, an addition of this information to the line and/or the vehicle is considered. In this case, an "overload" system of the information has to be set up to take into account by priority:
+CO2 emissions are managed in France per transport mode. The values are specified by ADEME, the French Environment and Energy Control Agency. The NTFS format allows this information to be linked to the physical mode. Depending on the needs in the future, an addition of this information to the line and/or the vehicle can be considered. In this case, an "overload" system of the information has to be set up to take into account by priority :
 
 1. the ratio at the vehicle level if available
 2. the ratio at the line level if available
@@ -658,29 +657,29 @@ CO2 emissions are managed in France per transport mode. The values are specified
 
 ## Management of a service (ex : Acces+)
 Introduce the concept of "service" for support on a transport network such as:
-* Accès+ TER (french acronym for regional railway network) or Accès+ TGV (french acronym for  High Velocity Train) on the SNCF network
-* OptiBus by Keolis PMR (french acronym for People of Reduced Mobility) Rhone for support on the TCL (french acronym for Lyon public transport) network
+* Accès+ TER (french acronym for Regional Railway Network) or Accès+ TGV (french acronym for  High Velocity Train) on the SNCF network
+* OptiBus by Keolis PMR (french acronym for People of Reduced Mobility) Rhone for support on the TCL (french acronym for Lyon Public Transport) network
 
 This service allows accessibility (wheelchair access, Cognitive or other) to be added on one or more objects or directly in the calculation.
 
 # ODT modeling examples
 Here are some examples of ODT modeling in NTFS files. Only affected files are represented ([`stops.txt`](#stopstxt-required) and [`stop_times.txt`](#stop_timestxt-required)).
 Note that it is possible:
-* to have feeder service based on a timetable by specifying it at an arrival stop (and not a zone) in the file stop_times,
+* to have feeder service based on a timetable by specifying a timetable at an arrival stop (and not a zone) in the file stop_times,
 * to add frequencies on zonal ODT using the file [`frequencies.txt`](#frequenciestxt-optional)
 
 **Attention, the coordinates and the surfaces of the zones are not consistent, it is the architecture of the data in the files which is important here.**
 
-To sum up, you only need to know the following elements:
+To sum up, you only need to know the following elements :
 * The timetables are linked to the "stops" (rows in the file stops.txt)
 * Stops can be
      * Stop_points (type = 0)
      * Stop_areas (type = 1)
      * Areas (type = 2): representing a geographical area (municipality, district, zone, ...)
 * Then, we can link timetables to those stops, regardless of their type
-     * effectively, timetables will be linked to stop_points and areas, but not stop_areas: the impacts on the different uses (route, timetable) would not be controlled
+     * effectively, timetables will be linked to stop_points and areas, but not stop_areas : the impacts on the different uses (route, timetable) would not be controlled
 
-This unique modeling deals with all the possibilities:
+This unique modeling deals with all the possibilities :
 * Address to address zonal ODT
 * Stops to stops zonal ODT 
 * Address to stops ODT feeder service
@@ -690,9 +689,9 @@ This unique modeling deals with all the possibilities:
 ### NTFS modeling
 
 * Full ODT lines, without timetable, are declared as "frequency"
-* The stop_points type "shape" of the file [`stops.txt`](#stopstxt-required) should not be connected to other stop_points.
+* The stop_points of type "shape" of the file [`stops.txt`](#stopstxt-required) should not be connected to other stop_points.
     * When integrating the data, any connection/transfer declared will be ignored
-* Connections between 2 circulations are authorized only if one of the 2 timetables is fixed
+* Connections between 2 trips are authorized only if one of the 2 timetables is fixed
     * Connections between 2 estimated timetables are prohibited (stop.estimated to stop.estimated)
 * Lines can handle address to address zones
     * Address-to-address routes within these areas will not be suggested
@@ -701,7 +700,7 @@ This unique modeling deals with all the possibilities:
 * For instance :
     * Management of address to address and stop to stop zonal ODT in estimated timetable
         * all timetables are estimated
-            * address to address = from a stop_point type shape to a stop_point type shape
+            * address to address = from a stop_point of type shape to a stop_point of type shape
                 * so not matched because the shapes are not matched
             * stop to stop
                 * connection suggested with lines at fixed timetables
@@ -720,7 +719,7 @@ The case of zone 2 below is trivial : this zone is defined using a shape which i
 ![Example of mixed line](NTFS_image1.png)
 
 The transportation service areas do not show up in autocompletion : they make it possible to determine the offer only.
-You can enrich the file [`stop_times.txt`](#stop_timestxt-required) by putting precise timetables on each of the stop points that may belong to different stop zones, with manual ITL (french acronym for local traffic ban) information :
+You can enrich the file [`stop_times.txt`](#stop_timestxt-required) by putting precise timetables on each of the stop points that may belong to different stop zones, with manual ITL (french acronym for Local Traffic Ban) information :
 
 **File [`stops.txt`](#stopstxt-required): declares the "stops"**
 
