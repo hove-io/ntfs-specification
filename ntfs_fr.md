@@ -72,6 +72,7 @@ Fichier | Contrainte | Commentaire
 [`pathways.txt`](#pathwaystxt-optionnel) | Optionnel | Ce fichier contient les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
 [`levels.txt`](#levelstxt-optionnel) | Optionnel | Ce fichier contient la liste des niveaux au sein d'une zone d'arrêt.
 [`addresses.txt`](#addressestxt-optionnel) | Optionnel | Ce fichier contient la liste des adresses des arrêts physiques.
+[`occupancies.txt`](#occupanciestxt-optionnel) | Optionnel | Ce fichier contient les informations d'affluence sur le réseau
 
 ## Fichiers des calendriers par période
 Fichier | Contrainte | Commentaire
@@ -527,6 +528,48 @@ Colonne | Type | Contrainte | Commentaire
 address_id | chaine | Requis | Identifiant de l'adresse
 street_name | chaine | Requis | Nom de la voierie
 house_number | chaine | Optionnel | Numéro du seuil
+
+### occupancies.txt (optionnel)
+Pour chaque ligne de ce fichier, l'affluence est appliquée à toutes les paires d'horaires successifs d'une circulation remplissant l'ensemble des conditions suivantes :
+
+* les poteaux d'arrêts des deux horaires se trouvent entre `from_stop_area` et `to_stop_area` (inclus)
+* le jour de circulation est inclus entre `from_date` et `to_date`
+* le jour de semaine de la circulation est actif (voir champs `monday`, `tuesday`, etc.)
+* les `departure_time` des deux horaires sont inclus entre `from_time` et `to_time` (inclus)
+* il est possible de monter dans le véhicule sur le premier des deux horaires successifs
+* il est possible de descendre dans le véhicule sur le dernier des deux horaires successifs
+
+Les lignes du fichier sont appliquées dans l'ordre.
+
+Colonne | Type | Contrainte | Commentaire
+--- | --- | --- | ---
+line_id | chaine | Requis | Identifiant de la ligne concernées
+from_stop_area | chaine | Requis | Identifiant de la zone d'arrêt à partir de laquelle s'applique l'affluence
+to_stop_area | chaine | Requis | Identifiant de la zone d'arrêt jusqu'à laquelle s'applique l'affluence
+from_date | date | Requis | Date à partir de laquelle s'applique l'affluence
+to_date | date | Requis | Date jusqu'à laquelle s'applique l'affluence
+from_time | heure | Requis | Heure à partir de laquelle s'applique l'affluence, appliquée sur chacun des jours entre `from_date` et `to_date`
+to_time | heure | Requis | Heure jusqu'à laquelle s'applique l'affluence, appliquée sur chacun des jours entre `from_date` et `to_date`
+occupancy | occupancy (1) | Requis | L'affluence à appliquer
+monday | booléen | Optionnel | Indique si l'affluence s'applique sur les lundis entre `from_date` et `to_date`. L'affluence s'applique par défaut.
+tuesday | booléen | Optionnel | Indique si l'affluence s'applique sur les mardis entre `from_date` et `to_date`. L'affluence s'applique par défaut.
+wednesday | booléen | Optionnel | Indique si l'affluence s'applique sur les mercredis entre `from_date` et `to_date`. L'affluence s'applique par défaut.
+thursday | booléen | Optionnel | Indique si l'affluence s'applique sur les jeudis entre `from_date` et `to_date`. L'affluence s'applique par défaut.
+friday | booléen | Optionnel | Indique si l'affluence s'applique sur les vendredis entre `from_date` et `to_date`. L'affluence s'applique par défaut.
+saturday | booléen | Optionnel | Indique si l'affluence s'applique sur les samedis entre `from_date` et `to_date`. L'affluence s'applique par défaut.
+sunday | booléen | Optionnel | Indique si l'affluence s'applique sur les dimanches entre `from_date` et `to_date`. L'affluence s'applique par défaut.
+
+(1) la valeur est une énumération basée sur les niveaux d'affluence définis dans le GTFS-RT (voir [`OccupancyStatus`](https://developers.google.com/transit/gtfs-realtime/reference/#enum-occupancystatus):
+
+* EMPTY
+* MANY_SEATS_AVAILABLE
+* FEW_SEATS_AVAILABLE
+* STANDING_ROOM_ONLY
+* CRUSHED_STANDING_ROOM_ONLY
+* FULL
+* NOT_ACCEPTING_PASSENGERS
+* NO_DATA_AVAILABLE
+* NOT_BOARDABLE
 
 ### line_groups.txt (optionnel)
 Colonne | Type | Contrainte | Commentaire
