@@ -1,5 +1,5 @@
-NTFS version 0.12
-=================
+Spécification NTFS
+==================
 
 # Introduction
 
