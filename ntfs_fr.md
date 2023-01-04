@@ -530,14 +530,15 @@ street_name | chaine | Requis | Nom de la voierie
 house_number | chaine | Optionnel | Numéro du seuil
 
 ### occupancies.txt (optionnel)
-Pour chaque ligne de ce fichier, l'affluence est appliquée à toutes les séries d'horaires successifs d'une circulation remplissant l'ensemble des conditions suivantes :
+La notion d'affluence est appliquée sur l'intervalle entre 2 horaires (affluence à bord du véhicule).
+Pour chaque ligne de ce fichier, l'affluence est appliquée à tous les intervalles d'une circulation entre deux horaires (successifs ou non) remplissant l'ensemble des conditions suivantes :
 
-* les poteaux d'arrêts des horaires se trouvent entre `from_stop_area` et `to_stop_area` (inclus)
-* le jour de circulation est inclus entre `from_date` et `to_date`
+* le premier des intervalles débute à l'arrêt `from_stop_area` et le dernier des intervalles se termine l'arrêt `to_stop_area` (inclus)
+* le jour de circulation est inclus entre `from_date` et `to_date` (inclus)
 * le jour de semaine de la circulation est actif (voir champs `monday`, `tuesday`, etc.)
-* les `departure_time` des horaires sont inclus entre `from_time` et `to_time` (inclus)
-* il est possible de monter dans le véhicule sur le premier des horaires
-* il est possible de descendre dans le véhicule sur le dernier des horaires
+* le `departure_time` du premier intervalle et le `arrival_time` du dernier intervalle sont inclus entre `from_time` et `to_time` (inclus)
+* il est possible de monter dans le véhicule à l'arrêt `from_stop_area`
+* il est possible de descendre du véhicule à l'arrêt `to_stop_area`
 
 Les lignes du fichier sont appliquées dans l'ordre.
 
