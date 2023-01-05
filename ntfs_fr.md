@@ -72,7 +72,7 @@ Fichier | Contrainte | Commentaire
 [`pathways.txt`](#pathwaystxt-optionnel) | Optionnel | Ce fichier contient les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
 [`levels.txt`](#levelstxt-optionnel) | Optionnel | Ce fichier contient la liste des niveaux au sein d'une zone d'arrêt.
 [`addresses.txt`](#addressestxt-optionnel) | Optionnel | Ce fichier contient la liste des adresses des arrêts physiques.
-[`occupancies.txt`](#occupanciestxt-optionnel) | Optionnel | Ce fichier contient les informations d'affluence sur le réseau
+[`occupancies.txt`](#occupanciestxt-optionnel) | Optionnel | Ce fichier contient les informations d'affluence sur le réseau [**expérimental**]
 
 ## Fichiers des calendriers par période
 Fichier | Contrainte | Commentaire
@@ -529,7 +529,7 @@ address_id | chaine | Requis | Identifiant de l'adresse
 street_name | chaine | Requis | Nom de la voierie
 house_number | chaine | Optionnel | Numéro du seuil
 
-### occupancies.txt (optionnel)
+### occupancies.txt (optionnel) [**expérimental**]
 La notion d'affluence est appliquée sur l'intervalle entre 2 horaires (affluence à bord du véhicule).
 Pour chaque ligne de ce fichier, l'affluence est appliquée à tous les intervalles d'une circulation entre deux horaires (successifs ou non) remplissant l'ensemble des conditions suivantes :
 
