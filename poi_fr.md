@@ -53,7 +53,7 @@ Colonne | Type | Contrainte | Commentaire
 `poi_lon` | décimal | Requis | Longitude du POI
 `poi_weight` | entier | Requis | Poids associé au POI dans la reconnaissance de la saisie (API "places"). Plus le poids est grand, plus le POI remontera en haut de la liste de la recherche (pour des POI avec un matching identique).
 `poi_visible` | entier | Requis | Indique si le POI doit être présenté dans l'auto-complétion.
-`poi_parent` | chaine | Facultatif | Identifiant du POI parent s'il existe (par exemple, si le POI courant est un accès du POI "stade de France", on trouvera ici l'indentifiant du POI "stade de France"). A date, un POI "parent" ne peut pas avoir de parent associé (pas de "poupées russes"). Toutefois le fichier ne sera pas rejeté
+`poi_parent` | chaine | Facultatif | Uniquement dans le cas d'un POI de type "access_point" (poi_type_id=poi_type:access_poin). Identifiant du POI parent s'il existe (par exemple, si le POI courant est un accès du POI "stade de France", on trouvera ici l'indentifiant du POI "stade de France"). Un POI "parent" ne peut pas avoir de parent associé (pas de "poupées russes"). Toutefois le fichier ne sera pas rejeté
 
 
 L'identifiant du poi `poi_id` est unique toutes sources de POI confondus. Il
