@@ -37,6 +37,10 @@ Colonne | Type | Contrainte | Commentaire
 
 Le nombre de catégories et le contenu du champ `poi_type_id` est libre, mais
 des contraintes sont associées à l'utilisation dans Navitia.
+En effet, certains `poi_type` peuvent influencer le comportement de Navitia :
+* `poi_type_id=poi_type:access_point` permet de définir un accès à un POI majeur (entrée de parc, gate du Stade de France par exemple)
+* `poi_type_id=poi_type:amenity:parking` permet de définir les emplacements des parcs relais
+* `poi_type_id=poi_type:amenity:bicycle_rental` permet de définir les emplacements des stations VLS : il est conseillé de laisser l'alimentation d'OSM pour ce type de POI
 
 #### poi.txt (requis)
 
@@ -53,6 +57,19 @@ Colonne | Type | Contrainte | Commentaire
 L'identifiant du poi `poi_id` est unique toutes sources de POI confondus. Il
 convient donc d'être vigilent en cas de source multiple de POI pour éviter
 qu'il y ait collision.
+
+#### poi_links.txt (optionnel)
+
+Ce fichier permet de définir les liens entre les POI de type "entrées/sorties" et les POI desservies par ces entrées/sorties. Ainsi lorsque
+
+* un POI_ est de type "access_point" (poi_type_id=poi_type:access_point) dans le fichier poi.txt
+* ce POI est lié à un POI "parent" dans ce fichier
+* alors Navitia le prendra en compte dans la recherche d'itinéraire
+
+Colonne | Type | Contrainte | Commentaire
+--- | --- | --- | ---
+`poi_id` | chaine | Requis | Identifiant unique et pérenne d'un POI de type `poi_type_id=poi_type:access_point`
+`poi_parent_id` | chaine | Requis | Identifiant du POI parent (par exemple, si le POI courant est un accès du POI "stade de France", on trouvera ici l'indentifiant du POI "stade de France"). Un POI "parent" ne peut pas avoir de parent associé (pas de "poupées russes"). Toutefois le fichier ne sera pas rejeté, la ligne sera ignorée.
 
 #### poi_properties.txt (optionnel)
 
