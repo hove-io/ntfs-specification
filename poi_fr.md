@@ -60,7 +60,7 @@ qu'il y ait collision.
 
 #### poi_links.txt (optionnel)
 
-Ce fichier est non obligatoire. Il décrit les liens existants entre POIs. En particulier, ce fichier permet de définir les liens entre les POI de type "entrées/sortiées" et les POI desservies par ces entrées/sorties. Ainsi lorsque
+Ce fichier permet de définir les liens entre les POI de type "entrées/sorties" et les POI desservies par ces entrées/sorties. Ainsi lorsque
 
 * un POI_ est de type "access_point" (poi_type_id=poi_type:access_point) dans le fichier poi.txt
 * ce POI est lié à un POI "parent" dans ce fichier
