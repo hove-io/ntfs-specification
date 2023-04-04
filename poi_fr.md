@@ -69,7 +69,7 @@ Ce fichier permet de définir les liens entre les POI de type "entrées/sorties"
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
 `poi_id` | chaine | Requis | Identifiant unique et pérenne d'un POI de type `poi_type_id=poi_type:access_point`
-`poi_parent_id` | chaine | Requis | Identifiant du POI parent s'il existe (par exemple, si le POI courant est un accès du POI "stade de France", on trouvera ici l'indentifiant du POI "stade de France"). Un POI "parent" ne peut pas avoir de parent associé (pas de "poupées russes"). Toutefois le fichier ne sera pas rejeté, la ligne sera ignorée.
+`poi_parent_id` | chaine | Requis | Identifiant du POI parent (par exemple, si le POI courant est un accès du POI "stade de France", on trouvera ici l'indentifiant du POI "stade de France"). Un POI "parent" ne peut pas avoir de parent associé (pas de "poupées russes"). Toutefois le fichier ne sera pas rejeté, la ligne sera ignorée.
 
 #### poi_properties.txt (optionnel)
 
