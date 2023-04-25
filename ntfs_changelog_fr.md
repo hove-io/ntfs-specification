@@ -101,3 +101,5 @@
     * Correction de la documentation sur `date_time_estimated` qui est maintenant `stop_time_precision`
 * Version 0.12.3 du 31/05/2022
     * Précision de documentation concernant l'unité utilisée pour le CO2
+* Version 0.13.0 du 25/04/2023
+    * Ajout du fichier optionnel `occupancies.txt`
