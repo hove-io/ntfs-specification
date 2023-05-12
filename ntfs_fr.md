@@ -434,7 +434,7 @@ journey_pattern_id | chaine | Optionnel | Identifiant de la mission (i.e. une s�
         Indiquer un commentaire (optionnel) de type TAD via les fichiers [`comments.txt`](#commentstxt-optionnel) et [`comment_links.txt`](#comment_linkstxt-optionnel)
 
 ### geometries.txt (optionnel)
-Ce fichier contient la représentation spatiale d'une géométrie (pour des lignes, parcours et/ou circulations). Chaque ligne du fichier représente une géométrie complète de l'objet.
+Ce fichier contient la représentation spatiale d'une géométrie (pour des lignes, parcours et/ou circulations, voire la forme d'une zone d'arrêt). Chaque ligne du fichier représente une géométrie complète de l'objet.
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
@@ -445,10 +445,9 @@ geometry_wkt | géométrie | Requis | Représentation spatiale de la géométrie
     Les circulations ne peuvent être que des LINESTRING. Si une MULTILINESTRING est spécifiée, seule la première LINESTRING sera utilisée.
     Les points d'arrêts sont des POINT.
     Les zones d'arrêt peuvent être des POINT, POLYGON ou MULTIPOLYGON.
-    Les zones géographiques et communes peuvent être des POLYGON ou MULTIPOLYGON.
+    Les zones géographiques et communes peuvent être des MULTIPOLYGON. Par exemple, pour définir une zone d'achalandage de TAD zonal, il convient de décrire la zone dans le fichier stops.txt en utilisant une "location_type=2", et de lui associer une geometry suivant le format `MULTIPOLYGON(((2.86185260296 42.69555802563,2.85206790447 42.6934131755,.... )))`
 
     Seules les types de géométries spécifiées sont retenues, les autres types géométries sont ignorées.
-    Le format du fichier est volontairement simple, une évolution pourra être envisagée si le besoin est rencontré.
 
 ### object_properties.txt (optionnel)
 Ce fichier contient la description des propriétés complémentaires sur les différents objets du référentiel.
@@ -783,7 +782,7 @@ stop_area_C | A | 47.01 | 1.01 | 1 |  |
 stop_area_D | A | 47.01 | 1.01 | 1 |  |
 stop_area_E | A | 47.01 | 1.01 | 1 |  |
 stop_area_H | A | 47.01 | 1.01 | 1 |  |
-zone_2 | Zone 1 | 47.01 | 1.01 | 2 | id_vers_POLYGON((1 1,5 1,5 5,1 5,1 1)) |
+zone_2 | Zone 1 | 47.01 | 1.01 | 2 | id_vers_MULTIPOLYGON((1 1,5 1,5 5,1 5,1 1)) |
 
 **Fichier [`stop_times.txt`](#stop_timestxt-requis): déclare les "horaires", estimés ou non**
 
