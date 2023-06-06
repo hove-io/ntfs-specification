@@ -24,6 +24,7 @@ Fichier | Contrainte | Commentaire
 [`poi_properties.txt`](#poi_propertiestxt-optionnel) | Optionnel | Ce fichier contient les propriétés complémentaires des POI de l'export. Attention, même si ce fichier est optionnel, certaines propriétés ont des impacts directs sur les itinéraires proposés.
 [`poi_links.txt`](#poi_linkstxt-optionnel) | Optionnel | Ce fichier contient un lien de parenté entre les POI de type entrées/sorties et leur parents.
 `projection.txt` | Optionnel | Ce fichier indique le système de projection des coordonnés dans le fichier poi.txt. Par défaut, le système est le WGS84 (décimale).
+[`geometries.txt`](#geometriestxt-optionnel) | Optionnel | Ce fichier contient la représentation spatiale d'une géometrie au format Well Known Text (WKT). Ces géométries sont référencées dans le fichier [`poi.txt`](#linestxt-requis).
 
 ### Description des fichiers
 
@@ -54,6 +55,7 @@ Colonne | Type | Contrainte | Commentaire
 `poi_lon` | décimal | Requis | Longitude du POI
 `poi_weight` | entier | Requis | Poids associé au POI dans la reconnaissance de la saisie (API "places"). Plus le poids est grand, plus le POI remontera en haut de la liste de la recherche (pour des POI avec un matching identique).
 `poi_visible` | entier | Requis | Indique si le POI doit être présenté dans l'auto-complétion.
+`geometry_id` | chaine | Optionnel | Identifiant du tracé représentant le poi (lien vers le fichier [`geometries.txt`](#geometriestxt-optionnel))
 
 L'identifiant du poi `poi_id` est unique toutes sources de POI confondus. Il
 convient donc d'être vigilent en cas de source multiple de POI pour éviter
@@ -85,3 +87,17 @@ Le couple (`poi_id`, `key`) est unique.
 La liste des propriétés des POI n'est pas fixée ni limitée, mais certaines
 propriétés ont des effets et donc des contraintes particulières dans Navitia et
 dans les médias.
+
+### geometries.txt (optionnel)
+Ce fichier contient la représentation spatiale d'une géométrie d'une POI. Chaque ligne du fichier représente une géométrie complète de l'objet POI.
+
+Colonne | Type | Contrainte | Commentaire
+--- | --- | --- | ---
+geometry_id | chaine | Requis | Identifiant de la géométrie.
+geometry_wkt | géométrie | Requis | Représentation spatiale de la géométrie selon le standard http://fr.wikipedia.org/wiki/Well-known_text.
+
+
+    Le POI peuvent être un POLYGON ou MULTIPOLYGON.
+
+
+    Seules les types de géométries spécifiées sont retenues, les autres types géométries sont ignorées.
