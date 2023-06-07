@@ -89,7 +89,7 @@ propriétés ont des effets et donc des contraintes particulières dans Navitia 
 dans les médias.
 
 ### geometries.txt (optionnel)
-Ce fichier contient la représentation spatiale d'une géométrie d'une POI. Chaque ligne du fichier représente une géométrie complète de l'objet POI.
+Ce fichier contient la représentation spatiale d'une géométrie d'un POI. Chaque ligne du fichier représente une géométrie complète de l'objet POI.
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
