@@ -97,7 +97,4 @@ geometry_id | chaine | Requis | Identifiant de la géométrie.
 geometry_wkt | géométrie | Requis | Représentation spatiale de la géométrie selon le standard http://fr.wikipedia.org/wiki/Well-known_text.
 
 
-    Le POI peut être un POLYGON ou MULTIPOLYGON.
-
-
-    Seules les types de géométries spécifiées sont retenues, les autres types géométries sont ignorées.
+    Le POI peut être un POLYGON ou MULTIPOLYGON, toute autre géométrie sera ignorée.
