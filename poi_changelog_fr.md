@@ -5,3 +5,6 @@
 
 * Version 0.2 du 04/04/2023 :
   * ajout de `poi_links.txt` pour les liens de parentés avec les entrées/sorties
+
+* Version 0.3 du 09/06/2023 :
+  * ajout de 'geometries.txt'
