@@ -1,4 +1,4 @@
-# Navitia POI version 0.1
+# Navitia POI
 
 ## Introduction
 
