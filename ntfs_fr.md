@@ -72,6 +72,7 @@ Fichier | Contrainte | Commentaire
 [`pathways.txt`](#pathwaystxt-optionnel) | Optionnel | Ce fichier contient les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
 [`levels.txt`](#levelstxt-optionnel) | Optionnel | Ce fichier contient la liste des niveaux au sein d'une zone d'arrêt.
 [`addresses.txt`](#addressestxt-optionnel) | Optionnel | Ce fichier contient la liste des adresses des arrêts physiques.
+[`administrative_regions.txt`](#administrative_regionstxt-optionnel) | Optionnel | Ce fichier contient les régions administratives associés aux arrêts.
 [`occupancies.txt`](#occupanciestxt-optionnel-expérimental) | Optionnel | Ce fichier contient les informations d'affluence sur le réseau [**expérimental**]
 
 ## Fichiers des calendriers par période
@@ -338,7 +339,7 @@ stop_timezone | timezones | Optionnel | Fuseau horaire, se référer à http://e
 equipment_id | chaine | Optionnel | Identifiant de la propriété accessibilité
 level_id | chaine | Optionnel | lien vers un niveau décrit dans le fichier [`levels.txt`](#levelstxt-optionnel)
 platform_code | chaine | Optionnel | Identifiant de la plateforme d'un arrêt (par exemple `G` ou `3`). Ne peut être renseigné que pour les arrêts physiques (`location_type=0`) ou les zones d'embarquements (`location_type=5`)
-address_id | chaine | Optionnel | Identifiant de l'adresse de l'arrêt (lien vers le fichier [`addresses.txt`]). Ce champ ne s'applique que sur les arrêts physiques (`location_type=0`)
+address_id | chaine | Optionnel | Identifiant de l'adresse de l'arrêt (lien vers le fichier [`addresses.txt`]).
 
     (1) Type de l'arrêt ou de la zone :
         0 ou non spécifié - Arrêt physique (objet stop_point)
@@ -528,6 +529,21 @@ Colonne | Type | Contrainte | Commentaire
 address_id | chaine | Requis | Identifiant de l'adresse
 street_name | chaine | Requis | Nom de la voierie
 house_number | chaine | Optionnel | Numéro du seuil
+admin_level_8_id | chaine | Optionnel | Identifiant de l'administration de niveau 8 dans le fichier `administrative_regions.txt`
+admin_level_9_id | chaine | Optionnel | Identifiant de l'administration de niveau 9 dans le fichier `administrative_regions.txt`
+admin_level_10_id | chaine | Optionnel | Identifiant de l'administration de niveau 10 dans le fichier `administrative_regions.txt`
+
+### administrative_regions.txt (optionnel)
+Colonne | Type | Contrainte | Commentaire
+--- | --- | --- | ---
+admin_id | chaine | Requis | Identifiant de la région administrative
+admin_name | chaine | Optionnel | Nom de la région administrative
+admin_label | chaine | Optionnel | Label de la région administrative
+admin_level | entier | Optionnel | Niveau de la région administrative
+admin_insee | chaine | Optionnel | Code INSEE
+admin_zip_codes | chaine | Optionnel | Liste de code postaux
+admin_lon | décimal | Optionnel | Longitude de la région administrative
+admin_lat | décimal | Optionnel | Latitude de la région administrative
 
 ### occupancies.txt (optionnel) [**expérimental**]
 La notion d'affluence est appliquée sur l'intervalle entre 2 horaires (affluence à bord du véhicule).
