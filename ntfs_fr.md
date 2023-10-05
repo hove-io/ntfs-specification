@@ -72,7 +72,7 @@ Fichier | Contrainte | Commentaire
 [`pathways.txt`](#pathwaystxt-optionnel) | Optionnel | Ce fichier contient les cheminements au sein d'une zone d'arrêt. Ces cheminements ne sont pas nécessairement géographiques, il peut y avoir des simplifications.
 [`levels.txt`](#levelstxt-optionnel) | Optionnel | Ce fichier contient la liste des niveaux au sein d'une zone d'arrêt.
 [`addresses.txt`](#addressestxt-optionnel) | Optionnel | Ce fichier contient la liste des adresses des arrêts physiques.
-[`administrative_regions.txt`](#administrative_regionstxt-optionnel) | Optionnel | Ce fichier contient les régions administratives associés aux arrêts.
+[`administrative_regions.txt`](#administrative_regionstxt-optionnel) | Optionnel | Ce fichier contient les régions administratives associées aux arrêts.
 [`occupancies.txt`](#occupanciestxt-optionnel-expérimental) | Optionnel | Ce fichier contient les informations d'affluence sur le réseau [**expérimental**]
 
 ## Fichiers des calendriers par période
