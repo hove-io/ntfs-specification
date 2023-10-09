@@ -103,3 +103,10 @@
     * Précision de documentation concernant l'unité utilisée pour le CO2
 * Version 0.13.0 du 25/04/2023
     * Ajout du fichier optionnel `occupancies.txt`
+* Version 0.14.0 du 29/09/2023
+    * le champ `address_id` dans `stops.txt` s'applique désormais à tous les types d'arrêt
+    * Ajout de 3 champs dans `addresses.txt`
+      * `admin_level_8_id`
+      * `admin_level_9_id`
+      * `admin_level_10_id`
+    * Ajout du fichier `administrative_regions.txt`
