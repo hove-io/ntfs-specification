@@ -434,7 +434,7 @@ journey_pattern_id | chaine | Optionnel | Identifiant de la mission (i.e. une s�
         Indiquer un commentaire (optionnel) de type TAD via les fichiers [`comments.txt`](#commentstxt-optionnel) et [`comment_links.txt`](#comment_linkstxt-optionnel)
 
 ### geometries.txt (optionnel)
-Ce fichier contient la représentation spatiale d'une géométrie (pour des lignes, parcours et/ou circulations, voire la forme d'une zone d'arrêt). Chaque ligne du fichier représente une géométrie complète de l'objet.
+Ce fichier contient la représentation spatiale d'un objet géométrique (Tracé de ligne, de parcours et/ou de circulation, forme d'une zone d'arrêt). Chaque ligne du fichier représente une géométrie complète de l'objet.
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
