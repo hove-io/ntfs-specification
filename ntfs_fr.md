@@ -99,6 +99,7 @@ network_timezone | chaine | Optionnel |
 network_lang | chaine | Optionnel |
 network_phone | chaine | Optionnel | Numéro de téléphone de contact
 network_address | chaine | Optionnel | Adresse postale du réseau.
+network_fare_url | chaine | Optionnel | Lien vers le site institutionnel pour les informations tarifaires
 network_sort_order | entier | Optionnel | Ordre de tri des réseaux, les plus petits sont en premier.
 
 ### calendar.txt (requis)
