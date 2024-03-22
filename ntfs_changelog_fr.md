@@ -110,3 +110,5 @@
       * `admin_level_9_id`
       * `admin_level_10_id`
     * Ajout du fichier `administrative_regions.txt`
+* Version 0.15.0 du 06/02/2024
+    * Ajout du champ `network_fare_url` dans `networks.txt`
