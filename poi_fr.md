@@ -96,5 +96,8 @@ Colonne | Type | Contrainte | Commentaire
 geometry_id | chaine | Requis | Identifiant de la géométrie.
 geometry_wkt | géométrie | Requis | Représentation spatiale de la géométrie selon le standard http://fr.wikipedia.org/wiki/Well-known_text.
 
+Note : la donnée dans "geometry_wkt" contient un shape qui sera amené à être intégré dans une base Elastic Search.
+Elastic Search ne supporte pas de shape qui passerait plusieurs fois sur la même coordonnée : 
+les doublons de coordonnées au sein d'un élément de ce fichier sont bloquants à la lecture complète du fichier.
 
     Le POI peut être un POLYGON ou MULTIPOLYGON, toute autre géométrie sera ignorée.
