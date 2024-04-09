@@ -99,8 +99,6 @@ geometry_wkt | géométrie | Requis | Représentation spatiale de la géométrie
 Note : la donnée contenue dans chaque élément de "geometry_wkt" contient une liste ordonnée de coordonnées.
 
 * La première et la dernière coordonnées doivent être identiques
-* au sein de la liste de coordonnées ordonnées. Il ne doit pas y avoir d'autres doublons, successifs ou non.
-
-A part la première et la dernière coordonnées, les doublons de coordonnées au sein d'un élément de ce fichier sont bloquants à la lecture complète du fichier.
+* Il ne doit pas y avoir d'autres doublons de coordonnées, successifs ou non.
 
     Le POI peut être un POLYGON ou MULTIPOLYGON, toute autre géométrie sera ignorée.
