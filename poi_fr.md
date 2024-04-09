@@ -97,7 +97,10 @@ geometry_id | chaine | Requis | Identifiant de la géométrie.
 geometry_wkt | géométrie | Requis | Représentation spatiale de la géométrie selon le standard http://fr.wikipedia.org/wiki/Well-known_text.
 
 Note : la donnée contenue dans chaque élément de "geometry_wkt" contient une liste ordonnée de coordonnées.
-Chaque élément de geometry_wkt ne doit contenir aucun doublon : 
-les doublons de coordonnées au sein d'un élément de ce fichier sont bloquants à la lecture complète du fichier.
+
+* La première et la dernière coordonnées doivent être identique
+* au sein de la liste de coordonnée ordonnée, il ne doit pas y avoir d'autres doublons, successifs ou non
+
+A part la première et la dernière coordonnées, les doublons de coordonnées au sein d'un élément de ce fichier sont bloquants à la lecture complète du fichier.
 
     Le POI peut être un POLYGON ou MULTIPOLYGON, toute autre géométrie sera ignorée.
