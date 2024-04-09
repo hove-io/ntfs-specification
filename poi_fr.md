@@ -96,5 +96,9 @@ Colonne | Type | Contrainte | Commentaire
 geometry_id | chaine | Requis | Identifiant de la géométrie.
 geometry_wkt | géométrie | Requis | Représentation spatiale de la géométrie selon le standard http://fr.wikipedia.org/wiki/Well-known_text.
 
+Note : la donnée contenue dans chaque élément de "geometry_wkt" contient une liste ordonnée de coordonnées.
+
+* La première et la dernière coordonnées doivent être identiques
+* Il ne doit pas y avoir d'autres doublons de coordonnées, successifs ou non.
 
     Le POI peut être un POLYGON ou MULTIPOLYGON, toute autre géométrie sera ignorée.
