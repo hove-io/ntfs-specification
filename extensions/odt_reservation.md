@@ -5,7 +5,7 @@ NTFS - Extension transport à la demande (TAD)
 
 Ce document vient compléter les spécifications [ntfs_fr](../ntfs_fr.md) pour y ajouter des propriétés liées à la réservation d'un Transport à la Demande (ou ODT = On Demand Transportation).
 
-# Liste des fichiers de tarification
+# Liste des fichiers
 
 | Fichier                   | Contrainte | Commentaire                                                                                      |
 | ------------------------- | ---------- | ------------------------------------------------------------------------------------------------ |
@@ -17,7 +17,7 @@ Ce document vient compléter les spécifications [ntfs_fr](../ntfs_fr.md) pour y
 | Colonne                    | Type   | Contrainte | Commentaire                                                                         |
 | -------------------------- | ------ | ---------- | ----------------------------------------------------------------------------------- |
 | odt_reservation_id         | chaine | Requis     | Identifiant des propriétés liées à une réservation TAD                              |
-| odt_reservation_name       | chaine | Requis     | Nom de réservation                                                                  |
+| odt_reservation_name       | chaine | Optionnel  | Nom de réservation                                                                  |
 | odt_reservation_url        | chaine | Optionnel  | URL de réservation                                                                  |
 | odt_reservation_phone      | chaine | Optionnel  | Numéro de téléphone pour la réservation                                             |
 | odt_reservation_conditions | chaine | Optionnel  | Conditions de réservations (ex : du lundi au vendredi de 9h à 18h)                  |
