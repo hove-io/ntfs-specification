@@ -112,3 +112,5 @@
     * Ajout du fichier `administrative_regions.txt`
 * Version 0.15.0 du 06/02/2024
     * Ajout du champ `network_fare_url` dans `networks.txt`
+* Version 0.16.0 du 22/07/2024
+    * Ajout des fichiers `odt_reservation.txt` et `odt_reservation_links.txt`
