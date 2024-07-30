@@ -14,14 +14,14 @@ Ce document vient compléter les spécifications [ntfs_fr](../ntfs_fr.md) pour y
 
 ## odt_reservations.txt (optionnel)
 
-| Colonne                    | Type   | Contrainte | Commentaire                                                                             |
-| -------------------------- | ------ | ---------- | --------------------------------------------------------------------------------------- |
-| odt_reservation_id         | chaine | Requis     | Identifiant des propriétés liées à une réservation TAD                                  |
-| odt_reservation_name       | chaine | Requis     | Nom de réservation                                                                      |
-| odt_reservation_url        | chaine | Optionnel  | URL de réservation                                                                      |
-| odt_reservation_phone      | chaine | Optionnel  | Numéro de téléphone pour la réservation                                                 |
-| odt_reservation_conditions | chaine | Optionnel  | Conditions de réservations (ex : du lundi au vendredi de 9h à 18h)                      |
-| odt_reservation_deeplink   | chaine | Optionnel  | Template de deeplink permettant de faire le lien avec l'API de réservation de TAD PADAM |
+| Colonne                    | Type   | Contrainte | Commentaire                                                                         |
+| -------------------------- | ------ | ---------- | ----------------------------------------------------------------------------------- |
+| odt_reservation_id         | chaine | Requis     | Identifiant des propriétés liées à une réservation TAD                              |
+| odt_reservation_name       | chaine | Requis     | Nom de réservation                                                                  |
+| odt_reservation_url        | chaine | Optionnel  | URL de réservation                                                                  |
+| odt_reservation_phone      | chaine | Optionnel  | Numéro de téléphone pour la réservation                                             |
+| odt_reservation_conditions | chaine | Optionnel  | Conditions de réservations (ex : du lundi au vendredi de 9h à 18h)                  |
+| odt_reservation_deeplink   | chaine | Optionnel  | Template de deeplink permettant de faire le lien avec une API de réservation de TAD |
 
 ### odt_reservation_links.txt (optionnel)
 
