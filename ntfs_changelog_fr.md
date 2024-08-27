@@ -113,4 +113,6 @@
 * Version 0.15.0 du 06/02/2024
     * Ajout du champ `network_fare_url` dans `networks.txt`
 * Version 0.16.0 du 22/07/2024
-    * Ajout des fichiers `odt_reservation.txt` et `odt_reservation_links.txt`
+    * Ajout des fichiers `odt_reservations.txt` et `odt_reservation_links.txt`
+* Version 0.16.1 du 27/08/2024
+    * Renommage du champ `odt_reservation_condition` dans `odt_reservations.txt`

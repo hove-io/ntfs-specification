@@ -20,7 +20,7 @@ Ce document vient compléter les spécifications [ntfs_fr](../ntfs_fr.md) pour y
 | odt_reservation_name       | chaine | Optionnel  | Nom de réservation                                                                  |
 | odt_reservation_url        | chaine | Optionnel  | URL de réservation                                                                  |
 | odt_reservation_phone      | chaine | Optionnel  | Numéro de téléphone pour la réservation                                             |
-| odt_reservation_conditions | chaine | Optionnel  | Conditions de réservations (ex : du lundi au vendredi de 9h à 18h)                  |
+| odt_reservation_condition  | chaine | Optionnel  | Conditions de réservations (ex : du lundi au vendredi de 9h à 18h)                  |
 | odt_reservation_deeplink   | chaine | Optionnel  | Template de deeplink permettant de faire le lien avec une API de réservation de TAD |
 
 ### odt_reservation_links.txt (optionnel)
@@ -29,6 +29,6 @@ Ce fichier fait le lien entre un objet du référentiel (ligne, circulation) et 
 
 | Colonne            | Type   | Contrainte | Commentaire                                                                                                               |
 | ------------------ | ------ | ---------- | ------------------------------------------------------------------------------------------------------------------------- |
-| object_id          | chaine | Requis     | Identifiant de l'objet                                                                                                    |
-| object_type        | chaine | Requis     | Type de l'objet. Les valeurs possibles sont `line`, `trip`.                                                               |
-| odt_reservation_id | chaine | Requis     | Identifiant de propriétés d'un réservation (lien vers le fichier [`odt_reservation.txt`](#odt_reservationstxt-optionnel)) |
+| object_id          | chaine | Requis     | Identifiant de l'objet                                                                                                      |
+| object_type        | chaine | Requis     | Type de l'objet. Les valeurs possibles sont `line`, `trip`.                                                                 |
+| odt_reservation_id | chaine | Requis     | Identifiant de propriétés d'une réservation (lien vers le fichier [`odt_reservations.txt`](#odt_reservationstxt-optionnel)) |
