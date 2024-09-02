@@ -150,7 +150,7 @@ comment_url | chaine | Optionnel | URL associé à la note et permettant d'avoir
 (1) Catégorie de commentaire afin de pouvoir les différentier à l'affichage. Les valeurs possibles sont :
 
 * information (ou non renseigné) : indique une note d'information générale
-* on_demand_transport : indique qu'il s'agit d'une note d'information sur le Transport à la demande. Ce type de note doit préciser de manière succinte les conditions et le numéro de téléphone de réservation. Voir également l'extension [`odt_reservation.md`](https://github.com/hove-io/ntfs-specification/blob/master/extensions/odt_reservation.md)
+* on_demand_transport : indique qu'il s'agit d'une note d'information sur le Transport à la demande. Ce type de note doit préciser de manière succinte les conditions et le numéro de téléphone de réservation. Voir également l'extension [`booking_rules.md`](https://github.com/hove-io/ntfs-specification/blob/master/extensions/booking_rules.md)
 
 ### comment_links.txt (optionnel)
 Ce fichier fait le lien entre un objet du référentiel (ligne, arrêt, horaire, etc.) et un commentaire afin de permettre d'associer plusieurs notes à un objet. et plusieurs objets à une note.
@@ -433,7 +433,7 @@ journey_pattern_id | chaine | Optionnel | Identifiant de la mission (i.e. une s�
 
     Pour préciser si la circulation est sur réservation (tout ou partie), il faut :
         Indiquer au niveau de l'horaire (fichier [`stop_times.txt`](#stop_timestxt-requis)) si la montée et/ou la descente est à réservation
-        Indiquer un commentaire (optionnel) de type TAD via les fichiers [`comments.txt`](#commentstxt-optionnel) et [`comment_links.txt`](#comment_linkstxt-optionnel) ou via l'extension [`odt_reservation.md`](https://github.com/hove-io/ntfs-specification/blob/master/extensions/odt_reservation.md)
+        Indiquer un commentaire (optionnel) de type TAD via les fichiers [`comments.txt`](#commentstxt-optionnel) et [`comment_links.txt`](#comment_linkstxt-optionnel) ou via l'extension [`booking_rules.md`](https://github.com/hove-io/ntfs-specification/blob/master/extensions/booking_rules.md)
 
 ### geometries.txt (optionnel)
 Ce fichier contient la représentation spatiale d'un objet géométrique (Tracé de ligne, de parcours et/ou de circulation, forme d'une zone d'arrêt). Chaque ligne du fichier représente une géométrie complète de l'objet.
