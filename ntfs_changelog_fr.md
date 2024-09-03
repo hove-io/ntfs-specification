@@ -116,3 +116,5 @@
     * Ajout des fichiers `odt_reservations.txt` et `odt_reservation_links.txt`
 * Version 0.16.1 du 27/08/2024
     * Renommage du champ `odt_reservation_condition` dans `odt_reservations.txt`
+* Version 0.17.0 du 02/09/2024
+    * Renommage et évolution des fichiers `odt_reservations.txt` et `odt_reservation_links.txt` en `booking_rules.txt` et `booking_rule_links` pour rapprochement avec le standard GTFS
