@@ -118,3 +118,6 @@
     * Renommage du champ `odt_reservation_condition` dans `odt_reservations.txt`
 * Version 0.17.0 du 02/09/2024
     * Renommage et évolution des fichiers `odt_reservations.txt` et `odt_reservation_links.txt` en `booking_rules.txt` et `booking_rule_links` pour rapprochement avec le standard GTFS
+* Version 0.18.0 du 13/09/2024
+    *  Modification des champs `arrival_time` et `departure_time` de `stop_times.txt` désormais optionnels
+    *  Ajout des champs `start_pickup_drop_off_window` et `end_pickup_drop_off_window`
