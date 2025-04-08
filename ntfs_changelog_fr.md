@@ -121,3 +121,5 @@
 * Version 0.18.0 du 13/09/2024
     *  Modification des champs `arrival_time` et `departure_time` de `stop_times.txt` désormais optionnels
     *  Ajout des champs `start_pickup_drop_off_window` et `end_pickup_drop_off_window`
+* Version 0.19.0 du 07/04/2025
+    * Ajout du champ `role` dans le fichier `companies.txt`

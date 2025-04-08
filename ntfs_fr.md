@@ -170,7 +170,7 @@ commercial_mode_id | chaine | Requis | Identifiant du mode commercial
 commercial_mode_name | chaine | Requis | Nom du mode commercial
 
 ### companies.txt (requis)
-Ce fichier décrit l'opérateur de transport exploitant tout ou partie d'un des réseaux contenus dans les données.
+Ce fichier décrit les opérateurs de transport (exploitant tout ou partie d'un des réseaux contenus dans les données) et/ou les autorités organisatrice de transport.
 
 Colonne | Type | Contrainte | Commentaire
 --- | --- | --- | ---
@@ -180,6 +180,12 @@ company_address | chaine | Optionnel | Adresse complète de société.
 company_url | chaine | Optionnel | Url du site institutionnel de la société. A ne pas confondre avec le lien vers le site du réseau.
 company_mail | chaine | Optionnel | Adresse mail de contact de la société
 company_phone | chaine | Optionnel | Numéro de téléphone de contact
+role | chaine | Optionnel | Indique quel rôle exerce la compagnie (1)
+
+(1) Les valeurs possibles sont:
+
+* authority - La compagnie exerce le rôle d'autorité organisatrice
+* operator - La compagnie exerce le rôle d'opérateur de transport 
 
 ### contributors.txt (requis)
 Ce fichier permet d'identifier la ou les sources fournissant les données du présent jeu de données.
