@@ -180,7 +180,7 @@ company_address | chaine | Optionnel | Adresse complète de société.
 company_url | chaine | Optionnel | Url du site institutionnel de la société. A ne pas confondre avec le lien vers le site du réseau.
 company_mail | chaine | Optionnel | Adresse mail de contact de la société
 company_phone | chaine | Optionnel | Numéro de téléphone de contact
-role | chaine | Optionnel | Indique quel rôle exerce la compagnie (1)
+company_role | chaine | Optionnel | Indique quel rôle exerce la compagnie (1)
 
 (1) Les valeurs possibles sont:
 
