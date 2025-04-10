@@ -184,7 +184,7 @@ company_role | chaine | Optionnel | Indique quel rôle exerce la compagnie (1)
 
 (1) Les valeurs possibles sont:
 
-* authority - La compagnie exerce le rôle d'autorité organisatrice
+* authority (par défaut) - La compagnie exerce le rôle d'autorité organisatrice
 * operator - La compagnie exerce le rôle d'opérateur de transport 
 
 ### contributors.txt (requis)
