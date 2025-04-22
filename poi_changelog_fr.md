@@ -8,3 +8,6 @@
 
 * Version 0.3 du 09/06/2023 :
   * ajout de 'geometries.txt'
+
+* Version 0.4 du 23/04/2025 :
+  * POI weight est optionnel et sa valeur par défaut est 0

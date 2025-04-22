@@ -46,16 +46,16 @@ En effet, certains `poi_type` peuvent influencer le comportement de Navitia :
 
 #### poi.txt (requis)
 
-Colonne | Type | Contrainte | Commentaire
---- | --- | --- | ---
-`poi_id` | chaine | Requis | Identifiant unique et pérenne du POI
-`poi_type_id` | chaine | Requis | Identifiant du type de POI (lien vers le fichier [`poi_type.txt`](#poi_typetxt-requis))
-`poi_name` | chaine | Requis | Nom du POI
-`poi_lat` | décimal | Requis | Latitude du POI
-`poi_lon` | décimal | Requis | Longitude du POI
-`poi_weight` | entier | Requis | Poids associé au POI dans la reconnaissance de la saisie (API "places"). Plus le poids est grand, plus le POI remontera en haut de la liste de la recherche (pour des POI avec un matching identique).
-`poi_visible` | entier | Requis | Indique si le POI doit être présenté dans l'auto-complétion.
-`geometry_id` | chaine | Optionnel | Identifiant du tracé représentant le poi (lien vers le fichier [`geometries.txt`](#geometriestxt-optionnel))
+Colonne | Type | Contrainte | Valeur par défaut | Commentaire
+--- | --- | --- | --- | ---
+`poi_id` | chaine | Requis | | Identifiant unique et pérenne du POI
+`poi_type_id` | chaine | Requis | | Identifiant du type de POI (lien vers le fichier [`poi_type.txt`](#poi_typetxt-requis))
+`poi_name` | chaine | Requis | | Nom du POI
+`poi_lat` | décimal | Requis | | Latitude du POI
+`poi_lon` | décimal | Requis | | Longitude du POI
+`poi_weight` | entier | Optionnel | 0 | Poids associé au POI dans la reconnaissance de la saisie (API "places"). Plus le poids est grand, plus le POI remontera en haut de la liste de la recherche (pour des POI avec un matching identique).
+`poi_visible` | entier | Requis | | Indique si le POI doit être présenté dans l'auto-complétion.
+`geometry_id` | chaine | Optionnel | | Identifiant du tracé représentant le poi (lien vers le fichier [`geometries.txt`](#geometriestxt-optionnel))
 
 L'identifiant du poi `poi_id` est unique toutes sources de POI confondus. Il
 convient donc d'être vigilent en cas de source multiple de POI pour éviter
