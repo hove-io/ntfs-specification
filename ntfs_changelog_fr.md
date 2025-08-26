@@ -123,3 +123,5 @@
     *  Ajout des champs `start_pickup_drop_off_window` et `end_pickup_drop_off_window`
 * Version 0.19.0 du 07/04/2025
     * Ajout du champ `role` dans le fichier `companies.txt`
+* Version 0.20.0 du 26/09/2025
+    * Ajout du fichier d'extension `object_locks.txt`
