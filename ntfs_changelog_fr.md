@@ -125,3 +125,5 @@
     * Ajout du champ `role` dans le fichier `companies.txt`
 * Version 0.20.0 du 26/09/2025
     * Ajout du fichier d'extension `object_locks.txt`
+* Version 0.21.0 du 20/07/2026
+    * Ajout des champs `booking_type`, `prior_notice_duration_min`, `prior_notice_duration_max`, `prior_notice_last_day` et `prior_notice_last_time` dans `booking_rules.txt`
