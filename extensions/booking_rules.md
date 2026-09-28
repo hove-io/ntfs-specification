@@ -37,7 +37,21 @@ Ce document vient compléter les spécifications [ntfs_fr](../ntfs_fr.md) pour y
     (4) Requis si booking_type=2. Interdit sinon.
     (5) Requis si prior_notice_last_day est défini. Interdit sinon.
 
-### booking_rule_links.txt (optionnel)
+### Gestion des placeholder dans `booking_url`
+Il est possible d'ajouter des placeholder au sein de 'booking_url'. Ces placeholder peuvent être ensuite interprétés par un calculateur d'itinéraire comme Navitia.
+Les placeholder possibles sont les suivants :
+
+| format du placeholder  | Interprétation par Navitia | 
+| ---------------------- | ---------- | 
+| {from_name}            | Libellé du point de départ (`section.From.StopPoint.Label`) |
+| {from_coord_lat}       | Latitude du stop point de départ |
+| {from_coord_lon}       | Longitude du stop point de départ |
+| {to_name}              | Libellé du point de destination (`section.To.StopPoint.Label`) |
+| {to_coord_lat}         | Latitude du stop point d'arrivée |
+| {to_coord_lon}         | Longitude du stop point d'arrivée |
+| {departure_datetime}   | Horaire de la réservation (`section.DepartureDateTime` au format horaire local : `2006-01-02T15:04:05-0700`) |
+
+## booking_rule_links.txt (optionnel)
 
 Ce fichier fait le lien entre un objet du référentiel (ligne, circulation) et la règle de réservation TAD.
 
